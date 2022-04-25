@@ -59,9 +59,43 @@ final class SearchMovieCell: BaseTableViewCell {
 
     override func setConstraints() {
         super.setConstraints()
+        postImage.snp.makeConstraints { make in
+            make.top.equalTo(8)
+            make.leading.equalTo(16)
+            make.width.equalTo(80)
+            make.height.equalTo(110)
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(8)
+            make.leading.equalTo(postImage.snp.trailing).offset(8)
+        }
+        starButton.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(8)
+            make.trailing.equalToSuperview().inset(16)
+            make.width.height.equalTo(40)
+        }
+        textStackView.snp.makeConstraints { make in
+            make.top.equalTo(starButton.snp.bottom).offset(8)
+            make.leading.equalTo(titleLabel)
+            make.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(8)
+        }
     }
 
     override func setConfiguration() {
         super.setConfiguration()
+        titleLabel.numberOfLines = 2
+        postImage.backgroundColor = .red
+        postImage.layer.cornerRadius = 6
+        starButton.setImage(UIImage(systemName: "star"), for: .normal)
+        starButton.tintColor = .basic
+    }
+
+    func configure(movie: MovieList) {
+        titleLabel.text = movie.title
+        directorLabel.text = "감독: \(movie.director ?? "")"
+        castLabel.text = "출연: \(movie.actors ?? "")"
+        gradeLabel.text = "평점: \(movie.userRating ?? "")"
     }
 }

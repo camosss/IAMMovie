@@ -8,9 +8,15 @@
 import UIKit
 import SnapKit
 
+import RxCocoa
+import RxSwift
+
 final class SearchMovieViewController: BaseViewController {
 
     // MARK: - Properties
+
+    private let disposeBag = DisposeBag()
+    private let viewModel = SearchMovieViewModel()
 
     private let searchBar = UISearchBar()
     private let tableView = UITableView()
@@ -19,7 +25,7 @@ final class SearchMovieViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        bind()
     }
 
     // MARK: - Helpers
@@ -48,5 +54,22 @@ final class SearchMovieViewController: BaseViewController {
 
         searchBar.backgroundImage = UIImage()
         searchBar.placeholder = "영화를 검색해주세요..."
+
+        tableView.estimatedRowHeight = 200
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(SearchMovieCell.self,
+                           forCellReuseIdentifier: SearchMovieCell.reuseIdentifier)
+    }
+
+    private func bind() {
+        viewModel.movieList
+            .asDriver()
+            .drive(tableView.rx.items(
+                cellIdentifier: SearchMovieCell.reuseIdentifier,
+                cellType: SearchMovieCell.self
+            )) { index, item, cell in
+                cell.configure(movie: item)
+            }
+            .disposed(by: disposeBag)
     }
 }
