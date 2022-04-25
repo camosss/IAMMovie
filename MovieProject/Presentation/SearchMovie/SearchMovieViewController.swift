@@ -55,6 +55,7 @@ final class SearchMovieViewController: BaseViewController {
         searchBar.backgroundImage = UIImage()
         searchBar.placeholder = "영화를 검색해주세요..."
 
+        tableView.contentInset.bottom = 50
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(MovieCell.self,
