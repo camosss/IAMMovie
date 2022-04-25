@@ -19,6 +19,7 @@
 		B4975C4728169F0D001DD5DF /* UIFont+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4628169F0D001DD5DF /* UIFont+Ex.swift */; };
 		B4975C4928169F12001DD5DF /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4828169F12001DD5DF /* UIColor+Ex.swift */; };
 		B4975C4C28169F4E001DD5DF /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4B28169F4E001DD5DF /* UIViewController+Ex.swift */; };
+		B4975C4F2816A055001DD5DF /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4E2816A055001DD5DF /* AppAppearance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		B4975C4628169F0D001DD5DF /* UIFont+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ex.swift"; sourceTree = "<group>"; };
 		B4975C4828169F12001DD5DF /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
 		B4975C4B28169F4E001DD5DF /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
+		B4975C4E2816A055001DD5DF /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		D6BAE1446BD0A87DA18C22EF /* Pods-MovieProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieProject.release.xcconfig"; path = "Target Support Files/Pods-MovieProject/Pods-MovieProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 			children = (
 				B4975C1D28169923001DD5DF /* AppDelegate.swift */,
 				B4975C1F28169923001DD5DF /* SceneDelegate.swift */,
+				B4975C4E2816A055001DD5DF /* AppAppearance.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				B4975C2028169923001DD5DF /* SceneDelegate.swift in Sources */,
 				B4975C3528169C15001DD5DF /* SearchMovieViewController.swift in Sources */,
 				B4975C4428169ED3001DD5DF /* Constants.swift in Sources */,
+				B4975C4F2816A055001DD5DF /* AppAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
