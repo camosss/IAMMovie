@@ -14,5 +14,5 @@ final class SearchMovieViewModel {
 
     // MARK: - Properties
 
-    var movieList = BehaviorRelay<[MovieList]>(value: [MovieList(title: "titletitletitletitletitletitletitletitletitletitletitletitle", link: "link", imageURL: "", pubDate: "pubDate", director: "director", actors: "actors", userRating: "userRating"), MovieList(title: "title", link: "link", imageURL: "", pubDate: "pubDate", director: "director", actors: "actorsactorsactorsactorsactorsactorsactorsactors", userRating: "userRating"), MovieList(title: "titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle", link: "link", imageURL: "", pubDate: "pubDate", director: "director", actors: "actors", userRating: "userRating")])
+    var movieList = BehaviorRelay<[Movie]>(value: [Movie(title: "titletitletitletitletitletitletitletitletitletitletitletitle", link: "link", imageURL: "", pubDate: "pubDate", director: "director", actors: "actors", userRating: "userRating"), Movie(title: "title", link: "link", imageURL: "", pubDate: "pubDate", director: "director", actors: "actorsactorsactorsactorsactorsactorsactorsactors", userRating: "userRating"), Movie(title: "titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle", link: "link", imageURL: "", pubDate: "pubDate", director: "director", actors: "actors", userRating: "userRating")])
 }

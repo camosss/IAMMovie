@@ -92,7 +92,7 @@ final class SearchMovieCell: BaseTableViewCell {
         starButton.tintColor = .basic
     }
 
-    func configure(movie: MovieList) {
+    func configure(movie: Movie) {
         titleLabel.text = movie.title
         directorLabel.text = "감독: \(movie.director ?? "")"
         castLabel.text = "출연: \(movie.actors ?? "")"
