@@ -18,6 +18,7 @@
 		B4975C4428169ED3001DD5DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4328169ED3001DD5DF /* Constants.swift */; };
 		B4975C4728169F0D001DD5DF /* UIFont+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4628169F0D001DD5DF /* UIFont+Ex.swift */; };
 		B4975C4928169F12001DD5DF /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4828169F12001DD5DF /* UIColor+Ex.swift */; };
+		B4975C4C28169F4E001DD5DF /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4B28169F4E001DD5DF /* UIViewController+Ex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		B4975C4328169ED3001DD5DF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B4975C4628169F0D001DD5DF /* UIFont+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ex.swift"; sourceTree = "<group>"; };
 		B4975C4828169F12001DD5DF /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
+		B4975C4B28169F4E001DD5DF /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		D6BAE1446BD0A87DA18C22EF /* Pods-MovieProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieProject.release.xcconfig"; path = "Target Support Files/Pods-MovieProject/Pods-MovieProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +85,7 @@
 				B4975C3228169BA2001DD5DF /* Presentation */,
 				B4975C3C28169E36001DD5DF /* Custom */,
 				B4975C4228169EC2001DD5DF /* Constants */,
+				B4975C4A28169F41001DD5DF /* Extension */,
 				B4975C2628169924001DD5DF /* Assets.xcassets */,
 				B4975C2828169924001DD5DF /* LaunchScreen.storyboard */,
 				B4975C2B28169924001DD5DF /* Info.plist */,
@@ -146,6 +149,14 @@
 			children = (
 				B4975C4628169F0D001DD5DF /* UIFont+Ex.swift */,
 				B4975C4828169F12001DD5DF /* UIColor+Ex.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B4975C4A28169F41001DD5DF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B4975C4B28169F4E001DD5DF /* UIViewController+Ex.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -274,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4975C4928169F12001DD5DF /* UIColor+Ex.swift in Sources */,
+				B4975C4C28169F4E001DD5DF /* UIViewController+Ex.swift in Sources */,
 				B4975C1E28169923001DD5DF /* AppDelegate.swift in Sources */,
 				B4975C3E28169E41001DD5DF /* DefaultLabel.swift in Sources */,
 				B4975C3828169D52001DD5DF /* BaseViewController.swift in Sources */,

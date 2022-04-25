@@ -28,5 +28,6 @@ final class SearchMovieViewController: BaseViewController {
 
     override func setConfigurations() {
         super.setConfigurations()
+        configureLeftBarButtonItem(title: "네이버 영화 검색")
     }
 }
