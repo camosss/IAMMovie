@@ -17,9 +17,9 @@ final class MovieCell: BaseTableViewCell {
     private let postImage = UIImageView()
     private let starButton = UIButton()
     private let titleLabel = DefaultLabel(font: .headline, textColor: .basic)
-    private let directorLabel = DefaultLabel(font: .body, textColor: .basic)
-    private let castLabel = DefaultLabel(font: .body, textColor: .basic)
-    private let gradeLabel = DefaultLabel(font: .body, textColor: .basic)
+    private let directorLabel = DefaultLabel(font: .subHead, textColor: .basic)
+    private let castLabel = DefaultLabel(font: .subHead, textColor: .basic)
+    private let gradeLabel = DefaultLabel(font: .subHead, textColor: .basic)
 
     private lazy var textStackView = UIStackView(
         arrangedSubviews: [directorLabel, castLabel, gradeLabel]
@@ -76,7 +76,7 @@ final class MovieCell: BaseTableViewCell {
             make.width.height.equalTo(40)
         }
         textStackView.snp.makeConstraints { make in
-            make.top.equalTo(starButton.snp.bottom).offset(8)
+            make.top.equalTo(starButton.snp.bottom).offset(12)
             make.leading.equalTo(titleLabel)
             make.trailing.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(12)
@@ -94,7 +94,11 @@ final class MovieCell: BaseTableViewCell {
     }
 
     func configure(movie: Movie) {
-        postImage.setImage(with: movie.image ?? "")
+        if movie.image == "" {
+            postImage.image = UIImage(named: "no_image")
+        } else {
+            postImage.setImage(with: movie.image ?? "")
+        }
         titleLabel.text = "\(movie.title ?? "")(\(movie.pubDate ?? ""))"
         handleEmptyData(label: directorLabel, title: "감독", data: movie.director ?? "")
         handleEmptyData(label: castLabel, title: "출연", data: movie.actor ?? "")

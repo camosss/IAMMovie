@@ -21,7 +21,7 @@ extension UIFont {
         return UIFont.boldSystemFont(ofSize: 19)
     }
     static var headline: UIFont {
-        return UIFont.boldSystemFont(ofSize: 17)
+        return UIFont.boldSystemFont(ofSize: 16)
     }
     static var body: UIFont {
         return UIFont.systemFont(ofSize: 16)
