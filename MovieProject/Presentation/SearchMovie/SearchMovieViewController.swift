@@ -57,16 +57,16 @@ final class SearchMovieViewController: BaseViewController {
 
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(SearchMovieCell.self,
-                           forCellReuseIdentifier: SearchMovieCell.reuseIdentifier)
+        tableView.register(MovieCell.self,
+                           forCellReuseIdentifier: MovieCell.reuseIdentifier)
     }
 
     private func bind() {
         viewModel.movieList
             .asDriver()
             .drive(tableView.rx.items(
-                cellIdentifier: SearchMovieCell.reuseIdentifier,
-                cellType: SearchMovieCell.self
+                cellIdentifier: MovieCell.reuseIdentifier,
+                cellType: MovieCell.self
             )) { index, item, cell in
                 cell.configure(movie: item)
             }

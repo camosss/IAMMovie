@@ -1,5 +1,5 @@
 //
-//  SearchMovieCell.swift
+//  MovieCell.swift
 //  MovieProject
 //
 //  Created by 강호성 on 2022/04/25.
@@ -10,7 +10,7 @@ import Then
 
 import RxSwift
 
-final class SearchMovieCell: BaseTableViewCell {
+final class MovieCell: BaseTableViewCell {
 
     // MARK: - Properties
 
