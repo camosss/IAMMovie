@@ -10,10 +10,9 @@
 		2A90DAAC787726CFDBEA55C0 /* Pods_MovieProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0F65E0210030748047DE34 /* Pods_MovieProject.framework */; };
 		B4975C1E28169923001DD5DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C1D28169923001DD5DF /* AppDelegate.swift */; };
 		B4975C2028169923001DD5DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C1F28169923001DD5DF /* SceneDelegate.swift */; };
-		B4975C2228169923001DD5DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C2128169923001DD5DF /* ViewController.swift */; };
-		B4975C2528169923001DD5DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4975C2328169923001DD5DF /* Main.storyboard */; };
 		B4975C2728169924001DD5DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4975C2628169924001DD5DF /* Assets.xcassets */; };
 		B4975C2A28169924001DD5DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4975C2828169924001DD5DF /* LaunchScreen.storyboard */; };
+		B4975C3528169C15001DD5DF /* SearchMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C3428169C15001DD5DF /* SearchMovieViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,11 +21,10 @@
 		B4975C1A28169923001DD5DF /* MovieProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4975C1D28169923001DD5DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4975C1F28169923001DD5DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B4975C2128169923001DD5DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B4975C2428169923001DD5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B4975C2628169924001DD5DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4975C2928169924001DD5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4975C2B28169924001DD5DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4975C3428169C15001DD5DF /* SearchMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieViewController.swift; sourceTree = "<group>"; };
 		D6BAE1446BD0A87DA18C22EF /* Pods-MovieProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieProject.release.xcconfig"; path = "Target Support Files/Pods-MovieProject/Pods-MovieProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,15 +69,38 @@
 		B4975C1C28169923001DD5DF /* MovieProject */ = {
 			isa = PBXGroup;
 			children = (
-				B4975C1D28169923001DD5DF /* AppDelegate.swift */,
-				B4975C1F28169923001DD5DF /* SceneDelegate.swift */,
-				B4975C2128169923001DD5DF /* ViewController.swift */,
-				B4975C2328169923001DD5DF /* Main.storyboard */,
+				B4975C3128169B4E001DD5DF /* Application */,
+				B4975C3228169BA2001DD5DF /* Presentation */,
 				B4975C2628169924001DD5DF /* Assets.xcassets */,
 				B4975C2828169924001DD5DF /* LaunchScreen.storyboard */,
 				B4975C2B28169924001DD5DF /* Info.plist */,
 			);
 			path = MovieProject;
+			sourceTree = "<group>";
+		};
+		B4975C3128169B4E001DD5DF /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				B4975C1D28169923001DD5DF /* AppDelegate.swift */,
+				B4975C1F28169923001DD5DF /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		B4975C3228169BA2001DD5DF /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				B4975C3328169C07001DD5DF /* SearchMovie */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		B4975C3328169C07001DD5DF /* SearchMovie */ = {
+			isa = PBXGroup;
+			children = (
+				B4975C3428169C15001DD5DF /* SearchMovieViewController.swift */,
+			);
+			path = SearchMovie;
 			sourceTree = "<group>";
 		};
 		BDF591B0AC936610C92356F7 /* Pods */ = {
@@ -153,7 +174,6 @@
 			files = (
 				B4975C2A28169924001DD5DF /* LaunchScreen.storyboard in Resources */,
 				B4975C2728169924001DD5DF /* Assets.xcassets in Resources */,
-				B4975C2528169923001DD5DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,23 +226,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4975C2228169923001DD5DF /* ViewController.swift in Sources */,
 				B4975C1E28169923001DD5DF /* AppDelegate.swift in Sources */,
 				B4975C2028169923001DD5DF /* SceneDelegate.swift in Sources */,
+				B4975C3528169C15001DD5DF /* SearchMovieViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B4975C2328169923001DD5DF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B4975C2428169923001DD5DF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B4975C2828169924001DD5DF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -361,7 +373,6 @@
 				INFOPLIST_FILE = MovieProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -390,7 +401,6 @@
 				INFOPLIST_FILE = MovieProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
