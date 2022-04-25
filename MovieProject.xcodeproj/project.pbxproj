@@ -145,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				B4975C3128169B4E001DD5DF /* Application */,
+				B4975C552816A6A1001DD5DF /* View */,
 				B4975C3228169BA2001DD5DF /* Presentation */,
 				B44EA8C32816B0DB0078B2C6 /* Network */,
 				B4975C3C28169E36001DD5DF /* Custom */,
@@ -172,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				B4975C3628169D1D001DD5DF /* BaseView */,
-				B4975C552816A6A1001DD5DF /* View */,
 				B4975C3328169C07001DD5DF /* SearchMovie */,
 			);
 			path = Presentation;
