@@ -9,7 +9,7 @@ import RxSwift
 import Moya
 
 protocol SearchMovieAPIProtocol {
-    func populateMovieList(query: String) -> Single<[Movie]>
+    func populateMovieList(query: String, start: Int) -> Single<Movies>
 }
 
 final class SearchMovieAPI: SearchMovieAPIProtocol {
@@ -18,16 +18,16 @@ final class SearchMovieAPI: SearchMovieAPIProtocol {
 }
 
 extension SearchMovieAPI {
-    func populateMovieList(query: String) -> Single<[Movie]> {
+    func populateMovieList(query: String, start: Int) -> Single<Movies> {
         return Single.create() { single in
             self.service
-                .request(.populateMovieList(query: query)) { result in
+                .request(.populateMovieList(query: query, start: start)) { result in
                     switch result {
                     case .success(let value):
                         do {
-                            let response = try value.map([Movie].self)
+                            let response = try value.map(Movies.self)
                             single(.success(response))
-                        } catch {
+                        } catch let error {
                             switch value.statusCode {
                             default: single(.failure(error))
                             }

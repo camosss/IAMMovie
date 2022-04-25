@@ -70,7 +70,7 @@ final class MovieCell: BaseTableViewCell {
             make.leading.equalTo(postImage.snp.trailing).offset(8)
         }
         starButton.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel)
+            make.top.equalToSuperview()
             make.leading.equalTo(titleLabel.snp.trailing).offset(8)
             make.trailing.equalToSuperview().inset(16)
             make.width.height.equalTo(40)
@@ -79,24 +79,33 @@ final class MovieCell: BaseTableViewCell {
             make.top.equalTo(starButton.snp.bottom).offset(8)
             make.leading.equalTo(titleLabel)
             make.trailing.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().inset(8)
+            make.bottom.equalToSuperview().inset(12)
         }
     }
 
     override func setConfiguration() {
         super.setConfiguration()
         titleLabel.numberOfLines = 2
-        postImage.backgroundColor = .red
+        postImage.clipsToBounds = true
         postImage.layer.cornerRadius = 6
+        postImage.contentMode = .scaleToFill
         starButton.setImage(UIImage(systemName: "star"), for: .normal)
         starButton.tintColor = .basic
     }
 
     func configure(movie: Movie) {
-        postImage.setImage(with: movie.imageURL ?? "")
-        titleLabel.text = movie.title
-        directorLabel.text = "감독: \(movie.director ?? "")"
-        castLabel.text = "출연: \(movie.actors ?? "")"
+        postImage.setImage(with: movie.image ?? "")
+        titleLabel.text = "\(movie.title ?? "")(\(movie.pubDate ?? ""))"
+        handleEmptyData(label: directorLabel, title: "감독", data: movie.director ?? "")
+        handleEmptyData(label: castLabel, title: "출연", data: movie.actor ?? "")
         gradeLabel.text = "평점: \(movie.userRating ?? "")"
+    }
+
+    private func handleEmptyData(label: UILabel, title: String, data: String) {
+        if data == "" {
+            label.text = "\(title): 정보 없음"
+        } else {
+            label.text = "\(title): \(data)"
+        }
     }
 }

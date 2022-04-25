@@ -7,12 +7,19 @@
 
 import UIKit
 
+struct Movies: Codable {
+    let lastBuildDate: String
+    let total, start, display: Int
+    let items: [Movie]
+}
+
 struct Movie: Codable {
-    var title: String?
-    var link: String?
-    var imageURL: String?
-    var pubDate: String?
-    var director: String?
-    var actors: String?
-    var userRating: String?
+    let title: String?
+    let link: String?
+    let image: String?
+    let subtitle: String?
+    let pubDate: String?
+    let director: String?
+    let actor: String?
+    let userRating: String?
 }

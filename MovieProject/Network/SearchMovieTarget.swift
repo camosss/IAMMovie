@@ -8,7 +8,7 @@
 import Moya
 
 enum SearchMovieTarget {
-    case populateMovieList(query: String)
+    case populateMovieList(query: String, start: Int)
 }
 
 extension SearchMovieTarget: TargetType {
@@ -18,8 +18,8 @@ extension SearchMovieTarget: TargetType {
 
     var path: String {
         switch self {
-        case .populateMovieList(let query):
-            return "/search/movie.xml?query=\(query)"
+        case .populateMovieList:
+            return "/search/movie.json"
         }
     }
 
@@ -32,15 +32,21 @@ extension SearchMovieTarget: TargetType {
 
     var task: Task {
         switch self {
-        case .populateMovieList:
-            return .requestPlain
+        case .populateMovieList(let query, let start):
+            return .requestParameters(
+                parameters: ["query": query,
+                             "start": start,
+                             "display": 20],
+                encoding: URLEncoding.default
+            )
         }
     }
 
     var headers: [String : String]? {
         switch self {
         case .populateMovieList:
-            return ["X-Naver-Client-Id": ClientKey.clientID,
+            return ["Content-Type": "application/xml; charset=utf-8",
+                    "X-Naver-Client-Id": ClientKey.clientID,
                     "X-Naver-Client-Secret": ClientKey.clientSecret]
         }
     }
