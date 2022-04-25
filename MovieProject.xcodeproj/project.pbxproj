@@ -13,6 +13,7 @@
 		B4975C2728169924001DD5DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4975C2628169924001DD5DF /* Assets.xcassets */; };
 		B4975C2A28169924001DD5DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4975C2828169924001DD5DF /* LaunchScreen.storyboard */; };
 		B4975C3528169C15001DD5DF /* SearchMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C3428169C15001DD5DF /* SearchMovieViewController.swift */; };
+		B4975C3828169D52001DD5DF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C3728169D52001DD5DF /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		B4975C2928169924001DD5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4975C2B28169924001DD5DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4975C3428169C15001DD5DF /* SearchMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieViewController.swift; sourceTree = "<group>"; };
+		B4975C3728169D52001DD5DF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D6BAE1446BD0A87DA18C22EF /* Pods-MovieProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieProject.release.xcconfig"; path = "Target Support Files/Pods-MovieProject/Pods-MovieProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +92,7 @@
 		B4975C3228169BA2001DD5DF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B4975C3628169D1D001DD5DF /* BaseView */,
 				B4975C3328169C07001DD5DF /* SearchMovie */,
 			);
 			path = Presentation;
@@ -101,6 +104,14 @@
 				B4975C3428169C15001DD5DF /* SearchMovieViewController.swift */,
 			);
 			path = SearchMovie;
+			sourceTree = "<group>";
+		};
+		B4975C3628169D1D001DD5DF /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				B4975C3728169D52001DD5DF /* BaseViewController.swift */,
+			);
+			path = BaseView;
 			sourceTree = "<group>";
 		};
 		BDF591B0AC936610C92356F7 /* Pods */ = {
@@ -227,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4975C1E28169923001DD5DF /* AppDelegate.swift in Sources */,
+				B4975C3828169D52001DD5DF /* BaseViewController.swift in Sources */,
 				B4975C2028169923001DD5DF /* SceneDelegate.swift in Sources */,
 				B4975C3528169C15001DD5DF /* SearchMovieViewController.swift in Sources */,
 			);
