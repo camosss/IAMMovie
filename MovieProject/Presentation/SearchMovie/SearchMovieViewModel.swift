@@ -15,6 +15,7 @@ final class SearchMovieViewModel {
     // MARK: - Properties
 
     var movieList = BehaviorRelay<[Movie]>(value: [])
+    var errorMessage = PublishSubject<Error>()
 
     var query: String?
     private var startCounter = 1
@@ -41,7 +42,7 @@ final class SearchMovieViewModel {
                 case .success(let movies):
                     self.movieList.accept(movies.items)
                 case .failure(let error):
-                    print("error", error.localizedDescription)
+                    self.errorMessage.onNext(error)
                 }
             }
             .disposed(by: disposeBag)

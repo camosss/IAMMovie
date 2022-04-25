@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Toast_Swift
 
 import RxCocoa
 import RxSwift
@@ -71,6 +72,13 @@ final class SearchMovieViewController: BaseViewController {
             )) { index, item, cell in
                 cell.configure(movie: item)
             }
+            .disposed(by: disposeBag)
+
+        viewModel.errorMessage
+            .subscribe(onNext: { error in
+                guard let error = error as? NetworkError else { return }
+                self.view.makeToast(error.description, position: .center)
+            })
             .disposed(by: disposeBag)
     }
 }

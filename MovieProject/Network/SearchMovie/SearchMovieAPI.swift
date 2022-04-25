@@ -27,13 +27,16 @@ extension SearchMovieAPI {
                         do {
                             let response = try value.map(Movies.self)
                             single(.success(response))
-                        } catch let error {
+                        } catch {
                             switch value.statusCode {
-                            default: single(.failure(error))
+                            case 400: single(.failure(NetworkError.incorrect_request))
+                            case 404: single(.failure(NetworkError.invalid_search_API))
+                            case 500: single(.failure(NetworkError.system_error))
+                            default: single(.failure(NetworkError.unknown_error))
                             }
                         }
-                    case .failure(let error):
-                        single(.failure(error))
+                    case .failure:
+                        single(.failure(NetworkError.unknown_error))
                     }
                 }
             return Disposables.create()
