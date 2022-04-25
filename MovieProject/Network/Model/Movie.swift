@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Movie {
+struct Movie: Codable {
     var title: String?
     var link: String?
     var imageURL: String?
