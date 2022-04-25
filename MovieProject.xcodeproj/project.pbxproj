@@ -21,6 +21,7 @@
 		B4975C4C28169F4E001DD5DF /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4B28169F4E001DD5DF /* UIViewController+Ex.swift */; };
 		B4975C4F2816A055001DD5DF /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4E2816A055001DD5DF /* AppAppearance.swift */; };
 		B4975C542816A5F8001DD5DF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C532816A5F8001DD5DF /* BaseTableViewCell.swift */; };
+		B4975C572816A6AB001DD5DF /* SearchMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C562816A6AB001DD5DF /* SearchMovieCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		B4975C4B28169F4E001DD5DF /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		B4975C4E2816A055001DD5DF /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		B4975C532816A5F8001DD5DF /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		B4975C562816A6AB001DD5DF /* SearchMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieCell.swift; sourceTree = "<group>"; };
 		D6BAE1446BD0A87DA18C22EF /* Pods-MovieProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieProject.release.xcconfig"; path = "Target Support Files/Pods-MovieProject/Pods-MovieProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				B4975C3628169D1D001DD5DF /* BaseView */,
+				B4975C552816A6A1001DD5DF /* View */,
 				B4975C3328169C07001DD5DF /* SearchMovie */,
 			);
 			path = Presentation;
@@ -165,6 +168,14 @@
 				B4975C4B28169F4E001DD5DF /* UIViewController+Ex.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B4975C552816A6A1001DD5DF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B4975C562816A6AB001DD5DF /* SearchMovieCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		BDF591B0AC936610C92356F7 /* Pods */ = {
@@ -292,6 +303,7 @@
 			files = (
 				B4975C4928169F12001DD5DF /* UIColor+Ex.swift in Sources */,
 				B4975C4C28169F4E001DD5DF /* UIViewController+Ex.swift in Sources */,
+				B4975C572816A6AB001DD5DF /* SearchMovieCell.swift in Sources */,
 				B4975C1E28169923001DD5DF /* AppDelegate.swift in Sources */,
 				B4975C3E28169E41001DD5DF /* DefaultLabel.swift in Sources */,
 				B4975C3828169D52001DD5DF /* BaseViewController.swift in Sources */,
