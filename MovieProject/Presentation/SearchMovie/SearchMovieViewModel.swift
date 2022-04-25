@@ -15,11 +15,12 @@ final class SearchMovieViewModel {
     // MARK: - Properties
 
     var movieList = BehaviorRelay<[Movie]>(value: [])
-    var errorMessage = PublishSubject<Error>()
 
+    var errorMessage = PublishSubject<Error>()
     var query: String?
-    private var startCounter = 1
-    private var limit = 20
+
+    private let startCounter = 1
+    private let limit = 20
 
     private let searchMovieAPI: SearchMovieAPIProtocol
     private let disposeBag = DisposeBag()

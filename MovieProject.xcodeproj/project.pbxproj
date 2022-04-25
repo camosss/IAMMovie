@@ -23,7 +23,6 @@
 		B4975C3528169C15001DD5DF /* SearchMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C3428169C15001DD5DF /* SearchMovieViewController.swift */; };
 		B4975C3828169D52001DD5DF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C3728169D52001DD5DF /* BaseViewController.swift */; };
 		B4975C3E28169E41001DD5DF /* DefaultLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C3D28169E41001DD5DF /* DefaultLabel.swift */; };
-		B4975C4428169ED3001DD5DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4328169ED3001DD5DF /* Constants.swift */; };
 		B4975C4728169F0D001DD5DF /* UIFont+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4628169F0D001DD5DF /* UIFont+Ex.swift */; };
 		B4975C4928169F12001DD5DF /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4828169F12001DD5DF /* UIColor+Ex.swift */; };
 		B4975C4C28169F4E001DD5DF /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4B28169F4E001DD5DF /* UIViewController+Ex.swift */; };
@@ -52,7 +51,6 @@
 		B4975C3428169C15001DD5DF /* SearchMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieViewController.swift; sourceTree = "<group>"; };
 		B4975C3728169D52001DD5DF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B4975C3D28169E41001DD5DF /* DefaultLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLabel.swift; sourceTree = "<group>"; };
-		B4975C4328169ED3001DD5DF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B4975C4628169F0D001DD5DF /* UIFont+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ex.swift"; sourceTree = "<group>"; };
 		B4975C4828169F12001DD5DF /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
 		B4975C4B28169F4E001DD5DF /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
@@ -209,19 +207,10 @@
 		B4975C4228169EC2001DD5DF /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				B4975C4328169ED3001DD5DF /* Constants.swift */,
-				B4975C4528169EFF001DD5DF /* Extension */,
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
-		B4975C4528169EFF001DD5DF /* Extension */ = {
-			isa = PBXGroup;
-			children = (
 				B4975C4628169F0D001DD5DF /* UIFont+Ex.swift */,
 				B4975C4828169F12001DD5DF /* UIColor+Ex.swift */,
 			);
-			path = Extension;
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		B4975C4A28169F41001DD5DF /* Extension */ = {
@@ -383,7 +372,6 @@
 				B4975C2028169923001DD5DF /* SceneDelegate.swift in Sources */,
 				B4975C3528169C15001DD5DF /* SearchMovieViewController.swift in Sources */,
 				B44EA8CC2816CF4E0078B2C6 /* SearchMovieTarget.swift in Sources */,
-				B4975C4428169ED3001DD5DF /* Constants.swift in Sources */,
 				B4975C4F2816A055001DD5DF /* AppAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
