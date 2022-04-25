@@ -93,6 +93,7 @@ final class MovieCell: BaseTableViewCell {
     }
 
     func configure(movie: Movie) {
+        postImage.setImage(with: movie.imageURL ?? "")
         titleLabel.text = movie.title
         directorLabel.text = "감독: \(movie.director ?? "")"
         castLabel.text = "출연: \(movie.actors ?? "")"
