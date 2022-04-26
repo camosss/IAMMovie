@@ -45,8 +45,7 @@ extension SearchMovieTarget: TargetType {
     var headers: [String : String]? {
         switch self {
         case .populateMovieList:
-            return ["Content-Type": "application/xml; charset=utf-8",
-                    "X-Naver-Client-Id": ClientKey.clientID,
+            return ["X-Naver-Client-Id": ClientKey.clientID,
                     "X-Naver-Client-Secret": ClientKey.clientSecret]
         }
     }
