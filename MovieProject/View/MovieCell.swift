@@ -63,7 +63,7 @@ final class MovieCell: BaseTableViewCell {
             make.top.equalTo(8)
             make.leading.equalTo(16)
             make.width.equalTo(80)
-            make.height.equalTo(110)
+            make.height.equalTo(105)
         }
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(8)

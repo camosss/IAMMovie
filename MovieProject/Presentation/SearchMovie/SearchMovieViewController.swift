@@ -64,6 +64,17 @@ final class SearchMovieViewController: BaseViewController {
     }
 
     private func bind() {
+        tableViewBind()
+
+        viewModel.errorMessage
+            .subscribe(onNext: { error in
+                guard let error = error as? NetworkError else { return }
+                self.view.makeToast(error.description, position: .center)
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func tableViewBind() {
         viewModel.movieList
             .asDriver()
             .drive(tableView.rx.items(
@@ -72,13 +83,6 @@ final class SearchMovieViewController: BaseViewController {
             )) { index, item, cell in
                 cell.configure(movie: item)
             }
-            .disposed(by: disposeBag)
-
-        viewModel.errorMessage
-            .subscribe(onNext: { error in
-                guard let error = error as? NetworkError else { return }
-                self.view.makeToast(error.description, position: .center)
-            })
             .disposed(by: disposeBag)
 
         tableView.rx
@@ -91,6 +95,20 @@ final class SearchMovieViewController: BaseViewController {
                 let controller = DetailMovieViewController(movie: movie)
                 self.navigationController?.pushViewController(controller, animated: true)
             })
+            .disposed(by: disposeBag)
+
+        tableView.rx
+            .didScroll
+            .throttle(.milliseconds(200), scheduler: MainScheduler.instance)
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                let offSetY = self.tableView.contentOffset.y /// 현재 스크롤된 위치
+                let contentHeight = self.tableView.contentSize.height /// 전체 content 높이
+
+                if offSetY > (contentHeight - self.tableView.frame.size.height - 100) {
+                    self.viewModel.fetchMoreDatas.onNext(())
+                }
+            }
             .disposed(by: disposeBag)
     }
 }
