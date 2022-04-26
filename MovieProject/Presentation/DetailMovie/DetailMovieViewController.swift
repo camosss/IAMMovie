@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 final class DetailMovieViewController: BaseViewController {
 
@@ -13,6 +14,9 @@ final class DetailMovieViewController: BaseViewController {
 
     private let movie: Movie?
     private let headerView = DetailHeaderView()
+    private let webView = WKWebView().then {
+        $0.allowsBackForwardNavigationGestures = true
+    }
 
     // MARK: - Initializer
 
@@ -29,7 +33,7 @@ final class DetailMovieViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        showMovieWebView()
     }
 
     // MARK: - Helpers
@@ -37,6 +41,7 @@ final class DetailMovieViewController: BaseViewController {
     override func setViews() {
         super.setViews()
         view.addSubview(headerView)
+        view.addSubview(webView)
     }
 
     override func setConstraints() {
@@ -45,6 +50,10 @@ final class DetailMovieViewController: BaseViewController {
             make.height.equalTo(100).priority(750)
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
+        webView.snp.makeConstraints { make in
+            make.top.equalTo(headerView.snp.bottom)
+            make.leading.trailing.bottom.equalTo(view)
+        }
     }
 
     override func setConfigurations() {
@@ -52,6 +61,13 @@ final class DetailMovieViewController: BaseViewController {
         if let movie = movie {
             title = "\(movie.title ?? "")(\(movie.pubDate ?? ""))"
             headerView.configure(movie: movie)
+        }
+    }
+
+    private func showMovieWebView() {
+        if let movie = movie, let url = URL(string: movie.link ?? "") {
+            let request = URLRequest(url: url)
+            self.webView.load(request)
         }
     }
 }
