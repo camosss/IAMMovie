@@ -80,5 +80,17 @@ final class SearchMovieViewController: BaseViewController {
                 self.view.makeToast(error.description, position: .center)
             })
             .disposed(by: disposeBag)
+
+        tableView.rx
+            .itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                self.tableView.deselectRow(at: indexPath, animated: false)
+
+                let movie = self.viewModel.movieList.value[indexPath.row]
+                let controller = DetailMovieViewController(movie: movie)
+                self.navigationController?.pushViewController(controller, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }

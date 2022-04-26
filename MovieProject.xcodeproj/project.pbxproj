@@ -16,6 +16,9 @@
 		B44EA8CE2816D3350078B2C6 /* SearchMovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EA8CD2816D3350078B2C6 /* SearchMovieAPI.swift */; };
 		B44EA8D32816D8140078B2C6 /* ClientKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EA8D22816D8140078B2C6 /* ClientKey.swift */; };
 		B481811D2816FE82002DE1EC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B481811C2816FE82002DE1EC /* NetworkError.swift */; };
+		B481811F2817CBC6002DE1EC /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B481811E2817CBC6002DE1EC /* DetailHeaderView.swift */; };
+		B48181212817CC6C002DE1EC /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48181202817CC6C002DE1EC /* BaseUIView.swift */; };
+		B48181242817CDD3002DE1EC /* DetailMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48181232817CDD3002DE1EC /* DetailMovieViewController.swift */; };
 		B4975C1E28169923001DD5DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C1D28169923001DD5DF /* AppDelegate.swift */; };
 		B4975C2028169923001DD5DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C1F28169923001DD5DF /* SceneDelegate.swift */; };
 		B4975C2728169924001DD5DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4975C2628169924001DD5DF /* Assets.xcassets */; };
@@ -42,6 +45,9 @@
 		B44EA8CD2816D3350078B2C6 /* SearchMovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieAPI.swift; sourceTree = "<group>"; };
 		B44EA8D22816D8140078B2C6 /* ClientKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientKey.swift; sourceTree = "<group>"; };
 		B481811C2816FE82002DE1EC /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		B481811E2817CBC6002DE1EC /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
+		B48181202817CC6C002DE1EC /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
+		B48181232817CDD3002DE1EC /* DetailMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieViewController.swift; sourceTree = "<group>"; };
 		B4975C1A28169923001DD5DF /* MovieProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4975C1D28169923001DD5DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4975C1F28169923001DD5DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +129,14 @@
 			path = SearchMovie;
 			sourceTree = "<group>";
 		};
+		B48181222817CDBE002DE1EC /* DetailMovie */ = {
+			isa = PBXGroup;
+			children = (
+				B48181232817CDD3002DE1EC /* DetailMovieViewController.swift */,
+			);
+			path = DetailMovie;
+			sourceTree = "<group>";
+		};
 		B4975C1128169923001DD5DF = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +188,7 @@
 			children = (
 				B4975C3628169D1D001DD5DF /* BaseView */,
 				B4975C3328169C07001DD5DF /* SearchMovie */,
+				B48181222817CDBE002DE1EC /* DetailMovie */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -192,6 +207,7 @@
 			children = (
 				B4975C3728169D52001DD5DF /* BaseViewController.swift */,
 				B4975C532816A5F8001DD5DF /* BaseTableViewCell.swift */,
+				B48181202817CC6C002DE1EC /* BaseUIView.swift */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -227,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				B4975C562816A6AB001DD5DF /* MovieCell.swift */,
+				B481811E2817CBC6002DE1EC /* DetailHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -356,12 +373,15 @@
 			files = (
 				B4975C4928169F12001DD5DF /* UIColor+Ex.swift in Sources */,
 				B4975C4C28169F4E001DD5DF /* UIViewController+Ex.swift in Sources */,
+				B48181212817CC6C002DE1EC /* BaseUIView.swift in Sources */,
 				B4975C572816A6AB001DD5DF /* MovieCell.swift in Sources */,
 				B44EA8CE2816D3350078B2C6 /* SearchMovieAPI.swift in Sources */,
+				B481811F2817CBC6002DE1EC /* DetailHeaderView.swift in Sources */,
 				B44EA8CA2816BDB00078B2C6 /* UIImageView+Ex.swift in Sources */,
 				B44EA8C82816B2450078B2C6 /* ReusableView+Ex.swift in Sources */,
 				B4975C1E28169923001DD5DF /* AppDelegate.swift in Sources */,
 				B44EA8D32816D8140078B2C6 /* ClientKey.swift in Sources */,
+				B48181242817CDD3002DE1EC /* DetailMovieViewController.swift in Sources */,
 				B4975C3E28169E41001DD5DF /* DefaultLabel.swift in Sources */,
 				B481811D2816FE82002DE1EC /* NetworkError.swift in Sources */,
 				B44EA8C22816B09D0078B2C6 /* SearchMovieViewModel.swift in Sources */,
