@@ -22,6 +22,15 @@ final class SearchMovieViewController: BaseViewController {
     private let searchBar = UISearchBar()
     private let tableView = UITableView()
 
+    private lazy var viewSpinner = UIView(
+        frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100)
+    ).then {
+        let spinner = UIActivityIndicatorView()
+        spinner.center = $0.center
+        $0.addSubview(spinner)
+        spinner.startAnimating()
+    }
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -65,6 +74,14 @@ final class SearchMovieViewController: BaseViewController {
 
     private func bind() {
         tableViewBind()
+
+        viewModel.isLoadingSpinnerAvaliable
+            .subscribe { [weak self] isAvailable in
+                guard let isAvailable = isAvailable.element,
+                      let self = self else { return }
+                self.tableView.tableFooterView = isAvailable ? self.viewSpinner : UIView(frame: .zero)
+            }
+            .disposed(by: disposeBag)
 
         viewModel.errorMessage
             .subscribe(onNext: { error in

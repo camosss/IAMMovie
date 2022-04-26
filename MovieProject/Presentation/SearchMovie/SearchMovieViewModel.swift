@@ -17,14 +17,12 @@ final class SearchMovieViewModel {
     var movieList = BehaviorRelay<[Movie]>(value: [])
 
     let fetchMoreDatas = PublishSubject<Void>()
+    let isLoadingSpinnerAvaliable = PublishSubject<Bool>()
     var errorMessage = PublishSubject<Error>()
-    var query: String?
 
     private var startCounter = 1
     private var totalValue = 1
     private let limit = 20
-
-    private var isPaginationRequestStillResume = false /// 페이지네이션 시작 여부
 
     private let searchMovieAPI: SearchMovieAPIProtocol
     private let disposeBag = DisposeBag()
@@ -48,12 +46,16 @@ final class SearchMovieViewModel {
     }
 
     private func populateMovieList(cursor: Int) {
-        isPaginationRequestStillResume = true /// /// 페이지네이션 시작 flag
+        isLoadingSpinnerAvaliable.onNext(true)
 
         if startCounter > totalValue {
-            isPaginationRequestStillResume = false
+            isLoadingSpinnerAvaliable.onNext(false)
             errorMessage.onNext(NetworkError.last_page)
             return
+        }
+
+        if startCounter == 1 {
+            isLoadingSpinnerAvaliable.onNext(false)
         }
 
         searchMovieAPI
@@ -63,7 +65,7 @@ final class SearchMovieViewModel {
                 switch movies {
                 case .success(let movies):
                     self.handleStartCounter(movies: movies)
-                    self.isPaginationRequestStillResume = false /// 페이지네이션 끝 flag
+                    self.isLoadingSpinnerAvaliable.onNext(false)
                 case .failure(let error):
                     self.errorMessage.onNext(error)
                 }
