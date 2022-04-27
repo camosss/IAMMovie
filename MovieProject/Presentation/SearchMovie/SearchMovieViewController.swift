@@ -151,7 +151,9 @@ final class SearchMovieViewController: BaseViewController {
                 let contentHeight = self.tableView.contentSize.height /// 전체 content 높이
 
                 if offSetY > (contentHeight - self.tableView.frame.size.height - 100) {
-                    self.viewModel.fetchMoreDatas.onNext(())
+                    if self.viewModel.startCounter > 1 {
+                        self.viewModel.fetchMoreDatas.onNext(())
+                    }
                 }
             }
             .disposed(by: disposeBag)

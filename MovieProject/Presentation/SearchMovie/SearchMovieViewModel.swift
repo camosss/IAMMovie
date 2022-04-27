@@ -22,7 +22,7 @@ final class SearchMovieViewModel {
     let errorMessage = PublishSubject<Error>()
 
     var query = ""
-    private var startCounter = 1
+    var startCounter = 1
     private var totalValue = 1
     private let limit = 20
 
