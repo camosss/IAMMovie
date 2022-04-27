@@ -1,5 +1,5 @@
 //
-//  UITableView+Ex.swift
+//  UITableView+Rx.swift
 //  MovieProject
 //
 //  Created by 강호성 on 2022/04/27.
