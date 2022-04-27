@@ -19,7 +19,7 @@ final class SearchMovieViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = SearchMovieViewModel()
 
-    private let searchBar = UISearchBar()
+    private let searchBar = SearchBar()
     private let tableView = UITableView()
 
     private lazy var viewSpinner = UIView(
@@ -74,8 +74,6 @@ final class SearchMovieViewController: BaseViewController {
 
     private func bind() {
         tableViewBind()
-
-        viewModel.fetchMoreDatas.onNext(())
 
         viewModel.isLoadingSpinnerAvaliable
             .subscribe { [weak self] isAvailable in

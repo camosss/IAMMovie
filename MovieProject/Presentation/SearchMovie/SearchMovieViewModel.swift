@@ -18,8 +18,9 @@ final class SearchMovieViewModel {
 
     let fetchMoreDatas = PublishSubject<Void>()
     let isLoadingSpinnerAvaliable = PublishSubject<Bool>()
-    var errorMessage = PublishSubject<Error>()
+    let errorMessage = PublishSubject<Error>()
 
+    var query = ""
     private var startCounter = 1
     private var totalValue = 1
     private let limit = 20
@@ -59,7 +60,7 @@ final class SearchMovieViewModel {
         }
 
         searchMovieAPI
-            .populateMovieList(query: "국가", start: cursor)
+            .populateMovieList(query: query, start: cursor)
             .subscribe { [weak self] movies in
                 guard let self = self else { return }
                 switch movies {
