@@ -88,7 +88,7 @@ final class DetailHeaderView: BaseUIView {
         if data == "" {
             label.text = "\(title): 정보 없음"
         } else {
-            label.text = "\(title): \(data)"
+            label.text = "\(title): \(data.trimmingCharacters(in: ["|"]))"
         }
     }
 }

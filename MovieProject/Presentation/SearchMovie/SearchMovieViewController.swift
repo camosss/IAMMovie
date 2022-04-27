@@ -75,6 +75,8 @@ final class SearchMovieViewController: BaseViewController {
     private func bind() {
         tableViewBind()
 
+        viewModel.fetchMoreDatas.onNext(())
+
         viewModel.isLoadingSpinnerAvaliable
             .subscribe { [weak self] isAvailable in
                 guard let isAvailable = isAvailable.element,
