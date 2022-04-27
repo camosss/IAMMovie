@@ -14,6 +14,9 @@ final class MovieCell: BaseTableViewCell {
 
     // MARK: - Properties
 
+    private let isStarred = PublishSubject<Bool>()
+    var disposeBag = DisposeBag()
+
     private let postImage = UIImageView()
     private let starButton = StarButton()
     private let titleLabel = DefaultLabel(font: .headline, textColor: .basic)
@@ -28,12 +31,11 @@ final class MovieCell: BaseTableViewCell {
         $0.spacing = 3
     }
 
-    var disposeBag = DisposeBag()
-
     // MARK: - Initializer
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        bind()
     }
 
     @available(*, unavailable)
@@ -47,14 +49,15 @@ final class MovieCell: BaseTableViewCell {
         super.prepareForReuse()
         postImage.image = nil
         disposeBag = DisposeBag()
+        bind()
     }
 
     override func setView() {
         super.setView()
-        contentView.addSubview(postImage)
-        contentView.addSubview(starButton)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(textStackView)
+        addSubview(postImage)
+        addSubview(starButton)
+        addSubview(titleLabel)
+        addSubview(textStackView)
     }
 
     override func setConstraints() {
@@ -89,6 +92,34 @@ final class MovieCell: BaseTableViewCell {
         postImage.clipsToBounds = true
         postImage.layer.cornerRadius = 6
         postImage.contentMode = .scaleToFill
+    }
+
+    private func bind() {
+        starButton.rx.tap
+            .asSignal()
+            .throttle(.seconds(1))
+            .map { [weak self] _ -> Bool in
+                guard let self = self else { return false }
+                return self.starButton.isSelected
+            }
+            .distinctUntilChanged()
+            .emit(onNext: { [weak self] isSelected in
+                guard let self = self else { return }
+                if isSelected {
+                    print("즐겨찾기 취소")
+                    self.isStarred.onNext(false)
+                } else {
+                    print("즐겨찾기 목록으로")
+                    self.isStarred.onNext(true)
+                }
+            })
+            .disposed(by: disposeBag)
+
+        isStarred
+            .debug()
+            .asSignal(onErrorJustReturn: false)
+            .emit(to: starButton.rx.isSelected)
+            .disposed(by: disposeBag)
     }
 
     func configure(movie: Movie) {

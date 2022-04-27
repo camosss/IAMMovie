@@ -7,9 +7,15 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 final class DetailHeaderView: BaseUIView {
 
     // MARK: - Properties
+
+    private let isStarred = PublishSubject<Bool>()
+    private let disposeBag = DisposeBag()
 
     private let postImage = UIImageView()
     private let starButton = StarButton()
@@ -28,6 +34,7 @@ final class DetailHeaderView: BaseUIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        bind()
     }
 
     required init?(coder: NSCoder) {
@@ -71,6 +78,34 @@ final class DetailHeaderView: BaseUIView {
         starButton.setImage(UIImage(systemName: "star"), for: .normal)
         starButton.contentMode = .scaleAspectFit
         starButton.tintColor = .basic
+    }
+
+    private func bind() {
+        starButton.rx.tap
+            .asSignal()
+            .throttle(.seconds(1))
+            .map { [weak self] _ -> Bool in
+                guard let self = self else { return false }
+                return self.starButton.isSelected
+            }
+            .distinctUntilChanged()
+            .emit(onNext: { [weak self] isSelected in
+                guard let self = self else { return }
+                if isSelected {
+                    print("즐겨찾기 취소")
+                    self.isStarred.onNext(false)
+                } else {
+                    print("즐겨찾기 목록으로")
+                    self.isStarred.onNext(true)
+                }
+            })
+            .disposed(by: disposeBag)
+
+        isStarred
+            .debug()
+            .asSignal(onErrorJustReturn: false)
+            .emit(to: starButton.rx.isSelected)
+            .disposed(by: disposeBag)
     }
 
     func configure(movie: Movie) {
