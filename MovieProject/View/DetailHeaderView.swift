@@ -12,7 +12,7 @@ final class DetailHeaderView: BaseUIView {
     // MARK: - Properties
 
     private let postImage = UIImageView()
-    private let starButton = UIButton()
+    private let starButton = StarButton()
     private let directorLabel = DefaultLabel(font: .subHead, textColor: .basic)
     private let castLabel = DefaultLabel(font: .subHead, textColor: .basic)
     private let gradeLabel = DefaultLabel(font: .subHead, textColor: .basic)

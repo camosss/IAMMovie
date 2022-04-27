@@ -15,7 +15,7 @@ final class MovieCell: BaseTableViewCell {
     // MARK: - Properties
 
     private let postImage = UIImageView()
-    private let starButton = UIButton()
+    private let starButton = StarButton()
     private let titleLabel = DefaultLabel(font: .headline, textColor: .basic)
     private let directorLabel = DefaultLabel(font: .subHead, textColor: .basic)
     private let castLabel = DefaultLabel(font: .subHead, textColor: .basic)
@@ -89,8 +89,6 @@ final class MovieCell: BaseTableViewCell {
         postImage.clipsToBounds = true
         postImage.layer.cornerRadius = 6
         postImage.contentMode = .scaleToFill
-        starButton.setImage(UIImage(systemName: "star"), for: .normal)
-        starButton.tintColor = .basic
     }
 
     func configure(movie: Movie) {
