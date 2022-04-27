@@ -17,14 +17,14 @@ final class SearchMovieViewModel {
     var movieList = BehaviorRelay<[Movie]>(value: [])
 
     let fetchMoreDatas = PublishSubject<Void>()
-    let isLoadingAvaliable = PublishSubject<Bool>()
-    let isLoadingSpinnerAvaliable = PublishSubject<Bool>()
+    let isLoadingAvaliable = PublishSubject<Bool>() /// 검색, indicator
+    let isLoadingSpinnerAvaliable = PublishSubject<Bool>() /// 페이지네이션, footerView indicator
     let errorMessage = PublishSubject<Error>()
 
-    var query = ""
-    var startCounter = 1
-    private var totalValue = 1
-    private let limit = 20
+    var query = "" /// 검색 text
+    var startCounter = 1 /// start (parameter)
+    private var totalValue = 1 /// 전체 결괏값
+    private let limit = 20 /// display (parameter)
 
     private let searchMovieAPI: SearchMovieAPIProtocol
     private let disposeBag = DisposeBag()
@@ -79,6 +79,7 @@ final class SearchMovieViewModel {
     private func handleStartCounter(movies: Movies) {
         totalValue = movies.total
 
+        /// 검색 결과가 없을 때, Toast Mesaage
         if totalValue == 0 {
             errorMessage.onNext(NetworkError.invalid_search_API)
         }

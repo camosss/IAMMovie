@@ -84,6 +84,7 @@ final class SearchMovieViewController: BaseViewController {
     private func bind() {
         tableViewBind()
 
+        /// 페이지네이션, footerView indicator
         viewModel.isLoadingSpinnerAvaliable
             .subscribe { [weak self] isAvailable in
                 guard let isAvailable = isAvailable.element,
@@ -92,6 +93,7 @@ final class SearchMovieViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
 
+        /// [Toast] Error Message
         viewModel.errorMessage
             .subscribe(onNext: { error in
                 guard let error = error as? NetworkError else { return }
@@ -99,6 +101,7 @@ final class SearchMovieViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
+        /// 검색 이벤트
         searchBar.shouldLoadResult
             .asSignal(onErrorJustReturn: "")
             .emit(onNext: { [weak self] query in
@@ -107,6 +110,7 @@ final class SearchMovieViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
+        /// 검색, indicator
         viewModel.isLoadingAvaliable
             .subscribe { [weak self] isAvailable in
                 guard let isAvailable = isAvailable.element,
@@ -121,6 +125,7 @@ final class SearchMovieViewController: BaseViewController {
     }
 
     private func tableViewBind() {
+        /// 검색 결괏값 0일 때, EmptyView
         viewModel.movieList
             .map { return $0.count <= 0 }
             .bind(to: tableView.rx.isEmpty(
@@ -129,6 +134,7 @@ final class SearchMovieViewController: BaseViewController {
             )
             .disposed(by: disposeBag)
 
+        /// tableView dataSource
         viewModel.movieList
             .asDriver()
             .drive(tableView.rx.items(
@@ -139,6 +145,7 @@ final class SearchMovieViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
 
+        /// DetailView로 전환
         tableView.rx
             .itemSelected
             .subscribe(onNext: { [weak self] indexPath in
@@ -151,6 +158,7 @@ final class SearchMovieViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
+        /// 페이지네이션
         tableView.rx
             .didScroll
             .throttle(.milliseconds(200), scheduler: MainScheduler.instance)
