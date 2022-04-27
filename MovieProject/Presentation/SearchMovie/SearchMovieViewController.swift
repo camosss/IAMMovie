@@ -122,6 +122,14 @@ final class SearchMovieViewController: BaseViewController {
 
     private func tableViewBind() {
         viewModel.movieList
+            .map { return $0.count <= 0 }
+            .bind(to: tableView.rx.isEmpty(
+                title: "영화를 검색해보세요!",
+                imageName: "film")
+            )
+            .disposed(by: disposeBag)
+
+        viewModel.movieList
             .asDriver()
             .drive(tableView.rx.items(
                 cellIdentifier: MovieCell.reuseIdentifier,
