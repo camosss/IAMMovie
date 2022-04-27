@@ -22,6 +22,13 @@ final class SearchMovieViewController: BaseViewController {
     private let searchBar = SearchBar()
     private let tableView = UITableView()
 
+    private lazy var indicator = UIActivityIndicatorView(
+        frame: CGRect(x: 0, y: 0, width: 50, height: 50)
+    ).then {
+        $0.style = UIActivityIndicatorView.Style.medium
+        $0.center = view.center
+    }
+
     private lazy var viewSpinner = UIView(
         frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100)
     ).then {
@@ -44,6 +51,7 @@ final class SearchMovieViewController: BaseViewController {
         super.setViews()
         view.addSubview(searchBar)
         view.addSubview(tableView)
+        view.addSubview(indicator)
     }
 
     override func setConstraints() {
@@ -96,6 +104,18 @@ final class SearchMovieViewController: BaseViewController {
                 guard let self = self else { return }
                 self.viewModel.searchResultTriggered(query: query)
             })
+            .disposed(by: disposeBag)
+
+        viewModel.isLoadingAvaliable
+            .subscribe { [weak self] isAvailable in
+                guard let isAvailable = isAvailable.element,
+                      let self = self else { return }
+                if isAvailable {
+                    self.indicator.startAnimating()
+                } else {
+                    self.indicator.stopAnimating()
+                }
+            }
             .disposed(by: disposeBag)
     }
 

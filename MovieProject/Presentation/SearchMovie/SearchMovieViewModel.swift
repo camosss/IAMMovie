@@ -17,6 +17,7 @@ final class SearchMovieViewModel {
     var movieList = BehaviorRelay<[Movie]>(value: [])
 
     let fetchMoreDatas = PublishSubject<Void>()
+    let isLoadingAvaliable = PublishSubject<Bool>()
     let isLoadingSpinnerAvaliable = PublishSubject<Bool>()
     let errorMessage = PublishSubject<Error>()
 
@@ -66,6 +67,7 @@ final class SearchMovieViewModel {
                 switch movies {
                 case .success(let movies):
                     self.handleStartCounter(movies: movies)
+                    self.isLoadingAvaliable.onNext(false)
                     self.isLoadingSpinnerAvaliable.onNext(false)
                 case .failure(let error):
                     self.errorMessage.onNext(error)
@@ -88,6 +90,7 @@ final class SearchMovieViewModel {
     }
 
     func searchResultTriggered(query: String) {
+        self.isLoadingAvaliable.onNext(true)
         self.query = query
         self.startCounter = 1
         self.movieList.accept([])

@@ -13,6 +13,7 @@ import RxSwift
 final class SearchBar: UISearchBar {
 
     // MARK: - Properties
+
     private let disposeBag = DisposeBag()
     private let searchButton = UIButton()
 
@@ -20,6 +21,7 @@ final class SearchBar: UISearchBar {
     let searchButtonTapped = PublishRelay<Void>()
 
     // MARK: - Initializer
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.accessibilityIdentifier = "searchBar"
@@ -36,6 +38,7 @@ final class SearchBar: UISearchBar {
     }
 
     // MARK: - Helpers
+
     private func bind() {
         Observable
             .merge (
