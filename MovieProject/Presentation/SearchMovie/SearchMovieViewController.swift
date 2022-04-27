@@ -128,6 +128,13 @@ final class SearchMovieViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+
+        favoritesButton.rx.tap
+            .bind {
+                let controller = FavoritesViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 
     private func tableViewBind() {
