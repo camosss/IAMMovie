@@ -21,6 +21,7 @@ final class SearchMovieViewController: BaseViewController {
 
     private let searchBar = SearchBar()
     private let tableView = UITableView()
+    private let favoritesButton = UIBarButtonItem()
 
     private lazy var indicator = UIActivityIndicatorView(
         frame: CGRect(x: 0, y: 0, width: 50, height: 50)
@@ -56,6 +57,8 @@ final class SearchMovieViewController: BaseViewController {
 
     override func setConstraints() {
         super.setConstraints()
+        navigationItem.rightBarButtonItem = favoritesButton
+
         searchBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(50)
@@ -69,6 +72,9 @@ final class SearchMovieViewController: BaseViewController {
     override func setConfigurations() {
         super.setConfigurations()
         configureLeftBarButtonItem(title: "네이버 영화 검색")
+
+        favoritesButton.image = UIImage(systemName: "star.fill")
+        favoritesButton.tintColor = .systemYellow
 
         searchBar.backgroundImage = UIImage()
         searchBar.placeholder = "영화를 검색해주세요.."
