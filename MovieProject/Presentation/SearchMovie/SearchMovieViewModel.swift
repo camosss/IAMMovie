@@ -79,6 +79,10 @@ final class SearchMovieViewModel {
     private func handleStartCounter(movies: Movies) {
         totalValue = movies.total
 
+        if totalValue == 0 {
+            errorMessage.onNext(NetworkError.invalid_search_API)
+        }
+
         if startCounter == 1 {
             movieList.accept(movies.items)
         } else {

@@ -71,7 +71,7 @@ final class SearchMovieViewController: BaseViewController {
         configureLeftBarButtonItem(title: "네이버 영화 검색")
 
         searchBar.backgroundImage = UIImage()
-        searchBar.placeholder = "영화를 검색해주세요..."
+        searchBar.placeholder = "영화를 검색해주세요.."
 
         tableView.keyboardDismissMode = .onDrag
         tableView.contentInset.bottom = 50
