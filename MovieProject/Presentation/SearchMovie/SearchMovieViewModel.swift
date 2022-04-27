@@ -86,4 +86,11 @@ final class SearchMovieViewModel {
         }
         startCounter += limit /// 요청
     }
+
+    func searchResultTriggered(query: String) {
+        self.query = query
+        self.startCounter = 1
+        self.movieList.accept([])
+        self.fetchMoreDatas.onNext(())
+    }
 }

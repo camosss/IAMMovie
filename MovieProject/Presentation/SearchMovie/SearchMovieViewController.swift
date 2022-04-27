@@ -89,6 +89,14 @@ final class SearchMovieViewController: BaseViewController {
                 self.view.makeToast(error.description, position: .center)
             })
             .disposed(by: disposeBag)
+
+        searchBar.shouldLoadResult
+            .asSignal(onErrorJustReturn: "")
+            .emit(onNext: { [weak self] query in
+                guard let self = self else { return }
+                self.viewModel.searchResultTriggered(query: query)
+            })
+            .disposed(by: disposeBag)
     }
 
     private func tableViewBind() {
