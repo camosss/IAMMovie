@@ -33,4 +33,8 @@ class Movie: Object, Codable {
     @Persisted var director: String?
     @Persisted var actor: String?
     @Persisted var userRating: String?
+
+    override class func primaryKey() -> String? {
+        return "link"
+    }
 }

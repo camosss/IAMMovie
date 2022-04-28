@@ -96,10 +96,8 @@ final class DetailHeaderView: BaseUIView {
             .emit(onNext: { [weak self] isSelected in
                 guard let self = self else { return }
                 if isSelected {
-                    print("즐겨찾기 취소")
                     self.requestUnStar()
                 } else {
-                    print("즐겨찾기 목록으로")
                     self.requestStar()
                 }
             })
@@ -122,6 +120,14 @@ final class DetailHeaderView: BaseUIView {
         handleEmptyData(label: directorLabel, title: "감독", data: movie.director ?? "")
         handleEmptyData(label: castLabel, title: "출연", data: movie.actor ?? "")
         gradeLabel.text = "평점: \(movie.userRating ?? "")"
+
+        /// starButton image fill
+        if !realm.objects(Movie.self)
+            .filter("link == '\(self.movie?.link ?? "")'").isEmpty {
+            self.isStarred.onNext(true)
+        } else {
+            self.isStarred.onNext(false)
+        }
     }
 
     private func handleEmptyData(label: UILabel, title: String, data: String) {
@@ -139,20 +145,27 @@ extension DetailHeaderView {
     private func requestStar() {
         self.isStarred.onNext(true)
 
-        /// add
-        try? realm.write({
-            print("realm에서 저장")
-            self.realm.add(self.movie ?? Movie())
-        })
+        /// add realm
+        if realm.objects(Movie.self)
+            .filter("link == '\(self.movie?.link ?? "")'").isEmpty {
+            try! realm.write({
+                /// realm 객체에 Json을 전달하는 대신 객체를 먼저 복사한 후 복제된 객체를 저장
+                let copyMovie = self.realm.create(Movie.self, value: movie!, update: .all)
+                self.realm.add(copyMovie)
+            })
+        }
     }
 
     private func requestUnStar() {
         self.isStarred.onNext(false)
 
-        /// remove
-        try? realm.write({
-            print("realm에서 삭제")
-            self.realm.delete(self.movie ?? Movie())
-        })
+        /// remove realm
+        if !realm.objects(Movie.self)
+            .filter("link == '\(self.movie?.link ?? "")'").isEmpty {
+            try! realm.write({
+                let copyMovie = self.realm.create(Movie.self, value: movie!, update: .all)
+                self.realm.delete(copyMovie)
+            })
+        }
     }
 }

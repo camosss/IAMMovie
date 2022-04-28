@@ -29,7 +29,8 @@ final class FavoritesViewModel {
 
     // MARK: - Helpers
 
-    func bind() {
+    private func bind() {
+        print(realm.configuration.fileURL!)
         favoriteList.accept(favorites.map{$0})
     }
 }
