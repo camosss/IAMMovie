@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 import RealmSwift
 import RxCocoa
@@ -152,6 +153,7 @@ extension DetailHeaderView {
                 /// realm 객체에 Json을 전달하는 대신 객체를 먼저 복사한 후 복제된 객체를 저장
                 let copyMovie = self.realm.create(Movie.self, value: movie!, update: .all)
                 self.realm.add(copyMovie)
+                ProgressHUD.show(StarStatus.star.description, icon: .star)
             })
         }
     }
@@ -165,6 +167,7 @@ extension DetailHeaderView {
             try! realm.write({
                 let copyMovie = self.realm.create(Movie.self, value: movie!, update: .all)
                 self.realm.delete(copyMovie)
+                ProgressHUD.show(StarStatus.unstar.description, icon: .star)
             })
         }
     }
