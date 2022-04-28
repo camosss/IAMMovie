@@ -141,7 +141,7 @@ final class SearchMovieViewController: BaseViewController {
     private func tableViewBind() {
         /// 검색 결괏값 0일 때, EmptyView
         viewModel.movieList
-            .map { return $0.count <= 0 }
+            .map { return $0.count <= 0 && !self.viewModel.isLoadingRequstStillResume }
             .bind(to: tableView.rx.isEmpty(
                 title: "영화를 검색해보세요!",
                 imageName: "film")

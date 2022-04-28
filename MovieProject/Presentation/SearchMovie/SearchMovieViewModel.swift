@@ -21,6 +21,8 @@ final class SearchMovieViewModel {
     let isLoadingSpinnerAvaliable = PublishSubject<Bool>() /// 페이지네이션, footerView indicator
     let errorMessage = PublishSubject<Error>()
 
+    var isLoadingRequstStillResume = false /// 로딩 indicator와 emptyView를 구분하기 위한 flag
+
     var query = "" /// 검색 text
     var startCounter = 1 /// start (parameter)
     private var totalValue = 1 /// 전체 결괏값
@@ -68,10 +70,12 @@ final class SearchMovieViewModel {
                 case .success(let movies):
                     self.handleStartCounter(movies: movies)
                     self.isLoadingAvaliable.onNext(false)
+                    self.isLoadingRequstStillResume = false
                     self.isLoadingSpinnerAvaliable.onNext(false)
                 case .failure(let error):
                     self.errorMessage.onNext(error)
                     self.isLoadingAvaliable.onNext(false)
+                    self.isLoadingRequstStillResume = false
                 }
             }
             .disposed(by: disposeBag)
@@ -92,6 +96,7 @@ final class SearchMovieViewModel {
 
     func searchResultTriggered(query: String) {
         self.isLoadingAvaliable.onNext(true)
+        self.isLoadingRequstStillResume = true
         self.query = query
         self.startCounter = 1
         self.movieList.accept([])
