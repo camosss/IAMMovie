@@ -12,6 +12,7 @@ pod 'Toast-Swift', '~> 5.0.1'
 pod 'SnapKit', '~> 5.0.0'
 pod 'Kingfisher'
 pod 'Moya', '~> 15.0'
+pod 'RealmSwift'
 
 pod 'RxSwift', '6.5.0'
 pod 'RxCocoa', '6.5.0'
