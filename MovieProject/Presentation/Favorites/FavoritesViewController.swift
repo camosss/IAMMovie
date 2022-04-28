@@ -66,5 +66,18 @@ final class FavoritesViewController: BaseViewController {
                 cell.configure(movie: item)
             }
             .disposed(by: disposeBag)
+
+        /// DetailView로 전환
+        tableView.rx
+            .itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                self.tableView.deselectRow(at: indexPath, animated: false)
+
+                let movie = self.viewModel.favoriteList.value[indexPath.row]
+                let controller = DetailMovieViewController(movie: movie)
+                self.navigationController?.pushViewController(controller, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
