@@ -71,6 +71,7 @@ final class SearchMovieViewModel {
                     self.isLoadingSpinnerAvaliable.onNext(false)
                 case .failure(let error):
                     self.errorMessage.onNext(error)
+                    self.isLoadingAvaliable.onNext(false)
                 }
             }
             .disposed(by: disposeBag)
@@ -78,11 +79,6 @@ final class SearchMovieViewModel {
 
     private func handleStartCounter(movies: Movies) {
         totalValue = movies.total
-
-        /// 검색 결과가 없을 때, Toast Mesaage
-        if totalValue == 0 {
-            errorMessage.onNext(NetworkError.invalid_search_API)
-        }
 
         if startCounter == 1 {
             movieList.accept(movies.items)

@@ -102,7 +102,6 @@ final class DetailHeaderView: BaseUIView {
             .disposed(by: disposeBag)
 
         isStarred
-            .debug()
             .asSignal(onErrorJustReturn: false)
             .emit(to: starButton.rx.isSelected)
             .disposed(by: disposeBag)

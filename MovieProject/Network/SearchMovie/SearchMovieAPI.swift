@@ -26,7 +26,11 @@ extension SearchMovieAPI {
                     case .success(let value):
                         do {
                             let response = try value.map(Movies.self)
-                            single(.success(response))
+                            if response.total == 0 {
+                                single(.failure(NetworkError.invalid_search_API))
+                            } else {
+                                single(.success(response))
+                            }
                         } catch {
                             switch value.statusCode {
                             case 400: single(.failure(NetworkError.incorrect_request))

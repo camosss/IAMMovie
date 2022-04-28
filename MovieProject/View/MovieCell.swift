@@ -17,6 +17,8 @@ final class MovieCell: BaseTableViewCell {
     private let isStarred = PublishSubject<Bool>()
     var disposeBag = DisposeBag()
 
+    private var movie: Movie?
+
     private let postImage = UIImageView()
     private let starButton = StarButton()
     private let titleLabel = DefaultLabel(font: .headline, textColor: .basic)
@@ -107,22 +109,23 @@ final class MovieCell: BaseTableViewCell {
                 guard let self = self else { return }
                 if isSelected {
                     print("즐겨찾기 취소")
-                    self.isStarred.onNext(false)
+                    self.requestUnStar()
                 } else {
                     print("즐겨찾기 목록으로")
-                    self.isStarred.onNext(true)
+                    self.requestStar()
                 }
             })
             .disposed(by: disposeBag)
 
         isStarred
-            .debug()
             .asSignal(onErrorJustReturn: false)
             .emit(to: starButton.rx.isSelected)
             .disposed(by: disposeBag)
     }
 
     func configure(movie: Movie) {
+        self.movie = movie
+
         if movie.image == "" {
             postImage.image = UIImage(named: "no_image")
         } else {
@@ -142,5 +145,15 @@ final class MovieCell: BaseTableViewCell {
         } else {
             label.text = "\(title): \(data.trimmingCharacters(in: ["|"]))"
         }
+    }
+}
+
+extension MovieCell {
+    private func requestStar() {
+        self.isStarred.onNext(true)
+    }
+
+    private func requestUnStar() {
+        self.isStarred.onNext(false)
     }
 }
