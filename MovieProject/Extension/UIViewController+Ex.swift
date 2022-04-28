@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 extension UIViewController {
     func configureLeftBarButtonItem(title: String) {
@@ -14,5 +15,12 @@ extension UIViewController {
 
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
+    }
+
+    func makeToastMessage(message: String) {
+        var style = ToastStyle()
+        style.backgroundColor = .basic
+        style.messageColor = .background
+        self.view.makeToast(message, position: .center, style: style)
     }
 }

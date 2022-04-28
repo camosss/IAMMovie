@@ -101,9 +101,10 @@ final class SearchMovieViewController: BaseViewController {
 
         /// [Toast] Error Message
         viewModel.errorMessage
-            .subscribe(onNext: { error in
-                guard let error = error as? NetworkError else { return }
-                self.view.makeToast(error.description, position: .center)
+            .subscribe(onNext: { [weak self] error in
+                guard let self = self,
+                        let error = error as? NetworkError else { return }
+                self.makeToastMessage(message: error.description)
             })
             .disposed(by: disposeBag)
 
