@@ -8,16 +8,18 @@
 import UIKit
 import Then
 
+import RealmSwift
 import RxSwift
 
 final class MovieCell: BaseTableViewCell {
 
     // MARK: - Properties
 
+    private let realm = try! Realm()
+    private var movie: Movie?
+
     private let isStarred = PublishSubject<Bool>()
     var disposeBag = DisposeBag()
-
-    private var movie: Movie?
 
     private let postImage = UIImageView()
     private let starButton = StarButton()
@@ -148,12 +150,26 @@ final class MovieCell: BaseTableViewCell {
     }
 }
 
+// MARK: - Star 로직
+
 extension MovieCell {
     private func requestStar() {
         self.isStarred.onNext(true)
+
+        /// add realm
+        try? realm.write({
+            print("realm에서 저장")
+            self.realm.add(self.movie ?? Movie())
+        })
     }
 
     private func requestUnStar() {
         self.isStarred.onNext(false)
+
+        /// remove realm
+        try? realm.write({
+            print("realm에서 삭제")
+            self.realm.delete(self.movie ?? Movie())
+        })
     }
 }

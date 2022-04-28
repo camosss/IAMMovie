@@ -7,12 +7,16 @@
 
 import UIKit
 
+import RealmSwift
 import RxCocoa
 import RxSwift
 
 final class DetailHeaderView: BaseUIView {
 
     // MARK: - Properties
+
+    private let realm = try! Realm()
+    private var movie: Movie?
 
     private let isStarred = PublishSubject<Bool>()
     private let disposeBag = DisposeBag()
@@ -93,10 +97,10 @@ final class DetailHeaderView: BaseUIView {
                 guard let self = self else { return }
                 if isSelected {
                     print("즐겨찾기 취소")
-                    self.isStarred.onNext(false)
+                    self.requestUnStar()
                 } else {
                     print("즐겨찾기 목록으로")
-                    self.isStarred.onNext(true)
+                    self.requestStar()
                 }
             })
             .disposed(by: disposeBag)
@@ -108,6 +112,8 @@ final class DetailHeaderView: BaseUIView {
     }
 
     func configure(movie: Movie) {
+        self.movie = movie
+
         if movie.image == "" {
             postImage.image = UIImage(named: "no_image")
         } else {
@@ -124,5 +130,29 @@ final class DetailHeaderView: BaseUIView {
         } else {
             label.text = "\(title): \(data.trimmingCharacters(in: ["|"]))"
         }
+    }
+}
+
+// MARK: - Star 로직
+
+extension DetailHeaderView {
+    private func requestStar() {
+        self.isStarred.onNext(true)
+
+        /// add
+        try? realm.write({
+            print("realm에서 저장")
+            self.realm.add(self.movie ?? Movie())
+        })
+    }
+
+    private func requestUnStar() {
+        self.isStarred.onNext(false)
+
+        /// remove
+        try? realm.write({
+            print("realm에서 삭제")
+            self.realm.delete(self.movie ?? Movie())
+        })
     }
 }

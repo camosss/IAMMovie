@@ -8,11 +8,9 @@
 import UIKit
 import RealmSwift
 
-class Movies: Object, Codable {
-    @Persisted var lastBuildDate: String
-    @Persisted var total: Int
-    @Persisted var start: Int
-    @Persisted var display: Int
+class Movies: Codable {
+    var lastBuildDate: String
+    var total, start, display: Int
     var items = List<Movie>()
 
     var itemArray: [Movie] {

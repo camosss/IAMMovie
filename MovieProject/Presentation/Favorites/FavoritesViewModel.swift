@@ -7,6 +7,8 @@
 
 import Foundation
 
+import RealmSwift
+
 import RxCocoa
 import RxSwift
 
@@ -16,4 +18,18 @@ final class FavoritesViewModel {
 
     var favoriteList = BehaviorRelay<[Movie]>(value: [])
 
+    private let realm = try! Realm()
+    private lazy var favorites = realm.objects(Movie.self) /// load realm
+
+    // MARK: - Initializer
+
+    init() {
+        bind()
+    }
+
+    // MARK: - Helpers
+
+    func bind() {
+        favoriteList.accept(favorites.map{$0})
+    }
 }
