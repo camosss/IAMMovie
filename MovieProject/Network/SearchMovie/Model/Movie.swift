@@ -6,20 +6,33 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct Movies: Codable {
-    let lastBuildDate: String
-    let total, start, display: Int
-    let items: [Movie]
+class Movies: Object, Codable {
+    @Persisted var lastBuildDate: String
+    @Persisted var total: Int
+    @Persisted var start: Int
+    @Persisted var display: Int
+    var items = List<Movie>()
+
+    var itemArray: [Movie] {
+        get {
+            return items.map{$0}
+        }
+        set {
+            items.removeAll()
+            items.append(objectsIn: newValue)
+        }
+    }
 }
 
-struct Movie: Codable {
-    let title: String?
-    let link: String?
-    let image: String?
-    let subtitle: String?
-    let pubDate: String?
-    let director: String?
-    let actor: String?
-    let userRating: String?
+class Movie: Object, Codable {
+    @Persisted var title: String?
+    @Persisted var link: String?
+    @Persisted var image: String?
+    @Persisted var subtitle: String?
+    @Persisted var pubDate: String?
+    @Persisted var director: String?
+    @Persisted var actor: String?
+    @Persisted var userRating: String?
 }
