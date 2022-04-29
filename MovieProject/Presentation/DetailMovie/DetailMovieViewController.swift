@@ -47,7 +47,7 @@ final class DetailMovieViewController: BaseViewController {
     override func setConstraints() {
         super.setConstraints()
         headerView.snp.makeConstraints { make in
-            make.height.equalTo(100).priority(750)
+            make.height.equalTo(100)
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         webView.snp.makeConstraints { make in

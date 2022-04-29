@@ -33,10 +33,14 @@ extension SearchMovieAPI {
                             }
                         } catch {
                             switch value.statusCode {
-                            case 400: single(.failure(NetworkError.incorrect_request))
-                            case 404: single(.failure(NetworkError.invalid_search_API))
-                            case 500: single(.failure(NetworkError.system_error))
-                            default: single(.failure(NetworkError.unknown_error))
+                            case NetworkError.incorrect_request.rawValue:
+                                single(.failure(NetworkError.incorrect_request))
+                            case NetworkError.invalid_search_API.rawValue:
+                                single(.failure(NetworkError.invalid_search_API))
+                            case NetworkError.system_error.rawValue:
+                                single(.failure(NetworkError.system_error))
+                            default:
+                                single(.failure(NetworkError.unknown_error))
                             }
                         }
                     case .failure:
