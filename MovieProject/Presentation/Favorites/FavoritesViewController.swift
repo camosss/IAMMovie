@@ -18,6 +18,7 @@ final class FavoritesViewController: BaseViewController {
     private let viewModel = FavoritesViewModel()
 
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
+    private let refreshControl = UIRefreshControl()
 
     // MARK: - Lifecycle
 
@@ -44,11 +45,33 @@ final class FavoritesViewController: BaseViewController {
         super.setConfigurations()
         title = "즐겨찾기 목록"
 
+        tableView.refreshControl = refreshControl
         tableView.register(MovieCell.self,
                            forCellReuseIdentifier: MovieCell.reuseIdentifier)
     }
-
+    
     private func bind() {
+        tableViewBind()
+        
+        refreshControl.rx
+            .controlEvent(.valueChanged)
+            .bind { [weak self] _ in
+                guard let self = self else { return }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.viewModel.refreshControlAction.onNext(()) /// 새로고침 실행여부 이벤트 전달
+                }
+            }
+            .disposed(by: disposeBag)
+
+        viewModel.refreshControlCompelted
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                self.refreshControl.endRefreshing()
+            }
+            .disposed(by: disposeBag)
+    }
+
+    private func tableViewBind() {
         viewModel.favoriteList
             .map { return $0.count <= 0 }
             .bind(to: tableView.rx.isEmpty(
