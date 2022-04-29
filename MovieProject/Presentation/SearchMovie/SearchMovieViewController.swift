@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-import Toast_Swift
+import Toast
 
 import RxCocoa
 import RxSwift

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Toast_Swift
+import Toast
 
 extension UIViewController {
     func configureLeftBarButtonItem(title: String) {

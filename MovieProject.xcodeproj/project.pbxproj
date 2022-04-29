@@ -7,10 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A90DAAC787726CFDBEA55C0 /* Pods_MovieProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0F65E0210030748047DE34 /* Pods_MovieProject.framework */; };
 		B4391F16281B19EF0069BA5A /* StarStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4391F15281B19EF0069BA5A /* StarStatus.swift */; };
 		B4391F19281B7D570069BA5A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F18281B7D570069BA5A /* Realm */; };
 		B4391F1B281B7D570069BA5A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F1A281B7D570069BA5A /* RealmSwift */; };
+		B4391F1E281B86880069BA5A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F1D281B86880069BA5A /* Kingfisher */; };
+		B4391F21281B86DA0069BA5A /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F20281B86DA0069BA5A /* ProgressHUD */; };
+		B4391F24281B86F70069BA5A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F23281B86F70069BA5A /* RxCocoa */; };
+		B4391F26281B86F70069BA5A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F25281B86F70069BA5A /* RxSwift */; };
+		B4391F29281B870D0069BA5A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F28281B870D0069BA5A /* SnapKit */; };
+		B4391F2C281B87250069BA5A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F2B281B87250069BA5A /* Then */; };
+		B4391F2F281B873D0069BA5A /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F2E281B873D0069BA5A /* Toast */; };
+		B4391F32281B87A60069BA5A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F31281B87A60069BA5A /* Moya */; };
 		B44449CA28191DFB007FAF7B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44449C928191DFB007FAF7B /* SearchBar.swift */; };
 		B44449CC28191E21007FAF7B /* SearchBar+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44449CB28191E21007FAF7B /* SearchBar+Rx.swift */; };
 		B44449CE281933C0007FAF7B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44449CD281933C0007FAF7B /* EmptyView.swift */; };
@@ -46,8 +53,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B0F65E0210030748047DE34 /* Pods_MovieProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E4BE69C406B1A33206DB3F7 /* Pods-MovieProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieProject.debug.xcconfig"; path = "Target Support Files/Pods-MovieProject/Pods-MovieProject.debug.xcconfig"; sourceTree = "<group>"; };
 		B4391F15281B19EF0069BA5A /* StarStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarStatus.swift; sourceTree = "<group>"; };
 		B44449C928191DFB007FAF7B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		B44449CB28191E21007FAF7B /* SearchBar+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBar+Rx.swift"; sourceTree = "<group>"; };
@@ -68,7 +73,7 @@
 		B481811E2817CBC6002DE1EC /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
 		B48181202817CC6C002DE1EC /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		B48181232817CDD3002DE1EC /* DetailMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieViewController.swift; sourceTree = "<group>"; };
-		B4975C1A28169923001DD5DF /* MovieProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4975C1A28169923001DD5DF /* MovieProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MovieProject.app; path = "/Users/camosss/Downloads/MovieProject/build/Debug-iphoneos/MovieProject.app"; sourceTree = "<absolute>"; };
 		B4975C1D28169923001DD5DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4975C1F28169923001DD5DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B4975C2628169924001DD5DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,7 +88,6 @@
 		B4975C4E2816A055001DD5DF /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		B4975C532816A5F8001DD5DF /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		B4975C562816A6AB001DD5DF /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
-		D6BAE1446BD0A87DA18C22EF /* Pods-MovieProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieProject.release.xcconfig"; path = "Target Support Files/Pods-MovieProject/Pods-MovieProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,23 +95,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4391F26281B86F70069BA5A /* RxSwift in Frameworks */,
+				B4391F1E281B86880069BA5A /* Kingfisher in Frameworks */,
+				B4391F21281B86DA0069BA5A /* ProgressHUD in Frameworks */,
+				B4391F2F281B873D0069BA5A /* Toast in Frameworks */,
+				B4391F2C281B87250069BA5A /* Then in Frameworks */,
+				B4391F29281B870D0069BA5A /* SnapKit in Frameworks */,
+				B4391F24281B86F70069BA5A /* RxCocoa in Frameworks */,
 				B4391F1B281B7D570069BA5A /* RealmSwift in Frameworks */,
+				B4391F32281B87A60069BA5A /* Moya in Frameworks */,
 				B4391F19281B7D570069BA5A /* Realm in Frameworks */,
-				2A90DAAC787726CFDBEA55C0 /* Pods_MovieProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4834DC6EEC7ABDFBB2171775 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0B0F65E0210030748047DE34 /* Pods_MovieProject.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		B4391F14281B19E80069BA5A /* Supportings */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,18 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				B4975C1C28169923001DD5DF /* MovieProject */,
-				B4975C1B28169923001DD5DF /* Products */,
-				BDF591B0AC936610C92356F7 /* Pods */,
-				4834DC6EEC7ABDFBB2171775 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		B4975C1B28169923001DD5DF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B4975C1A28169923001DD5DF /* MovieProject.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		B4975C1C28169923001DD5DF /* MovieProject */ = {
@@ -303,15 +295,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		BDF591B0AC936610C92356F7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5E4BE69C406B1A33206DB3F7 /* Pods-MovieProject.debug.xcconfig */,
-				D6BAE1446BD0A87DA18C22EF /* Pods-MovieProject.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -319,11 +302,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4975C2E28169924001DD5DF /* Build configuration list for PBXNativeTarget "MovieProject" */;
 			buildPhases = (
-				CD9F43104CE115CD592E7E6A /* [CP] Check Pods Manifest.lock */,
 				B4975C1628169923001DD5DF /* Sources */,
 				B4975C1728169923001DD5DF /* Frameworks */,
 				B4975C1828169923001DD5DF /* Resources */,
-				8AF09991B3D77863F761C8E5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -333,6 +314,14 @@
 			packageProductDependencies = (
 				B4391F18281B7D570069BA5A /* Realm */,
 				B4391F1A281B7D570069BA5A /* RealmSwift */,
+				B4391F1D281B86880069BA5A /* Kingfisher */,
+				B4391F20281B86DA0069BA5A /* ProgressHUD */,
+				B4391F23281B86F70069BA5A /* RxCocoa */,
+				B4391F25281B86F70069BA5A /* RxSwift */,
+				B4391F28281B870D0069BA5A /* SnapKit */,
+				B4391F2B281B87250069BA5A /* Then */,
+				B4391F2E281B873D0069BA5A /* Toast */,
+				B4391F31281B87A60069BA5A /* Moya */,
 			);
 			productName = MovieProject;
 			productReference = B4975C1A28169923001DD5DF /* MovieProject.app */;
@@ -364,8 +353,15 @@
 			mainGroup = B4975C1128169923001DD5DF;
 			packageReferences = (
 				B4391F17281B7D570069BA5A /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				B4391F1C281B86870069BA5A /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				B4391F1F281B86DA0069BA5A /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+				B4391F22281B86F70069BA5A /* XCRemoteSwiftPackageReference "RxSwift" */,
+				B4391F27281B870D0069BA5A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				B4391F2A281B87250069BA5A /* XCRemoteSwiftPackageReference "Then" */,
+				B4391F2D281B873D0069BA5A /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				B4391F30281B87A60069BA5A /* XCRemoteSwiftPackageReference "Moya" */,
 			);
-			productRefGroup = B4975C1B28169923001DD5DF /* Products */;
+			productRefGroup = B4975C1128169923001DD5DF;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -385,48 +381,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		8AF09991B3D77863F761C8E5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MovieProject/Pods-MovieProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MovieProject/Pods-MovieProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MovieProject/Pods-MovieProject-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CD9F43104CE115CD592E7E6A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MovieProject-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B4975C1628169923001DD5DF /* Sources */ = {
@@ -597,7 +551,6 @@
 		};
 		B4975C2F28169924001DD5DF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E4BE69C406B1A33206DB3F7 /* Pods-MovieProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -626,7 +579,6 @@
 		};
 		B4975C3028169924001DD5DF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6BAE1446BD0A87DA18C22EF /* Pods-MovieProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -685,6 +637,62 @@
 				version = 10.25.2;
 			};
 		};
+		B4391F1C281B86870069BA5A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		B4391F1F281B86DA0069BA5A /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.0;
+			};
+		};
+		B4391F22281B86F70069BA5A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		B4391F27281B870D0069BA5A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		B4391F2A281B87250069BA5A /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		B4391F2D281B873D0069BA5A /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		B4391F30281B87A60069BA5A /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = exactVersion;
+				version = 15.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -697,6 +705,46 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B4391F17281B7D570069BA5A /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		B4391F1D281B86880069BA5A /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4391F1C281B86870069BA5A /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		B4391F20281B86DA0069BA5A /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4391F1F281B86DA0069BA5A /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
+		};
+		B4391F23281B86F70069BA5A /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4391F22281B86F70069BA5A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		B4391F25281B86F70069BA5A /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4391F22281B86F70069BA5A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		B4391F28281B870D0069BA5A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4391F27281B870D0069BA5A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		B4391F2B281B87250069BA5A /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4391F2A281B87250069BA5A /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		B4391F2E281B873D0069BA5A /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4391F2D281B873D0069BA5A /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		B4391F31281B87A60069BA5A /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4391F30281B87A60069BA5A /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

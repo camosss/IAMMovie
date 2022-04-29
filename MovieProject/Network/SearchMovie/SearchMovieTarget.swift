@@ -5,6 +5,7 @@
 //  Created by 강호성 on 2022/04/25.
 //
 
+import Foundation
 import Moya
 
 enum SearchMovieTarget {
@@ -23,7 +24,7 @@ extension SearchMovieTarget: TargetType {
         }
     }
 
-    var method: Method {
+    var method: Moya.Method {
         switch self {
         case .populateMovieList:
             return .get
