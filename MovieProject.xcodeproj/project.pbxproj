@@ -50,6 +50,7 @@
 		B4975C4F2816A055001DD5DF /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C4E2816A055001DD5DF /* AppAppearance.swift */; };
 		B4975C542816A5F8001DD5DF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C532816A5F8001DD5DF /* BaseTableViewCell.swift */; };
 		B4975C572816A6AB001DD5DF /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C562816A6AB001DD5DF /* MovieCell.swift */; };
+		B498FBE1281B9A7000D95455 /* ParameterValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B498FBE0281B9A7000D95455 /* ParameterValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +74,6 @@
 		B481811E2817CBC6002DE1EC /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
 		B48181202817CC6C002DE1EC /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		B48181232817CDD3002DE1EC /* DetailMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieViewController.swift; sourceTree = "<group>"; };
-		B4975C1A28169923001DD5DF /* MovieProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MovieProject.app; path = "/Users/camosss/Downloads/MovieProject/build/Debug-iphoneos/MovieProject.app"; sourceTree = "<absolute>"; };
 		B4975C1D28169923001DD5DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4975C1F28169923001DD5DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B4975C2628169924001DD5DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,6 +88,8 @@
 		B4975C4E2816A055001DD5DF /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		B4975C532816A5F8001DD5DF /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		B4975C562816A6AB001DD5DF /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		B498FBDF281B98FC00D95455 /* MovieProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B498FBE0281B9A7000D95455 /* ParameterValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				B481811C2816FE82002DE1EC /* NetworkError.swift */,
+				B498FBE0281B9A7000D95455 /* ParameterValue.swift */,
 			);
 			path = Supportings;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				B4975C1C28169923001DD5DF /* MovieProject */,
+				B498FBDF281B98FC00D95455 /* MovieProject.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -324,7 +328,7 @@
 				B4391F31281B87A60069BA5A /* Moya */,
 			);
 			productName = MovieProject;
-			productReference = B4975C1A28169923001DD5DF /* MovieProject.app */;
+			productReference = B498FBDF281B98FC00D95455 /* MovieProject.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -400,6 +404,7 @@
 				B4975C1E28169923001DD5DF /* AppDelegate.swift in Sources */,
 				B44449D328193BAD007FAF7B /* UITableView+Ex.swift in Sources */,
 				B44EA8D32816D8140078B2C6 /* ClientKey.swift in Sources */,
+				B498FBE1281B9A7000D95455 /* ParameterValue.swift in Sources */,
 				B48181242817CDD3002DE1EC /* DetailMovieViewController.swift in Sources */,
 				B4975C3E28169E41001DD5DF /* DefaultLabel.swift in Sources */,
 				B44449DA28195131007FAF7B /* StarButton.swift in Sources */,

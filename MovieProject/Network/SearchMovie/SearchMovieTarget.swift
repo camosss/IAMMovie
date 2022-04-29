@@ -37,7 +37,7 @@ extension SearchMovieTarget: TargetType {
             return .requestParameters(
                 parameters: ["query": query,
                              "start": start,
-                             "display": 20],
+                             "display": ParameterValue.display.rawValue],
                 encoding: URLEncoding.default
             )
         }

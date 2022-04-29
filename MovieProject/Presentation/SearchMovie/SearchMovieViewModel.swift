@@ -24,9 +24,9 @@ final class SearchMovieViewModel {
     var isLoadingRequstStillResume = false /// 로딩 indicator와 emptyView를 구분하기 위한 flag
 
     var query = "" /// 검색 text
-    var startCounter = 1 /// start (parameter)
-    private var totalValue = 1 /// 전체 결괏값
-    private let limit = 20 /// display (parameter)
+    var startCounter = ParameterValue.start.rawValue /// start (parameter)
+    private var totalValue = ParameterValue.start.rawValue /// 전체 결괏값
+    private let limit = ParameterValue.display.rawValue /// display (parameter)
 
     private let searchMovieAPI: SearchMovieAPIProtocol
     private let disposeBag = DisposeBag()
@@ -58,7 +58,7 @@ final class SearchMovieViewModel {
             return
         }
 
-        if startCounter == 1 {
+        if startCounter == ParameterValue.start.rawValue {
             isLoadingSpinnerAvaliable.onNext(false)
         }
 
@@ -84,7 +84,7 @@ final class SearchMovieViewModel {
     private func handleStartCounter(movies: Movies) {
         totalValue = movies.total
 
-        if startCounter == 1 {
+        if startCounter == ParameterValue.start.rawValue {
             movieList.accept(movies.itemArray)
         } else {
             let oldDatas = movieList.value
@@ -98,7 +98,7 @@ final class SearchMovieViewModel {
         self.isLoadingAvaliable.onNext(true)
         self.isLoadingRequstStillResume = true
         self.query = query
-        self.startCounter = 1
+        self.startCounter = ParameterValue.start.rawValue
         self.movieList.accept([])
         self.fetchMoreDatas.onNext(())
     }
