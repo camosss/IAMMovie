@@ -15,7 +15,6 @@ final class SearchBar: UISearchBar {
     // MARK: - Properties
 
     private let disposeBag = DisposeBag()
-    private let searchButton = UIButton()
 
     var shouldLoadResult = Observable<String>.of("") /// 검색 text 전달
     let searchButtonTapped = PublishRelay<Void>()
@@ -24,12 +23,7 @@ final class SearchBar: UISearchBar {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.accessibilityIdentifier = "searchBar"
-        self.searchButton.accessibilityIdentifier = "searchButton"
-
-        setView()
         setConstraints()
-        setConfigurations()
         bind()
     }
 
@@ -40,11 +34,7 @@ final class SearchBar: UISearchBar {
     // MARK: - Helpers
 
     private func bind() {
-        Observable
-            .merge (
-                self.rx.searchButtonClicked.asObservable(),
-                searchButton.rx.tap.asObservable()
-            )
+        self.rx.searchButtonClicked.asObservable()
             .bind(to: searchButtonTapped)
             .disposed(by: disposeBag)
 
@@ -60,24 +50,10 @@ final class SearchBar: UISearchBar {
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
     }
 
-    private func setView() {
-        addSubview(searchButton)
-    }
-
     private func setConstraints() {
         searchTextField.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(12)
-            $0.trailing.equalTo(searchButton.snp.leading).offset(-12)
+            $0.leading.trailing.equalToSuperview().inset(12)
             $0.centerY.equalToSuperview()
         }
-        searchButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(12)
-        }
-    }
-
-    private func setConfigurations() {
-        searchButton.setTitle("검색", for: .normal)
-        searchButton.setTitleColor(.label, for: .normal)
     }
 }
