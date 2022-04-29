@@ -6,11 +6,6 @@ PODS:
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - ProgressHUD (13.6)
-  - Realm (10.25.2):
-    - Realm/Headers (= 10.25.2)
-  - Realm/Headers (10.25.2)
-  - RealmSwift (10.25.2):
-    - Realm (= 10.25.2)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -25,7 +20,6 @@ DEPENDENCIES:
   - Kingfisher
   - Moya (~> 15.0)
   - ProgressHUD
-  - RealmSwift
   - RxCocoa (= 6.5.0)
   - RxSwift (= 6.5.0)
   - SnapKit (~> 5.0.0)
@@ -38,8 +32,6 @@ SPEC REPOS:
     - Kingfisher
     - Moya
     - ProgressHUD
-    - Realm
-    - RealmSwift
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -52,8 +44,6 @@ SPEC CHECKSUMS:
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   ProgressHUD: 4bdaa0d2ddf676b23324b199f9facffb5c3a1620
-  Realm: 978303663d0509166498f423d112e5ee97d4c91b
-  RealmSwift: a0c30c1efc49e928a0a6f8fb141bb2629616d79b
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
@@ -61,6 +51,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 2fd9277dfdd62fb3b1d2a02afa2160a5d5278352
+PODFILE CHECKSUM: 1bf9b8a52a8c6567d2ed951af095be893cba27c2
 
 COCOAPODS: 1.11.2

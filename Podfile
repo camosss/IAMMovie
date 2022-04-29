@@ -10,7 +10,6 @@ target 'MovieProject' do
 pod 'Kingfisher'
 pod 'Moya', '~> 15.0'
 pod 'ProgressHUD'
-pod 'RealmSwift'
 pod 'RxSwift', '6.5.0'
 pod 'RxCocoa', '6.5.0'
 pod 'SnapKit', '~> 5.0.0'
