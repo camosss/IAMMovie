@@ -52,7 +52,7 @@ final class FavoritesViewController: BaseViewController {
     
     private func bind() {
         tableViewBind()
-        
+
         refreshControl.rx
             .controlEvent(.valueChanged)
             .bind { [weak self] _ in
@@ -72,6 +72,7 @@ final class FavoritesViewController: BaseViewController {
     }
 
     private func tableViewBind() {
+        /// 검색 결괏값 0일 때, EmptyView
         viewModel.favoriteList
             .map { return $0.count <= 0 }
             .bind(to: tableView.rx.isEmpty(
@@ -80,6 +81,7 @@ final class FavoritesViewController: BaseViewController {
             ))
             .disposed(by: disposeBag)
 
+        /// tableView dataSource
         viewModel.favoriteList
             .asDriver()
             .drive(tableView.rx.items(
