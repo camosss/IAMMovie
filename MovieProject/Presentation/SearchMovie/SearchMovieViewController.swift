@@ -134,6 +134,7 @@ final class SearchMovieViewController: BaseViewController {
             .bind {
                 let controller = FavoritesViewController()
                 self.navigationController?.pushViewController(controller, animated: true)
+                self.viewModel.movieList.accept([]) /// movieList 초기화
             }
             .disposed(by: disposeBag)
     }

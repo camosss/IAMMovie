@@ -57,7 +57,6 @@ final class SearchBar: UISearchBar {
         self.shouldLoadResult = searchButtonTapped
             .withLatestFrom(self.rx.text) { $1 ?? "" } /// 최신 text를 전달
             .filter { !$0.isEmpty }
-            .distinctUntilChanged()
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
     }
 
