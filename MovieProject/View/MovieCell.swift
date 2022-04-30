@@ -169,13 +169,13 @@ final class MovieCell: BaseTableViewCell {
 // MARK: - Star 로직
 
 extension MovieCell {
-
     private func requestStar() {
         self.isStarred.onNext(true)
 
         /// add realm
         if storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
             storage.save(movie: movie)
+            ProgressHUD.colorAnimation = .systemYellow
             ProgressHUD.show(StarStatus.star.description, icon: .star)
         }
     }
@@ -186,6 +186,7 @@ extension MovieCell {
         /// remove realm
         if !storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
             storage.delete(movie: movie)
+            ProgressHUD.colorAnimation = .lightGray
             ProgressHUD.show(StarStatus.unstar.description, icon: .star)
         }
     }
