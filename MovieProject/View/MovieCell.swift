@@ -124,6 +124,15 @@ final class MovieCell: BaseTableViewCell {
             .disposed(by: disposeBag)
     }
 
+    /// tableView dataSource 갱신
+    func handleStarBtnInfavoritesView(viewModel: FavoritesViewModel) {
+        starButton.rx.tap
+            .subscribe(onNext: { _ in
+                viewModel.favoriteList.accept(viewModel.favorites.map{$0})
+            })
+            .disposed(by: self.disposeBag)
+    }
+
     func configure(movie: Movie) {
         self.movie = movie
 

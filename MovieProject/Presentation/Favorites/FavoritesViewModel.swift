@@ -22,7 +22,7 @@ final class FavoritesViewModel {
     let refreshControlCompelted = PublishSubject<Void>() /// 새로고침 완료 여부를 수신
 
     private let realm = try! Realm()
-    private lazy var favorites = realm.objects(Movie.self) /// load realm
+    lazy var favorites = realm.objects(Movie.self) /// load realm
 
     // MARK: - Initializer
 

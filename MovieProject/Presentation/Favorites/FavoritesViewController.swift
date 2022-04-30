@@ -23,7 +23,8 @@ final class FavoritesViewController: BaseViewController {
 
     /// BehaviorRelay에 data를 넣어두고 변하면 reload
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<FavoritesSection.FavoritesSectionModel>(
-        configureCell: { dataSource, tableView, indexPath, item in
+        configureCell: { [weak self] dataSource, tableView, indexPath, item in
+            guard let self = self else { return UITableViewCell() }
             switch item {
             case .firstItem(let movie):
                 let cell = tableView.dequeueReusableCell(
@@ -31,6 +32,7 @@ final class FavoritesViewController: BaseViewController {
                     for: indexPath
                 ) as! MovieCell
                 cell.configure(movie: movie)
+                cell.handleStarBtnInfavoritesView(viewModel: self.viewModel)
                 return cell
             }
         }
