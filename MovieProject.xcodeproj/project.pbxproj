@@ -51,6 +51,8 @@
 		B4975C542816A5F8001DD5DF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C532816A5F8001DD5DF /* BaseTableViewCell.swift */; };
 		B4975C572816A6AB001DD5DF /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C562816A6AB001DD5DF /* MovieCell.swift */; };
 		B498FBE1281B9A7000D95455 /* ParameterValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B498FBE0281B9A7000D95455 /* ParameterValue.swift */; };
+		B498FBE6281D2C1100D95455 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = B498FBE5281D2C1100D95455 /* RxDataSources */; };
+		B498FBEC281D365E00D95455 /* FavoritesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B498FBEB281D365E00D95455 /* FavoritesSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,7 @@
 		B4975C562816A6AB001DD5DF /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		B498FBDF281B98FC00D95455 /* MovieProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B498FBE0281B9A7000D95455 /* ParameterValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterValue.swift; sourceTree = "<group>"; };
+		B498FBEB281D365E00D95455 /* FavoritesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +105,7 @@
 				B4391F21281B86DA0069BA5A /* ProgressHUD in Frameworks */,
 				B4391F2F281B873D0069BA5A /* Toast in Frameworks */,
 				B4391F2C281B87250069BA5A /* Then in Frameworks */,
+				B498FBE6281D2C1100D95455 /* RxDataSources in Frameworks */,
 				B4391F29281B870D0069BA5A /* SnapKit in Frameworks */,
 				B4391F24281B86F70069BA5A /* RxCocoa in Frameworks */,
 				B4391F1B281B7D570069BA5A /* RealmSwift in Frameworks */,
@@ -133,6 +137,7 @@
 		B44449D428194619007FAF7B /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				B498FBE7281D364E00D95455 /* Section */,
 				B44449D728194761007FAF7B /* FavoritesViewModel.swift */,
 				B44449D52819462F007FAF7B /* FavoritesViewController.swift */,
 			);
@@ -299,6 +304,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B498FBE7281D364E00D95455 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				B498FBEB281D365E00D95455 /* FavoritesSection.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -326,6 +339,7 @@
 				B4391F2B281B87250069BA5A /* Then */,
 				B4391F2E281B873D0069BA5A /* Toast */,
 				B4391F31281B87A60069BA5A /* Moya */,
+				B498FBE5281D2C1100D95455 /* RxDataSources */,
 			);
 			productName = MovieProject;
 			productReference = B498FBDF281B98FC00D95455 /* MovieProject.app */;
@@ -364,6 +378,7 @@
 				B4391F2A281B87250069BA5A /* XCRemoteSwiftPackageReference "Then" */,
 				B4391F2D281B873D0069BA5A /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				B4391F30281B87A60069BA5A /* XCRemoteSwiftPackageReference "Moya" */,
+				B498FBE4281D2C1100D95455 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = B4975C1128169923001DD5DF;
 			projectDirPath = "";
@@ -403,6 +418,7 @@
 				B44EA8C82816B2450078B2C6 /* ReusableView+Ex.swift in Sources */,
 				B4975C1E28169923001DD5DF /* AppDelegate.swift in Sources */,
 				B44449D328193BAD007FAF7B /* UITableView+Ex.swift in Sources */,
+				B498FBEC281D365E00D95455 /* FavoritesSection.swift in Sources */,
 				B44EA8D32816D8140078B2C6 /* ClientKey.swift in Sources */,
 				B498FBE1281B9A7000D95455 /* ParameterValue.swift in Sources */,
 				B48181242817CDD3002DE1EC /* DetailMovieViewController.swift in Sources */,
@@ -698,6 +714,14 @@
 				version = 15.0.0;
 			};
 		};
+		B498FBE4281D2C1100D95455 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -750,6 +774,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B4391F30281B87A60069BA5A /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		B498FBE5281D2C1100D95455 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B498FBE4281D2C1100D95455 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

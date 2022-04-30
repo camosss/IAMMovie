@@ -8,6 +8,7 @@
 import UIKit
 
 import RxCocoa
+import RxDataSources
 import RxSwift
 
 final class FavoritesViewController: BaseViewController {
@@ -19,6 +20,21 @@ final class FavoritesViewController: BaseViewController {
 
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     private let refreshControl = UIRefreshControl()
+
+    /// BehaviorRelay에 data를 넣어두고 변하면 reload
+    private lazy var dataSource = RxTableViewSectionedReloadDataSource<FavoritesSection.FavoritesSectionModel>(
+        configureCell: { dataSource, tableView, indexPath, item in
+            switch item {
+            case .firstItem(let movie):
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: MovieCell.reuseIdentifier,
+                    for: indexPath
+                ) as! MovieCell
+                cell.configure(movie: movie)
+                return cell
+            }
+        }
+    )
 
     // MARK: - Lifecycle
 
@@ -84,12 +100,13 @@ final class FavoritesViewController: BaseViewController {
         /// tableView dataSource
         viewModel.favoriteList
             .asDriver()
-            .drive(tableView.rx.items(
-                cellIdentifier: MovieCell.reuseIdentifier,
-                cellType: MovieCell.self
-            )) { index, item, cell in
-                cell.configure(movie: item)
+            .map { value in
+                return [FavoritesSection.FavoritesSectionModel(
+                    model: 0,
+                    items: value.map{FavoritesSection.MoviesItems.firstItem($0)}
+                )]
             }
+            .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
 
         /// DetailView로 전환
