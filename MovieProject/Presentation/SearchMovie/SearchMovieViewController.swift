@@ -134,7 +134,6 @@ final class SearchMovieViewController: BaseViewController {
             .bind {
                 let controller = FavoritesViewController()
                 self.navigationController?.pushViewController(controller, animated: true)
-                self.viewModel.movieList.accept([]) /// movieList 초기화
             }
             .disposed(by: disposeBag)
     }
@@ -170,7 +169,6 @@ final class SearchMovieViewController: BaseViewController {
                 let movie = self.viewModel.movieList.value[indexPath.row]
                 let controller = DetailMovieViewController(movie: movie)
                 self.navigationController?.pushViewController(controller, animated: true)
-                self.viewModel.movieList.accept([]) /// movieList 초기화
             })
             .disposed(by: disposeBag)
 
