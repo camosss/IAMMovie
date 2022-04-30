@@ -16,7 +16,7 @@ final class MovieCell: BaseTableViewCell {
 
     // MARK: - Properties
 
-    private let realm = try! Realm()
+    private var storage: RealmStorage
     private var movie: Movie?
 
     private let isStarred = PublishSubject<Bool>()
@@ -39,6 +39,7 @@ final class MovieCell: BaseTableViewCell {
     // MARK: - Initializer
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        self.storage = RealmStorage.shared
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         bind()
     }
@@ -149,8 +150,7 @@ final class MovieCell: BaseTableViewCell {
         gradeLabel.text = "평점: \(movie.userRating)"
 
         /// starButton image fill
-        if !realm.objects(Movie.self)
-            .filter("link == '\(self.movie?.link ?? "")'").isEmpty {
+        if !storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
             self.isStarred.onNext(true)
         } else {
             self.isStarred.onNext(false)
@@ -169,18 +169,14 @@ final class MovieCell: BaseTableViewCell {
 // MARK: - Star 로직
 
 extension MovieCell {
+
     private func requestStar() {
         self.isStarred.onNext(true)
 
         /// add realm
-        if realm.objects(Movie.self)
-            .filter("link == '\(self.movie?.link ?? "")'").isEmpty {
-            try! realm.write({
-                /// realm 객체에 Json을 전달하는 대신 객체를 먼저 복사한 후 복제된 객체를 저장
-                let copyMovie = self.realm.create(Movie.self, value: movie!, update: .all)
-                self.realm.add(copyMovie)
-                ProgressHUD.show(StarStatus.star.description, icon: .star)
-            })
+        if storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
+            storage.save(movie: movie)
+            ProgressHUD.show(StarStatus.star.description, icon: .star)
         }
     }
 
@@ -188,13 +184,10 @@ extension MovieCell {
         self.isStarred.onNext(false)
 
         /// remove realm
-        if !realm.objects(Movie.self)
-            .filter("link == '\(self.movie?.link ?? "")'").isEmpty {
-            try! realm.write({
-                let copyMovie = self.realm.create(Movie.self, value: movie!, update: .all)
-                self.realm.delete(copyMovie)
-                ProgressHUD.show(StarStatus.unstar.description, icon: .star)
-            })
+        if !storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
+            storage.delete(movie: movie)
+            ProgressHUD.show(StarStatus.unstar.description, icon: .star)
         }
     }
 }
+

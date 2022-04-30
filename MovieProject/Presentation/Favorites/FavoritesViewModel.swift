@@ -15,26 +15,25 @@ final class FavoritesViewModel {
 
     // MARK: - Properties
 
+    private var storage: RealmStorage
+    lazy var favorites = storage.load() /// load realm
+
     private let disposeBag = DisposeBag()
 
     var favoriteList = BehaviorRelay<[Movie]>(value: [])
     let refreshControlAction = PublishSubject<Void>() /// 새로고침 실행 여부를 수신
     let refreshControlCompelted = PublishSubject<Void>() /// 새로고침 완료 여부를 수신
-
-    private let realm = try! Realm()
-    lazy var favorites = realm.objects(Movie.self) /// load realm
-
+    
     // MARK: - Initializer
 
     init() {
+        self.storage = RealmStorage.shared
         bind()
     }
 
     // MARK: - Helpers
 
     private func bind() {
-        print(realm.configuration.fileURL!)
-
         favoriteList.accept(favorites.map{$0})
 
         refreshControlAction

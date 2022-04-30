@@ -53,6 +53,7 @@
 		B498FBE1281B9A7000D95455 /* ParameterValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B498FBE0281B9A7000D95455 /* ParameterValue.swift */; };
 		B498FBE6281D2C1100D95455 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = B498FBE5281D2C1100D95455 /* RxDataSources */; };
 		B498FBEC281D365E00D95455 /* FavoritesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B498FBEB281D365E00D95455 /* FavoritesSection.swift */; };
+		B498FBF2281D7B2900D95455 /* RealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B498FBF1281D7B2900D95455 /* RealmStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		B498FBDF281B98FC00D95455 /* MovieProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B498FBE0281B9A7000D95455 /* ParameterValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterValue.swift; sourceTree = "<group>"; };
 		B498FBEB281D365E00D95455 /* FavoritesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSection.swift; sourceTree = "<group>"; };
+		B498FBF1281D7B2900D95455 /* RealmStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				B4975C3128169B4E001DD5DF /* Application */,
 				B4975C552816A6A1001DD5DF /* View */,
 				B4975C3228169BA2001DD5DF /* Presentation */,
+				B498FBF0281D7B1900D95455 /* DataBase */,
 				B44EA8C32816B0DB0078B2C6 /* Network */,
 				B4975C3C28169E36001DD5DF /* Custom */,
 				B4975C4228169EC2001DD5DF /* Constants */,
@@ -310,6 +313,14 @@
 				B498FBEB281D365E00D95455 /* FavoritesSection.swift */,
 			);
 			path = Section;
+			sourceTree = "<group>";
+		};
+		B498FBF0281D7B1900D95455 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				B498FBF1281D7B2900D95455 /* RealmStorage.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,6 +448,7 @@
 				B4975C3528169C15001DD5DF /* SearchMovieViewController.swift in Sources */,
 				B44449CE281933C0007FAF7B /* EmptyView.swift in Sources */,
 				B44449CC28191E21007FAF7B /* SearchBar+Rx.swift in Sources */,
+				B498FBF2281D7B2900D95455 /* RealmStorage.swift in Sources */,
 				B44EA8CC2816CF4E0078B2C6 /* SearchMovieTarget.swift in Sources */,
 				B4975C4F2816A055001DD5DF /* AppAppearance.swift in Sources */,
 			);
