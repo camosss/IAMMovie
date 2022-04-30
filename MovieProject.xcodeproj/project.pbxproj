@@ -54,6 +54,7 @@
 		B498FBE6281D2C1100D95455 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = B498FBE5281D2C1100D95455 /* RxDataSources */; };
 		B498FBEC281D365E00D95455 /* FavoritesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B498FBEB281D365E00D95455 /* FavoritesSection.swift */; };
 		B498FBF2281D7B2900D95455 /* RealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B498FBF1281D7B2900D95455 /* RealmStorage.swift */; };
+		B4DE4378281DB17800632753 /* ProgressHUDStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DE4377281DB17800632753 /* ProgressHUDStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,7 @@
 		B498FBE0281B9A7000D95455 /* ParameterValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterValue.swift; sourceTree = "<group>"; };
 		B498FBEB281D365E00D95455 /* FavoritesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSection.swift; sourceTree = "<group>"; };
 		B498FBF1281D7B2900D95455 /* RealmStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorage.swift; sourceTree = "<group>"; };
+		B4DE4377281DB17800632753 /* ProgressHUDStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUDStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				B4391F15281B19EF0069BA5A /* StarStatus.swift */,
+				B4DE4377281DB17800632753 /* ProgressHUDStyle.swift */,
 			);
 			path = Supportings;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				B44EA8CA2816BDB00078B2C6 /* UIImageView+Ex.swift in Sources */,
 				B44EA8C82816B2450078B2C6 /* ReusableView+Ex.swift in Sources */,
 				B4975C1E28169923001DD5DF /* AppDelegate.swift in Sources */,
+				B4DE4378281DB17800632753 /* ProgressHUDStyle.swift in Sources */,
 				B44449D328193BAD007FAF7B /* UITableView+Ex.swift in Sources */,
 				B498FBEC281D365E00D95455 /* FavoritesSection.swift in Sources */,
 				B44EA8D32816D8140078B2C6 /* ClientKey.swift in Sources */,

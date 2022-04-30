@@ -7,7 +7,6 @@
 
 import UIKit
 import Then
-import ProgressHUD
 
 import RealmSwift
 import RxSwift
@@ -175,8 +174,11 @@ extension MovieCell {
         /// add realm
         if storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
             storage.save(movie: movie)
-            ProgressHUD.colorAnimation = .systemYellow
-            ProgressHUD.show(StarStatus.star.description, icon: .star)
+            ProgressHUDStyle.configureHUD(
+                text: StarStatus.star.description,
+                icon: .star,
+                color: .systemYellow
+            )
         }
     }
 
@@ -186,8 +188,11 @@ extension MovieCell {
         /// remove realm
         if !storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
             storage.delete(movie: movie)
-            ProgressHUD.colorAnimation = .lightGray
-            ProgressHUD.show(StarStatus.unstar.description, icon: .star)
+            ProgressHUDStyle.configureHUD(
+                text: StarStatus.unstar.description,
+                icon: .star,
+                color: .lightGray
+            )
         }
     }
 }
