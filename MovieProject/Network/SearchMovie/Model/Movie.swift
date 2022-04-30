@@ -25,14 +25,14 @@ class Movies: Codable {
 }
 
 class Movie: Object, Codable {
-    @Persisted var title: String?
-    @Persisted var link: String?
-    @Persisted var image: String?
-    @Persisted var subtitle: String?
-    @Persisted var pubDate: String?
-    @Persisted var director: String?
-    @Persisted var actor: String?
-    @Persisted var userRating: String?
+    @Persisted var title: String
+    @Persisted var link: String
+    @Persisted var image: String
+    @Persisted var subtitle: String
+    @Persisted var pubDate: String
+    @Persisted var director: String
+    @Persisted var actor: String
+    @Persisted var userRating: String
 
     override class func primaryKey() -> String? {
         return "link"

@@ -59,7 +59,7 @@ final class DetailMovieViewController: BaseViewController {
     override func setConfigurations() {
         super.setConfigurations()
         if let movie = movie {
-            title = (movie.title ?? "")
+            title = (movie.title)
                 .replacingOccurrences(of: "</b>", with: "")
                 .replacingOccurrences(of: "<b>", with: "")
             headerView.configure(movie: movie)
@@ -67,7 +67,7 @@ final class DetailMovieViewController: BaseViewController {
     }
 
     private func showMovieWebView() {
-        if let movie = movie, let url = URL(string: movie.link ?? "") {
+        if let movie = movie, let url = URL(string: movie.link) {
             let request = URLRequest(url: url)
             self.webView.load(request)
         }

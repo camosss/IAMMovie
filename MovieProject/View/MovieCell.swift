@@ -130,14 +130,14 @@ final class MovieCell: BaseTableViewCell {
         if movie.image == "" {
             postImage.image = UIImage(named: "no_image")
         } else {
-            postImage.setImage(with: movie.image ?? "")
+            postImage.setImage(with: movie.image)
         }
-        titleLabel.text = (movie.title ?? "")
+        titleLabel.text = (movie.title)
             .replacingOccurrences(of: "</b>", with: "")
             .replacingOccurrences(of: "<b>", with: "")
-        handleEmptyData(label: directorLabel, title: "감독", data: movie.director ?? "")
-        handleEmptyData(label: castLabel, title: "출연", data: movie.actor ?? "")
-        gradeLabel.text = "평점: \(movie.userRating ?? "")"
+        handleEmptyData(label: directorLabel, title: "감독", data: movie.director)
+        handleEmptyData(label: castLabel, title: "출연", data: movie.actor)
+        gradeLabel.text = "평점: \(movie.userRating)"
 
         /// starButton image fill
         if !realm.objects(Movie.self)
