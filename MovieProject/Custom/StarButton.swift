@@ -22,7 +22,7 @@ final class StarButton: UIButton {
     private func setConfigurations() {
         setImage(UIImage(systemName: "star"), for: .normal)
         setImage(UIImage(systemName: "star.fill"), for: .selected)
-        imageView?.tintColor = .systemYellow
+        imageView?.tintColor = .star
         contentMode = .scaleAspectFit
     }
 }

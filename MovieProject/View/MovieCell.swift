@@ -177,7 +177,7 @@ extension MovieCell {
             ProgressHUDStyle.configureHUD(
                 text: StarStatus.star.description,
                 icon: .star,
-                color: .systemYellow
+                color: .star
             )
         }
     }

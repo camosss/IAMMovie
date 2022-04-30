@@ -14,4 +14,7 @@ extension UIColor {
     static var background: UIColor {
         return UIColor.systemBackground
     }
+    static var star: UIColor {
+        return UIColor.systemYellow
+    }
 }

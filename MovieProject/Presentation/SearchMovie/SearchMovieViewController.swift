@@ -74,7 +74,7 @@ final class SearchMovieViewController: BaseViewController {
         configureLeftBarButtonItem(title: "네이버 영화 검색")
 
         favoritesButton.image = UIImage(systemName: "star.fill")
-        favoritesButton.tintColor = .systemYellow
+        favoritesButton.tintColor = .star
 
         searchBar.backgroundImage = UIImage()
         searchBar.placeholder = "영화를 검색해주세요.."
