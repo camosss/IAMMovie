@@ -43,19 +43,19 @@ https://user-images.githubusercontent.com/93528918/166146941-8345c5f3-2777-4560-
 
 **영화 검색**
 
-- Rest API 핸들링
-- 페이지네이션
-- footerView indicator
-- 검색 기능
-- 로딩 indicator
+- [Rest API 핸들링](https://github.com/camosss/MovieProject/issues/1)
+- [페이지네이션](https://github.com/camosss/MovieProject/issues/2)
+- [footerView indicator](https://github.com/camosss/MovieProject/issues/3)
+- [검색 기능](https://github.com/camosss/MovieProject/issues/4)
+- [로딩 indicator](https://github.com/camosss/MovieProject/issues/5)
 
 <br>
 
 **즐겨찾기**
 
-- Realm CRUD
-- 즐겨찾기 기능
-- 새로고침
+- [Realm CRUD](https://github.com/camosss/MovieProject/issues/6)
+- [즐겨찾기](https://github.com/camosss/MovieProject/issues/7)
+- [새로고침](https://github.com/camosss/MovieProject/issues/8)
 
 <br>
 <br>
