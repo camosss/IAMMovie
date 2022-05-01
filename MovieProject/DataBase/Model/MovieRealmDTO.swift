@@ -1,5 +1,5 @@
 //
-//  MovieResponseDTO.swift
+//  MovieRealmDTO.swift
 //  MovieProject
 //
 //  Created by 강호성 on 2022/05/01.
@@ -7,7 +7,7 @@
 
 import RealmSwift
 
-class MovieResponseDTO: Object {
+class MovieRealmDTO: Object {
     @Persisted var title: String
     @Persisted var link: String
     @Persisted var image: String
@@ -36,7 +36,7 @@ class MovieResponseDTO: Object {
     }
 }
 
-extension MovieResponseDTO {
+extension MovieRealmDTO {
     func toDomain() -> Movie {
         return .init(title: title,
                      link: link,

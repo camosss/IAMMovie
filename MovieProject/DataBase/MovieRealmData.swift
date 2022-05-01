@@ -29,12 +29,12 @@ extension MovieRealmData {
     }
 
     func saveMovie(movie: Movie?) {
-        let movieDTO = movie.map { MovieResponseDTO(movie: $0) }
+        let movieDTO = movie.map { MovieRealmDTO(movie: $0) }
         storage.save(movie: movieDTO)
     }
 
     func deleteMovie(movie: Movie?) {
-        let movieDTO = movie.map { MovieResponseDTO(movie: $0) }
+        let movieDTO = movie.map { MovieRealmDTO(movie: $0) }
         storage.delete(movie: movieDTO)
     }
 }

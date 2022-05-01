@@ -15,23 +15,23 @@ final class RealmStorage {
 
     private let realm = try! Realm()
 
-    func load() -> Results<MovieResponseDTO> {
-        let loadMovie = realm.objects(MovieResponseDTO.self)
+    func load() -> Results<MovieRealmDTO> {
+        let loadMovie = realm.objects(MovieRealmDTO.self)
         return loadMovie
     }
 
-    func save(movie: MovieResponseDTO?) {
+    func save(movie: MovieRealmDTO?) {
         try! realm.write {
             /// realm 객체에 Json을 전달하는 대신 객체를 먼저 복사한 후 복제된 객체를 저장
-            let copyMovie = self.realm.create(MovieResponseDTO.self, value: movie!, update: .all)
+            let copyMovie = self.realm.create(MovieRealmDTO.self, value: movie!, update: .all)
             realm.add(copyMovie)
         }
     }
 
-    func delete(movie: MovieResponseDTO?) {
+    func delete(movie: MovieRealmDTO?) {
         try! realm.write {
             /// realm 객체에 Json을 전달하는 대신 객체를 먼저 복사한 후 복제된 객체를 삭제
-            let copyMovie = self.realm.create(MovieResponseDTO.self, value: movie!, update: .all)
+            let copyMovie = self.realm.create(MovieRealmDTO.self, value: movie!, update: .all)
             realm.delete(copyMovie)
         }
     }
