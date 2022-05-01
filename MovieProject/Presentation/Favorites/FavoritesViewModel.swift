@@ -35,8 +35,7 @@ final class FavoritesViewModel {
     // MARK: - Helpers
 
     private func bind() {
-        let favorites = movieRealmData.loadMovie()
-        favoriteList.accept(favorites)
+        populateFavoritesList()
 
         refreshControlAction
             .subscribe { [weak self] _ in
@@ -48,8 +47,14 @@ final class FavoritesViewModel {
 
     /// 새로고침 제어가 트리거되는 즉시, 이전 요청이 취소되고 다시 불러오기
     private func refreshControlTriggered() {
-        let favorites = movieRealmData.loadMovie()
-        favoriteList.accept(favorites)
+        populateFavoritesList()
         refreshControlCompelted.onNext(()) /// 완료여부 이벤트 전달
+    }
+    
+    private func populateFavoritesList() {
+        let favorites = movieRealmData.loadMovie()
+        favoriteList.accept(favorites.sorted(by: { one, two in
+            one.title < two.title
+        }))
     }
 }
