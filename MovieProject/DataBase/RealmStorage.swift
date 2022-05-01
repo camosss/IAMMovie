@@ -22,7 +22,7 @@ final class RealmStorage {
 
     func save(movie: MovieRealmDTO?) {
         try! realm.write {
-            /// realm 객체에 Json을 전달하는 대신 객체를 먼저 복사한 후 복제된 객체를 저장
+            /// 객체를 먼저 복사한 후 realm에 복제된 객체를 저장
             let copyMovie = self.realm.create(MovieRealmDTO.self, value: movie!, update: .all)
             realm.add(copyMovie)
         }
@@ -30,7 +30,7 @@ final class RealmStorage {
 
     func delete(movie: MovieRealmDTO?) {
         try! realm.write {
-            /// realm 객체에 Json을 전달하는 대신 객체를 먼저 복사한 후 복제된 객체를 삭제
+            /// 객체를 먼저 복사한 후 realm에 복제된 객체를 삭제
             let copyMovie = self.realm.create(MovieRealmDTO.self, value: movie!, update: .all)
             realm.delete(copyMovie)
         }
