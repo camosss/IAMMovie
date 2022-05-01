@@ -114,28 +114,16 @@ final class DetailHeaderView: BaseUIView {
     func configure(movie: Movie) {
         self.movie = movie
 
-        if movie.image == "" {
-            postImage.image = UIImage(named: "no_image")
-        } else {
-            postImage.setImage(with: movie.image)
-        }
-        handleEmptyData(label: directorLabel, title: "감독", data: movie.director)
-        handleEmptyData(label: castLabel, title: "출연", data: movie.actor)
-        gradeLabel.text = "평점: \(movie.userRating)"
+        ViewHelper.handleImageData(imageView: postImage, data: movie.image)
+        ViewHelper.handleEmptyData(label: directorLabel, title: "감독", data: movie.director)
+        ViewHelper.handleEmptyData(label: castLabel, title: "출연", data: movie.actor)
+        ViewHelper.handleRatingData(label: gradeLabel, data: movie.userRating)
 
         /// starButton image fill
         if !storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
             self.isStarred.onNext(true)
         } else {
             self.isStarred.onNext(false)
-        }
-    }
-
-    private func handleEmptyData(label: UILabel, title: String, data: String) {
-        if data == "" {
-            label.text = "\(title): 정보 없음"
-        } else {
-            label.text = "\(title): \(data.trimmingCharacters(in: ["|"]))"
         }
     }
 }
