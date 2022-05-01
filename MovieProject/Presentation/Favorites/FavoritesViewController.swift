@@ -21,7 +21,6 @@ final class FavoritesViewController: BaseViewController {
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     private let refreshControl = UIRefreshControl()
 
-    /// BehaviorRelay에 data를 넣어두고 변하면 reload
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<FavoritesSection.FavoritesSectionModel>(
         configureCell: { [weak self] dataSource, tableView, indexPath, item in
             guard let self = self else { return UITableViewCell() }

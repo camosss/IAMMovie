@@ -50,7 +50,7 @@ final class FavoritesViewModel {
         populateFavoritesList()
         refreshControlCompelted.onNext(()) /// 완료여부 이벤트 전달
     }
-    
+
     private func populateFavoritesList() {
         let favorites = movieRealmData.loadMovie()
         favoriteList.accept(favorites.sorted(by: { one, two in
