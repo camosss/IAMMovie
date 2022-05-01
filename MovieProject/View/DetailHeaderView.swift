@@ -7,7 +7,6 @@
 
 import UIKit
 
-import RealmSwift
 import RxCocoa
 import RxSwift
 
@@ -16,6 +15,7 @@ final class DetailHeaderView: BaseUIView {
     // MARK: - Properties
 
     private var storage: RealmStorage
+    private var movieRealmData: MovieRealmDataProtocol = MovieRealmData()
     private var movie: Movie?
 
     private let isStarred = PublishSubject<Bool>()
@@ -146,9 +146,8 @@ extension DetailHeaderView {
     private func requestStar() {
         self.isStarred.onNext(true)
 
-        /// add realm
         if storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
-            storage.save(movie: movie)
+            movieRealmData.saveMovie(movie: movie) /// add realm
             ProgressHUDStyle.configureHUD(
                 text: StarStatus.star.description,
                 icon: .star,
@@ -160,9 +159,8 @@ extension DetailHeaderView {
     private func requestUnStar() {
         self.isStarred.onNext(false)
 
-        /// remove realm
         if !storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
-            storage.delete(movie: movie)
+            movieRealmData.deleteMovie(movie: movie) /// remove realm
             ProgressHUDStyle.configureHUD(
                 text: StarStatus.unstar.description,
                 icon: .star,

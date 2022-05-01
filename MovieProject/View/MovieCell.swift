@@ -8,7 +8,6 @@
 import UIKit
 import Then
 
-import RealmSwift
 import RxSwift
 
 final class MovieCell: BaseTableViewCell {
@@ -16,6 +15,7 @@ final class MovieCell: BaseTableViewCell {
     // MARK: - Properties
 
     private var storage: RealmStorage
+    private var movieRealmData: MovieRealmDataProtocol = MovieRealmData()
     private var movie: Movie?
 
     private let isStarred = PublishSubject<Bool>()
@@ -124,15 +124,6 @@ final class MovieCell: BaseTableViewCell {
             .disposed(by: disposeBag)
     }
 
-    /// tableView dataSource 갱신
-    func handleStarBtnInfavoritesView(viewModel: FavoritesViewModel) {
-        starButton.rx.tap
-            .subscribe(onNext: { _ in
-                viewModel.favoriteList.accept(viewModel.favorites.map{$0})
-            })
-            .disposed(by: self.disposeBag)
-    }
-
     func configure(movie: Movie) {
         self.movie = movie
 
@@ -171,9 +162,8 @@ extension MovieCell {
     private func requestStar() {
         self.isStarred.onNext(true)
 
-        /// add realm
         if storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
-            storage.save(movie: movie)
+            movieRealmData.saveMovie(movie: movie) /// add realm
             ProgressHUDStyle.configureHUD(
                 text: StarStatus.star.description,
                 icon: .star,
@@ -185,9 +175,8 @@ extension MovieCell {
     private func requestUnStar() {
         self.isStarred.onNext(false)
 
-        /// remove realm
         if !storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
-            storage.delete(movie: movie)
+            movieRealmData.deleteMovie(movie: movie) /// remove realm
             ProgressHUDStyle.configureHUD(
                 text: StarStatus.unstar.description,
                 icon: .star,

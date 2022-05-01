@@ -85,11 +85,11 @@ final class SearchMovieViewModel {
         totalValue = movies.total
 
         if startCounter == ParameterValue.start.rawValue {
-            movieList.accept(movies.itemArray)
+            movieList.accept(movies.items)
         } else {
             let oldDatas = movieList.value
             /// 기존 값을 유지하면서 새로운 값을 accept
-            movieList.accept(oldDatas + movies.itemArray)
+            movieList.accept(oldDatas + movies.items)
         }
         startCounter += limit /// 요청
     }

@@ -32,7 +32,6 @@ final class FavoritesViewController: BaseViewController {
                     for: indexPath
                 ) as! MovieCell
                 cell.configure(movie: movie)
-                cell.handleStarBtnInfavoritesView(viewModel: self.viewModel)
                 return cell
             }
         }

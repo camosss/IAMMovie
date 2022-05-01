@@ -16,7 +16,7 @@ final class FavoritesViewModel {
     // MARK: - Properties
 
     private var storage: RealmStorage
-    lazy var favorites = storage.load() /// load realm
+    private var movieRealmData: MovieRealmDataProtocol
 
     private let disposeBag = DisposeBag()
 
@@ -26,7 +26,8 @@ final class FavoritesViewModel {
     
     // MARK: - Initializer
 
-    init() {
+    init(movieRealmData: MovieRealmDataProtocol = MovieRealmData()) {
+        self.movieRealmData = movieRealmData
         self.storage = RealmStorage.shared
         bind()
     }
@@ -34,7 +35,8 @@ final class FavoritesViewModel {
     // MARK: - Helpers
 
     private func bind() {
-        favoriteList.accept(favorites.map{$0})
+        let favorites = movieRealmData.loadMovie()
+        favoriteList.accept(favorites)
 
         refreshControlAction
             .subscribe { [weak self] _ in
@@ -46,7 +48,8 @@ final class FavoritesViewModel {
 
     /// 새로고침 제어가 트리거되는 즉시, 이전 요청이 취소되고 다시 불러오기
     private func refreshControlTriggered() {
-        favoriteList.accept(favorites.map{$0})
+        let favorites = movieRealmData.loadMovie()
+        favoriteList.accept(favorites)
         refreshControlCompelted.onNext(()) /// 완료여부 이벤트 전달
     }
 }
