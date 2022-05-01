@@ -50,13 +50,3 @@ extension MovieDTO {
                      userRating: userRating)
     }
 }
-
-extension String {
-    func replacing(data: String) -> String {
-        return self.replacingOccurrences(of: "</b>", with: "").replacingOccurrences(of: "<b>", with: "")
-    }
-
-    func trimmingAndReplacing(data: String) -> String {
-        return self.trimmingCharacters(in: ["|"]).replacingOccurrences(of: "</b>", with: "").replacingOccurrences(of: "<b>", with: "")
-    }
-}
