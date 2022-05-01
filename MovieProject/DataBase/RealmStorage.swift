@@ -11,6 +11,8 @@ import RealmSwift
 final class RealmStorage {
 
     static let shared = RealmStorage()
+    private init() {}
+
     private let realm = try! Realm()
 
     func load() -> Results<MovieResponseDTO> {
