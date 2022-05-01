@@ -8,6 +8,6 @@
 import Foundation
 
 enum ClientKey {
-    static let clientID = "nEY3WDddAmHucjIpEpNW"
-    static let clientSecret = "47fexfZILd"
+    static let clientID = "clientID는 여기에 입력해주세요"
+    static let clientSecret = "clientSecret는 여기에 입력해주세요"
 }
