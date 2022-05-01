@@ -24,8 +24,6 @@ class MovieRealmDTO: Object {
     convenience init(movie: Movie) {
         self.init()
         self.title = movie.title
-            .replacingOccurrences(of: "</b>", with: "")
-            .replacingOccurrences(of: "<b>", with: "")
         self.link = movie.link
         self.image = movie.image
         self.subtitle = movie.subtitle

@@ -59,9 +59,7 @@ final class DetailMovieViewController: BaseViewController {
     override func setConfigurations() {
         super.setConfigurations()
         if let movie = movie {
-            title = (movie.title)
-                .replacingOccurrences(of: "</b>", with: "")
-                .replacingOccurrences(of: "<b>", with: "")
+            title = movie.title
             headerView.configure(movie: movie)
         }
     }

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 struct Movies: Codable {
     var lastBuildDate: String

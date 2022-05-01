@@ -127,8 +127,9 @@ final class MovieCell: BaseTableViewCell {
     func configure(movie: Movie) {
         self.movie = movie
 
+        titleLabel.text = movie.title
+
         ViewHelper.handleImageData(imageView: postImage, data: movie.image)
-        ViewHelper.replacingOccurrences(label: titleLabel, data: movie.title)
         ViewHelper.handleEmptyData(label: directorLabel, title: "감독", data: movie.director)
         ViewHelper.handleEmptyData(label: castLabel, title: "출연", data: movie.actor)
         ViewHelper.handleRatingData(label: gradeLabel, data: movie.userRating)

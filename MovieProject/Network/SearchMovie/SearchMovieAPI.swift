@@ -25,11 +25,11 @@ extension SearchMovieAPI {
                     switch result {
                     case .success(let value):
                         do {
-                            let response = try value.map(Movies.self)
+                            let response = try value.map(MoviesResponseDTO.self)
                             if response.total == 0 {
                                 single(.failure(NetworkError.invalid_search_API))
                             } else {
-                                single(.success(response))
+                                single(.success(response.toDomain()))
                             }
                         } catch {
                             switch value.statusCode {
