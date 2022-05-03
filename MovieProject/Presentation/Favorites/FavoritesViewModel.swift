@@ -53,8 +53,6 @@ final class FavoritesViewModel {
 
     private func populateFavoritesList() {
         let favorites = movieRealmData.loadMovie()
-        favoriteList.accept(favorites.sorted(by: { one, two in
-            one.title < two.title
-        }))
+        favoriteList.accept(favorites.sorted(by: { $0.title < $1.title }))
     }
 }
