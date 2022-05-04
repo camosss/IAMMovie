@@ -52,12 +52,14 @@ final class SearchMovieViewModel {
     private func populateMovieList(cursor: Int) {
         isLoadingSpinnerAvaliable.onNext(true)
 
+        /// 마지막 페이지
         if startCounter > totalValue {
             isLoadingSpinnerAvaliable.onNext(false)
             errorMessage.onNext(NetworkError.last_page)
             return
         }
 
+        /// 처음 페이지
         if startCounter == ParameterValue.start.rawValue {
             isLoadingSpinnerAvaliable.onNext(false)
         }
@@ -81,6 +83,7 @@ final class SearchMovieViewModel {
             .disposed(by: disposeBag)
     }
 
+    /// 데이터를 TableView에 추가하고 다음 요청에 대한 페이지 정렬
     private func handleStartCounter(movies: Movies) {
         totalValue = movies.total
 

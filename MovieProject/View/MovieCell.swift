@@ -53,7 +53,7 @@ final class MovieCell: BaseTableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         postImage.image = nil
-        disposeBag = DisposeBag()
+        disposeBag = DisposeBag() /// cell별로 모든 Observable 초기화
         bind()
     }
 

@@ -16,8 +16,8 @@ final class SearchBar: UISearchBar {
 
     private let disposeBag = DisposeBag()
 
-    var shouldLoadResult = Observable<String>.of("") /// 검색 text 전달
-    let searchButtonTapped = PublishRelay<Void>()
+    var shouldLoadResult = Observable<String>.of("") /// 상위 View로 검색 text 전달
+    let searchButtonTapped = PublishRelay<Void>() /// 키보드의 검색 버튼 트리거
 
     // MARK: - Initializer
 
@@ -34,12 +34,13 @@ final class SearchBar: UISearchBar {
     // MARK: - Helpers
 
     private func bind() {
-        self.rx.searchButtonClicked.asObservable()
+        self.rx.searchButtonClicked
+            .asObservable() /// ControlEvent → observable()
             .bind(to: searchButtonTapped)
             .disposed(by: disposeBag)
 
         searchButtonTapped
-            .asSignal() /// PublishRelay -> observable()
+            .asSignal() /// PublishRelay → observable()
             .emit(to: self.rx.endEditing) /// 키보드 내려가는 이벤트 방출
             .disposed(by: disposeBag)
 
