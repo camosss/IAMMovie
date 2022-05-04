@@ -103,17 +103,17 @@ final class MovieCell: BaseTableViewCell {
         starButton.rx.tap
             .asSignal()
             .throttle(.seconds(1))
-            .map { [weak self] _ -> Bool in
-                guard let self = self else { return false }
-                return self.starButton.isSelected
+            .withUnretained(self)
+            .map { (owner, _) -> Bool in
+                return owner.starButton.isSelected
             }
             .distinctUntilChanged()
-            .emit(onNext: { [weak self] isSelected in
-                guard let self = self else { return }
+            .withUnretained(self)
+            .emit(onNext: { owner, isSelected in
                 if isSelected {
-                    self.requestUnStar()
+                    owner.requestUnStar()
                 } else {
-                    self.requestStar()
+                    owner.requestStar()
                 }
             })
             .disposed(by: disposeBag)

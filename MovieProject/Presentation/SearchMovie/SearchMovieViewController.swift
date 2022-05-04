@@ -92,40 +92,38 @@ final class SearchMovieViewController: BaseViewController {
 
         /// 페이지네이션, footerView indicator
         viewModel.isLoadingSpinnerAvaliable
-            .subscribe { [weak self] isAvailable in
-                guard let isAvailable = isAvailable.element,
-                      let self = self else { return }
-                self.tableView.tableFooterView = isAvailable ? self.viewSpinner : UIView(frame: .zero)
+            .withUnretained(self)
+            .subscribe { owner, isAvailable in
+                owner.tableView.tableFooterView = isAvailable ? owner.viewSpinner : UIView(frame: .zero)
             }
             .disposed(by: disposeBag)
 
         /// [Toast] Error Message
         viewModel.errorMessage
-            .subscribe(onNext: { [weak self] error in
-                guard let self = self,
-                        let error = error as? NetworkError else { return }
-                self.makeToastMessage(message: error.description)
+            .withUnretained(self)
+            .subscribe(onNext: { owner, error in
+                guard let error = error as? NetworkError else { return }
+                owner.makeToastMessage(message: error.description)
             })
             .disposed(by: disposeBag)
 
         /// 검색 이벤트
         searchBar.shouldLoadResult
             .asSignal(onErrorJustReturn: "")
-            .emit(onNext: { [weak self] query in
-                guard let self = self else { return }
-                self.viewModel.searchResultTriggered(query: query)
+            .withUnretained(self)
+            .emit(onNext: { owner, query in
+                owner.viewModel.searchResultTriggered(query: query)
             })
             .disposed(by: disposeBag)
 
         /// 검색, indicator
         viewModel.isLoadingAvaliable
-            .subscribe { [weak self] isAvailable in
-                guard let isAvailable = isAvailable.element,
-                      let self = self else { return }
+            .withUnretained(self)
+            .subscribe { owner, isAvailable in
                 if isAvailable {
-                    self.indicator.startAnimating()
+                    owner.indicator.startAnimating()
                 } else {
-                    self.indicator.stopAnimating()
+                    owner.indicator.stopAnimating()
                 }
             }
             .disposed(by: disposeBag)
@@ -162,13 +160,13 @@ final class SearchMovieViewController: BaseViewController {
         /// DetailView로 전환
         tableView.rx
             .itemSelected
-            .subscribe(onNext: { [weak self] indexPath in
-                guard let self = self else { return }
-                self.tableView.deselectRow(at: indexPath, animated: false)
+            .withUnretained(self)
+            .subscribe(onNext: { owner, indexPath in
+                owner.tableView.deselectRow(at: indexPath, animated: false)
 
                 let movie = self.viewModel.movieList.value[indexPath.row]
                 let controller = DetailMovieViewController(movie: movie)
-                self.navigationController?.pushViewController(controller, animated: true)
+                owner.navigationController?.pushViewController(controller, animated: true)
             })
             .disposed(by: disposeBag)
 
@@ -176,14 +174,14 @@ final class SearchMovieViewController: BaseViewController {
         tableView.rx
             .didScroll
             .throttle(.milliseconds(200), scheduler: MainScheduler.instance)
-            .subscribe { [weak self] _ in
-                guard let self = self else { return }
-                let offSetY = self.tableView.contentOffset.y /// 현재 스크롤된 위치
-                let contentHeight = self.tableView.contentSize.height /// 전체 content 높이
+            .withUnretained(self)
+            .subscribe { owner, _ in
+                let offSetY = owner.tableView.contentOffset.y /// 현재 스크롤된 위치
+                let contentHeight = owner.tableView.contentSize.height /// 전체 content 높이
 
-                if offSetY > (contentHeight - self.tableView.frame.size.height - 100) {
-                    if self.viewModel.startCounter > 1 {
-                        self.viewModel.fetchMoreDatas.onNext(())
+                if offSetY > (contentHeight - owner.tableView.frame.size.height - 100) {
+                    if owner.viewModel.startCounter > 1 {
+                        owner.viewModel.fetchMoreDatas.onNext(())
                     }
                 }
             }

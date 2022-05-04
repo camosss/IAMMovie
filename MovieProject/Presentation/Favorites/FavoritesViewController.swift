@@ -22,8 +22,7 @@ final class FavoritesViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
 
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<FavoritesSection.FavoritesSectionModel>(
-        configureCell: { [weak self] dataSource, tableView, indexPath, item in
-            guard let self = self else { return UITableViewCell() }
+        configureCell: { dataSource, tableView, indexPath, item in
             switch item {
             case .firstItem(let movie):
                 let cell = tableView.dequeueReusableCell(
@@ -71,18 +70,18 @@ final class FavoritesViewController: BaseViewController {
 
         refreshControl.rx
             .controlEvent(.valueChanged)
-            .bind { [weak self] _ in
-                guard let self = self else { return }
+            .withUnretained(self)
+            .bind { owner, _ in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.viewModel.refreshControlAction.onNext(()) /// 새로고침 실행여부 이벤트 전달
+                    owner.viewModel.refreshControlAction.onNext(()) /// 새로고침 실행여부 이벤트 전달
                 }
             }
             .disposed(by: disposeBag)
 
         viewModel.refreshControlCompelted
-            .subscribe { [weak self] _ in
-                guard let self = self else { return }
-                self.refreshControl.endRefreshing()
+            .withUnretained(self)
+            .subscribe { owner, _ in
+                owner.refreshControl.endRefreshing()
             }
             .disposed(by: disposeBag)
     }
@@ -112,13 +111,13 @@ final class FavoritesViewController: BaseViewController {
         /// DetailView로 전환
         tableView.rx
             .itemSelected
-            .subscribe(onNext: { [weak self] indexPath in
-                guard let self = self else { return }
-                self.tableView.deselectRow(at: indexPath, animated: false)
+            .withUnretained(self)
+            .subscribe(onNext: { owner, indexPath in
+                owner.tableView.deselectRow(at: indexPath, animated: false)
 
-                let movie = self.viewModel.favoriteList.value[indexPath.row]
+                let movie = owner.viewModel.favoriteList.value[indexPath.row]
                 let controller = DetailMovieViewController(movie: movie)
-                self.navigationController?.pushViewController(controller, animated: true)
+                owner.navigationController?.pushViewController(controller, animated: true)
             })
             .disposed(by: disposeBag)
     }

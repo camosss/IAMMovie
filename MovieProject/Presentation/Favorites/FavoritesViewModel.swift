@@ -38,9 +38,9 @@ final class FavoritesViewModel {
         populateFavoritesList()
 
         refreshControlAction
-            .subscribe { [weak self] _ in
-                guard let self = self else { return }
-                self.refreshControlTriggered()
+            .withUnretained(self)
+            .subscribe { owner, _ in
+                owner.refreshControlTriggered()
             }
             .disposed(by: disposeBag)
     }

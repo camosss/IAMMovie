@@ -42,9 +42,9 @@ final class SearchMovieViewModel {
 
     private func bind() {
         fetchMoreDatas
-            .subscribe { [weak self] _ in
-                guard let self = self else { return }
-                self.populateMovieList(cursor: self.startCounter)
+            .withUnretained(self)
+            .subscribe { owner, _ in
+                owner.populateMovieList(cursor: owner.startCounter)
             }
             .disposed(by: disposeBag)
     }
