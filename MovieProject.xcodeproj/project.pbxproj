@@ -350,8 +350,8 @@
 		B498FBF0281D7B1900D95455 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
-				B498FBF1281D7B2900D95455 /* RealmStorage.swift */,
 				B45A478C281E6670006A3E12 /* MovieRealmData.swift */,
+				B498FBF1281D7B2900D95455 /* RealmStorage.swift */,
 				B45A4789281E6516006A3E12 /* Model */,
 			);
 			path = DataBase;

@@ -15,10 +15,10 @@ protocol MovieRealmDataProtocol: AnyObject {
 
 final class MovieRealmData: MovieRealmDataProtocol {
 
-    var storage: RealmStorage
+    var storage: RealmStorageProtocol
 
-    init() {
-        self.storage = RealmStorage.shared
+    init(storage: RealmStorageProtocol = RealmStorage()) {
+        self.storage = storage
     }
 }
 

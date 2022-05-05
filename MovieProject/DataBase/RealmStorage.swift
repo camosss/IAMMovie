@@ -8,13 +8,17 @@
 import Foundation
 import RealmSwift
 
-final class RealmStorage {
+protocol RealmStorageProtocol {
+    func load() -> Results<MovieRealmDTO>
+    func save(movie: MovieRealmDTO)
+    func delete(movie: MovieRealmDTO)
+}
 
-    static let shared = RealmStorage()
-    private init() {}
-
+final class RealmStorage: RealmStorageProtocol {
     private let realm = try! Realm()
+}
 
+extension RealmStorage {
     func load() -> Results<MovieRealmDTO> {
         let loadMovie = realm.objects(MovieRealmDTO.self)
         return loadMovie

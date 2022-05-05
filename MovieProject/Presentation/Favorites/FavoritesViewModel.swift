@@ -15,20 +15,18 @@ final class FavoritesViewModel {
 
     // MARK: - Properties
 
-    private var storage: RealmStorage
-    private var movieRealmData: MovieRealmDataProtocol
-
-    private let disposeBag = DisposeBag()
-
     var favoriteList = BehaviorRelay<[Movie]>(value: [])
+
     let refreshControlAction = PublishSubject<Void>() /// 새로고침 실행 여부를 수신
     let refreshControlCompelted = PublishSubject<Void>() /// 새로고침 완료 여부를 수신
-    
+
+    private var movieRealmData: MovieRealmDataProtocol
+    private let disposeBag = DisposeBag()
+
     // MARK: - Initializer
 
     init(movieRealmData: MovieRealmDataProtocol = MovieRealmData()) {
         self.movieRealmData = movieRealmData
-        self.storage = RealmStorage.shared
         bind()
     }
 

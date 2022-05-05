@@ -14,9 +14,10 @@ final class MovieCell: BaseTableViewCell {
 
     // MARK: - Properties
 
-    private var storage: RealmStorage
-    private var movieRealmData: MovieRealmDataProtocol = MovieRealmData()
     private var movie: Movie?
+
+    private var storage: RealmStorageProtocol = RealmStorage()
+    private var movieRealmData: MovieRealmDataProtocol = MovieRealmData()
 
     private let isStarred = PublishSubject<Bool>()
     var disposeBag = DisposeBag()
@@ -38,7 +39,6 @@ final class MovieCell: BaseTableViewCell {
     // MARK: - Initializer
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        self.storage = RealmStorage.shared
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         bind()
     }

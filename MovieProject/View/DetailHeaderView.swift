@@ -14,9 +14,10 @@ final class DetailHeaderView: BaseUIView {
 
     // MARK: - Properties
 
-    private var storage: RealmStorage
-    private var movieRealmData: MovieRealmDataProtocol = MovieRealmData()
     private var movie: Movie?
+
+    private var storage: RealmStorageProtocol = RealmStorage()
+    private var movieRealmData: MovieRealmDataProtocol = MovieRealmData()
 
     private let isStarred = PublishSubject<Bool>()
     private let disposeBag = DisposeBag()
@@ -37,13 +38,11 @@ final class DetailHeaderView: BaseUIView {
     // MARK: - Initializer
 
     override init(frame: CGRect) {
-        self.storage = RealmStorage.shared
         super.init(frame: frame)
         bind()
     }
 
     required init?(coder: NSCoder) {
-        self.storage = RealmStorage.shared
         super.init(coder: coder)
     }
 
