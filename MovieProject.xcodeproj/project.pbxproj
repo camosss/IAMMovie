@@ -141,6 +141,14 @@
 			path = Supportings;
 			sourceTree = "<group>";
 		};
+		B443A0802827D4AE00CCFDE3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B44EA8C52816B1210078B2C6 /* Movie.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B44449CF28193B65007FAF7B /* Rx */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,8 +180,7 @@
 		B44EA8C42816B0EB0078B2C6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B44EA8C52816B1210078B2C6 /* Movie.swift */,
-				B45A4790281E9981006A3E12 /* DataMapping */,
+				B45A4791281E999A006A3E12 /* MoviesResponseDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,14 +199,6 @@
 				B45A478A281E663D006A3E12 /* MovieRealmDTO.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		B45A4790281E9981006A3E12 /* DataMapping */ = {
-			isa = PBXGroup;
-			children = (
-				B45A4791281E999A006A3E12 /* MoviesResponseDTO.swift */,
-			);
-			path = DataMapping;
 			sourceTree = "<group>";
 		};
 		B481811A2816FE6C002DE1EC /* Supportings */ = {
@@ -241,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				B4975C3128169B4E001DD5DF /* Application */,
+				B443A0802827D4AE00CCFDE3 /* Model */,
 				B4975C552816A6A1001DD5DF /* View */,
 				B4975C3228169BA2001DD5DF /* Presentation */,
 				B498FBF0281D7B1900D95455 /* DataBase */,
