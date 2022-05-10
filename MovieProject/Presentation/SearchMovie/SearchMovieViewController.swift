@@ -102,8 +102,7 @@ final class SearchMovieViewController: BaseViewController {
         viewModel.errorMessage
             .withUnretained(self)
             .subscribe(onNext: { owner, error in
-                guard let error = error as? NetworkError else { return }
-                owner.makeToastMessage(message: error.description)
+                owner.makeToastMessage(message: error)
             })
             .disposed(by: disposeBag)
 

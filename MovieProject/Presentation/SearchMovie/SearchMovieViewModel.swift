@@ -19,7 +19,7 @@ final class SearchMovieViewModel {
     let fetchMoreDatas = PublishSubject<Void>()
     let isLoadingAvaliable = PublishSubject<Bool>() /// 검색, indicator
     let isLoadingSpinnerAvaliable = PublishSubject<Bool>() /// 페이지네이션, footerView indicator
-    let errorMessage = PublishSubject<Error>()
+    let errorMessage = PublishSubject<String>()
 
     var isLoadingRequstStillResume = false /// 로딩 indicator와 emptyView를 구분하기 위한 flag
 
@@ -55,7 +55,7 @@ final class SearchMovieViewModel {
         /// 마지막 페이지
         if startCounter > totalValue {
             isLoadingSpinnerAvaliable.onNext(false)
-            errorMessage.onNext(NetworkError.last_page)
+            errorMessage.onNext(NetworkError.last_page.description)
             return
         }
 
@@ -75,7 +75,8 @@ final class SearchMovieViewModel {
                     self.isLoadingRequstStillResume = false
                     self.isLoadingSpinnerAvaliable.onNext(false)
                 case .failure(let error):
-                    self.errorMessage.onNext(error)
+                    guard let networkError = error as? NetworkError else { return }
+                    self.errorMessage.onNext(networkError.description)
                     self.isLoadingAvaliable.onNext(false)
                     self.isLoadingRequstStillResume = false
                 }
