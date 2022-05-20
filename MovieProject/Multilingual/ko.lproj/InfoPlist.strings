@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  MovieProject
+
+  Created by 강호성 on 2022/05/20.
+  
+*/
+
+CFBundleDisplayName = "네이버 영화";

@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  MovieProject
+
+  Created by 강호성 on 2022/05/20.
+  
+*/
+
+"Title" = "ネイバー映画";
+"SearchBar" = "映画を検索してください。。";
+"Empty_Search" = "映画を検索してみてください！";
+"Favorites" = "お気に入りリスト";
+"Empty_Favorites" = "お気に入りリストが空でした。";

@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  MovieProject
+
+  Created by 강호성 on 2022/05/20.
+  
+*/
+
+"Title" = "Naver Movies";
+"SearchBar" = "Please search for a movie..";
+"Empty_Search" = "Search for a movie!";
+"Favorites" = "Favorites list";
+"Empty_Favorites" = "Your Favorites list is empty.";

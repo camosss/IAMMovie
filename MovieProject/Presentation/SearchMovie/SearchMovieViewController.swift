@@ -71,13 +71,13 @@ final class SearchMovieViewController: BaseViewController {
 
     override func setConfigurations() {
         super.setConfigurations()
-        configureLeftBarButtonItem(title: "네이버 영화 검색")
+        configureLeftBarButtonItem(title: NSLocalizedString(Localization.title.description, comment: ""))
 
         favoritesButton.image = UIImage(systemName: "star.fill")
         favoritesButton.tintColor = .star
 
         searchBar.backgroundImage = UIImage()
-        searchBar.placeholder = "영화를 검색해주세요.."
+        searchBar.placeholder = NSLocalizedString(Localization.searchBar.description, comment: "")
 
         tableView.keyboardDismissMode = .onDrag
         tableView.contentInset.bottom = 50
@@ -140,7 +140,7 @@ final class SearchMovieViewController: BaseViewController {
         viewModel.movieList
             .map { return $0.count <= 0 && !self.viewModel.isLoadingRequstStillResume }
             .bind(to: tableView.rx.isEmpty(
-                title: "영화를 검색해보세요!",
+                title: NSLocalizedString(Localization.empty_Search.description, comment: ""),
                 imageName: "film")
             )
             .disposed(by: disposeBag)

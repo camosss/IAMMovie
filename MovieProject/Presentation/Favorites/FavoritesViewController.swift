@@ -58,7 +58,7 @@ final class FavoritesViewController: BaseViewController {
 
     override func setConfigurations() {
         super.setConfigurations()
-        title = "즐겨찾기 목록"
+        title = NSLocalizedString(Localization.favorites.description, comment: "")
 
         tableView.refreshControl = refreshControl
         tableView.register(MovieCell.self,
@@ -91,7 +91,7 @@ final class FavoritesViewController: BaseViewController {
         viewModel.favoriteList
             .map { return $0.count <= 0 }
             .bind(to: tableView.rx.isEmpty(
-                title: "즐겨찾기 목록이 비었습니다.",
+                title: NSLocalizedString(Localization.empty_Favorites.description, comment: ""),
                 imageName: "scribble.variable"
             ))
             .disposed(by: disposeBag)
