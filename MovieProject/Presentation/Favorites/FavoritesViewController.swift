@@ -58,7 +58,7 @@ final class FavoritesViewController: BaseViewController {
 
     override func setConfigurations() {
         super.setConfigurations()
-        title = NSLocalizedString(Localization.favorites.description, comment: "")
+        title = Localization.favorites.description.localization()
 
         tableView.refreshControl = refreshControl
         tableView.register(MovieCell.self,
@@ -91,7 +91,7 @@ final class FavoritesViewController: BaseViewController {
         viewModel.favoriteList
             .map { return $0.count <= 0 }
             .bind(to: tableView.rx.isEmpty(
-                title: NSLocalizedString(Localization.empty_Favorites.description, comment: ""),
+                title: Localization.empty_Favorites.description.localization(),
                 imageName: "scribble.variable"
             ))
             .disposed(by: disposeBag)

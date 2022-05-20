@@ -22,6 +22,7 @@ final class SearchMovieViewController: BaseViewController {
     private let searchBar = SearchBar()
     private let tableView = UITableView()
     private let favoritesButton = UIBarButtonItem()
+    private let languageButton = UIBarButtonItem()
 
     private lazy var indicator = UIActivityIndicatorView(
         frame: CGRect(x: 0, y: 0, width: 50, height: 50)
@@ -44,6 +45,7 @@ final class SearchMovieViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        handleNavigationItems()
     }
 
     // MARK: - Helpers
@@ -57,7 +59,7 @@ final class SearchMovieViewController: BaseViewController {
 
     override func setConstraints() {
         super.setConstraints()
-        navigationItem.rightBarButtonItem = favoritesButton
+        navigationItem.rightBarButtonItems = [languageButton, favoritesButton]
 
         searchBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
@@ -71,13 +73,14 @@ final class SearchMovieViewController: BaseViewController {
 
     override func setConfigurations() {
         super.setConfigurations()
-        configureLeftBarButtonItem(title: NSLocalizedString(Localization.title.description, comment: ""))
+        configureLeftBarButtonItem(title: Localization.title.description.localized)
 
+        languageButton.image = UIImage(systemName: "globe.asia.australia")
         favoritesButton.image = UIImage(systemName: "star.fill")
         favoritesButton.tintColor = .star
 
         searchBar.backgroundImage = UIImage()
-        searchBar.placeholder = NSLocalizedString(Localization.searchBar.description, comment: "")
+        searchBar.placeholder = Localization.searchBar.description.localized
 
         tableView.keyboardDismissMode = .onDrag
         tableView.contentInset.bottom = 50
@@ -126,13 +129,6 @@ final class SearchMovieViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
-
-        favoritesButton.rx.tap
-            .bind {
-                let controller = FavoritesViewController()
-                self.navigationController?.pushViewController(controller, animated: true)
-            }
-            .disposed(by: disposeBag)
     }
 
     private func tableViewBind() {
@@ -140,7 +136,7 @@ final class SearchMovieViewController: BaseViewController {
         viewModel.movieList
             .map { return $0.count <= 0 && !self.viewModel.isLoadingRequstStillResume }
             .bind(to: tableView.rx.isEmpty(
-                title: NSLocalizedString(Localization.empty_Search.description, comment: ""),
+                title: Localization.empty_Search.description.localized,
                 imageName: "film")
             )
             .disposed(by: disposeBag)
@@ -184,6 +180,51 @@ final class SearchMovieViewController: BaseViewController {
                     }
                 }
             }
+            .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - NavigationItem
+
+extension SearchMovieViewController {
+    private func handleNavigationItems() {
+        favoritesButton.rx.tap
+            .bind {
+                let controller = FavoritesViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+            .disposed(by: disposeBag)
+
+        languageButton.rx.tap
+            .bind {
+                Alert.actionSheetAlert(
+                    title: Localization.alert_Title.description.localization(),
+                    cancel: Localization.alert_Cancel.description.localization(),
+                    first: "English",
+                    second: "한국어",
+                    third: "日本語",
+                    onFirst: {
+                        self.populateLanguage("en")
+                    }, onSecond: {
+                        self.populateLanguage("ko")
+                    }, onThird: {
+                        self.populateLanguage("ja")
+                    }, over: self)
+            }
+            .disposed(by: disposeBag)
+    }
+
+    private func populateLanguage(_ lang: String) {
+        UserDefaults.standard.set([lang], forKey: "language")
+
+        self.configureLeftBarButtonItem(title: Localization.title.description.localization())
+        self.searchBar.placeholder = Localization.searchBar.description.localization()
+        self.viewModel.movieList
+            .map { return $0.count <= 0 && !self.viewModel.isLoadingRequstStillResume }
+            .bind(to: tableView.rx.isEmpty(
+                title: Localization.empty_Search.description.localization(),
+                imageName: "film")
+            )
             .disposed(by: disposeBag)
     }
 }

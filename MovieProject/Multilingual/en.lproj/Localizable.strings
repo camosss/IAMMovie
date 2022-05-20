@@ -11,3 +11,5 @@
 "Empty_Search" = "Search for a movie!";
 "Favorites" = "Favorites list";
 "Empty_Favorites" = "Your Favorites list is empty.";
+"Alert_Title" = "Please set your language.";
+"Alert_Cancel" = "Cancel";

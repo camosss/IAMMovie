@@ -61,6 +61,7 @@
 		B4BCE1AB28379A5A00E8D337 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE1AA28379A5A00E8D337 /* Localization.swift */; };
 		B4BCE1B028379A9000E8D337 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4BCE1B228379A9000E8D337 /* Localizable.strings */; };
 		B4BCE1B328379A9300E8D337 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4BCE1B528379A9300E8D337 /* InfoPlist.strings */; };
+		B4BCE1BB2837F82600E8D337 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE1BA2837F82600E8D337 /* Alert.swift */; };
 		B4C59DFC2836547000EE1AC8 /* SearchMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4975C3428169C15001DD5DF /* SearchMovieViewController.swift */; };
 		B4DE4378281DB17800632753 /* ProgressHUDStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DE4377281DB17800632753 /* ProgressHUDStyle.swift */; };
 /* End PBXBuildFile section */
@@ -116,6 +117,7 @@
 		B4BCE1B728379A9D00E8D337 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4BCE1B828379AA900E8D337 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B4BCE1B928379AA900E8D337 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B4BCE1BA2837F82600E8D337 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		B4DE4377281DB17800632753 /* ProgressHUDStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUDStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -313,6 +315,7 @@
 				B4975C3D28169E41001DD5DF /* DefaultLabel.swift */,
 				B44449C928191DFB007FAF7B /* SearchBar.swift */,
 				B44449D928195131007FAF7B /* StarButton.swift */,
+				B4BCE1BA2837F82600E8D337 /* Alert.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				B4975C4C28169F4E001DD5DF /* UIViewController+Ex.swift in Sources */,
 				B45A4792281E999A006A3E12 /* MoviesResponseDTO.swift in Sources */,
 				B44449D62819462F007FAF7B /* FavoritesViewController.swift in Sources */,
+				B4BCE1BB2837F82600E8D337 /* Alert.swift in Sources */,
 				B48181212817CC6C002DE1EC /* BaseUIView.swift in Sources */,
 				B4975C572816A6AB001DD5DF /* MovieCell.swift in Sources */,
 				B44EA8CE2816D3350078B2C6 /* SearchMovieAPI.swift in Sources */,

@@ -13,6 +13,8 @@ enum Localization {
     case empty_Search
     case favorites
     case empty_Favorites
+    case alert_Title
+    case alert_Cancel
 
     var description: String { self.localizableDescription }
 }
@@ -25,6 +27,8 @@ extension Localization {
         case .empty_Search: return "Empty_Search"
         case .favorites: return "Favorites"
         case .empty_Favorites: return "Empty_Favorites"
+        case .alert_Title: return "Alert_Title"
+        case .alert_Cancel: return "Alert_Cancel"
         }
     }
 }
