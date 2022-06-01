@@ -73,7 +73,7 @@ final class FavoritesViewController: BaseViewController {
             .withUnretained(self)
             .bind { owner, _ in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    owner.viewModel.refreshControlAction.onNext(()) /// 새로고침 실행여부 이벤트 전달
+                    owner.viewModel.refreshControlAction.accept(()) /// 새로고침 실행여부 이벤트 전달
                 }
             }
             .disposed(by: disposeBag)

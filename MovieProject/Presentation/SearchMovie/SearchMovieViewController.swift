@@ -164,7 +164,7 @@ final class SearchMovieViewController: BaseViewController {
                 owner.navigationController?.pushViewController(controller, animated: true)
             })
             .disposed(by: disposeBag)
-
+ 
         /// 페이지네이션
         tableView.rx
             .didScroll
@@ -176,7 +176,7 @@ final class SearchMovieViewController: BaseViewController {
 
                 if offSetY > (contentHeight - owner.tableView.frame.size.height - 100) {
                     if owner.viewModel.startCounter > 1 {
-                        owner.viewModel.fetchMoreDatas.onNext(())
+                        owner.viewModel.fetchMoreDatas.accept(())
                     }
                 }
             }

@@ -17,8 +17,8 @@ final class FavoritesViewModel {
 
     var favoriteList = BehaviorRelay<[Movie]>(value: [])
 
-    let refreshControlAction = PublishSubject<Void>() /// 새로고침 실행 여부를 수신
-    let refreshControlCompelted = PublishSubject<Void>() /// 새로고침 완료 여부를 수신
+    let refreshControlAction = PublishRelay<Void>() /// 새로고침 실행 여부를 수신
+    let refreshControlCompelted = PublishRelay<Void>() /// 새로고침 완료 여부를 수신
 
     private var movieRealmData: MovieRealmDataProtocol
     private let disposeBag = DisposeBag()
@@ -46,7 +46,7 @@ final class FavoritesViewModel {
     /// 새로고침 제어가 트리거되는 즉시, 이전 요청이 취소되고 다시 불러오기
     private func refreshControlTriggered() {
         populateFavoritesList()
-        refreshControlCompelted.onNext(()) /// 완료여부 이벤트 전달
+        refreshControlCompelted.accept(()) /// 완료여부 이벤트 전달
     }
 
     private func populateFavoritesList() {

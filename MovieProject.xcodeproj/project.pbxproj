@@ -16,7 +16,6 @@
 		B4391F26281B86F70069BA5A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F25281B86F70069BA5A /* RxSwift */; };
 		B4391F29281B870D0069BA5A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F28281B870D0069BA5A /* SnapKit */; };
 		B4391F2C281B87250069BA5A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F2B281B87250069BA5A /* Then */; };
-		B4391F2F281B873D0069BA5A /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F2E281B873D0069BA5A /* Toast */; };
 		B4391F32281B87A60069BA5A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F31281B87A60069BA5A /* Moya */; };
 		B44449CA28191DFB007FAF7B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44449C928191DFB007FAF7B /* SearchBar.swift */; };
 		B44449CC28191E21007FAF7B /* SearchBar+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44449CB28191E21007FAF7B /* SearchBar+Rx.swift */; };
@@ -33,6 +32,7 @@
 		B44EA8CC2816CF4E0078B2C6 /* SearchMovieTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EA8CB2816CF4E0078B2C6 /* SearchMovieTarget.swift */; };
 		B44EA8CE2816D3350078B2C6 /* SearchMovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EA8CD2816D3350078B2C6 /* SearchMovieAPI.swift */; };
 		B44EA8D32816D8140078B2C6 /* ClientKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EA8D22816D8140078B2C6 /* ClientKey.swift */; };
+		B4505B3E2847B1B900006980 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = B4505B3D2847B1B900006980 /* Toast */; };
 		B45A478B281E663D006A3E12 /* MovieRealmDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45A478A281E663D006A3E12 /* MovieRealmDTO.swift */; };
 		B45A478D281E6670006A3E12 /* MovieRealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45A478C281E6670006A3E12 /* MovieRealmData.swift */; };
 		B45A478F281E7413006A3E12 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45A478E281E7413006A3E12 /* ViewHelper.swift */; };
@@ -126,10 +126,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4505B3E2847B1B900006980 /* Toast in Frameworks */,
 				B4391F26281B86F70069BA5A /* RxSwift in Frameworks */,
 				B4391F1E281B86880069BA5A /* Kingfisher in Frameworks */,
 				B4391F21281B86DA0069BA5A /* ProgressHUD in Frameworks */,
-				B4391F2F281B873D0069BA5A /* Toast in Frameworks */,
 				B4391F2C281B87250069BA5A /* Then in Frameworks */,
 				B498FBE6281D2C1100D95455 /* RxDataSources in Frameworks */,
 				B4391F29281B870D0069BA5A /* SnapKit in Frameworks */,
@@ -406,9 +406,9 @@
 				B4391F25281B86F70069BA5A /* RxSwift */,
 				B4391F28281B870D0069BA5A /* SnapKit */,
 				B4391F2B281B87250069BA5A /* Then */,
-				B4391F2E281B873D0069BA5A /* Toast */,
 				B4391F31281B87A60069BA5A /* Moya */,
 				B498FBE5281D2C1100D95455 /* RxDataSources */,
+				B4505B3D2847B1B900006980 /* Toast */,
 			);
 			productName = MovieProject;
 			productReference = B498FBDF281B98FC00D95455 /* MovieProject.app */;
@@ -447,9 +447,9 @@
 				B4391F22281B86F70069BA5A /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B4391F27281B870D0069BA5A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				B4391F2A281B87250069BA5A /* XCRemoteSwiftPackageReference "Then" */,
-				B4391F2D281B873D0069BA5A /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				B4391F30281B87A60069BA5A /* XCRemoteSwiftPackageReference "Moya" */,
 				B498FBE4281D2C1100D95455 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				B4505B3C2847B1B900006980 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = B4975C1128169923001DD5DF;
 			projectDirPath = "";
@@ -802,20 +802,20 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		B4391F2D281B873D0069BA5A /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/scalessec/Toast-Swift";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		B4391F30281B87A60069BA5A /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
 			requirement = {
 				kind = exactVersion;
 				version = 15.0.0;
+			};
+		};
+		B4505B3C2847B1B900006980 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
 			};
 		};
 		B498FBE4281D2C1100D95455 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
@@ -869,15 +869,15 @@
 			package = B4391F2A281B87250069BA5A /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
 		};
-		B4391F2E281B873D0069BA5A /* Toast */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B4391F2D281B873D0069BA5A /* XCRemoteSwiftPackageReference "Toast-Swift" */;
-			productName = Toast;
-		};
 		B4391F31281B87A60069BA5A /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B4391F30281B87A60069BA5A /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		B4505B3D2847B1B900006980 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4505B3C2847B1B900006980 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 		B498FBE5281D2C1100D95455 /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;

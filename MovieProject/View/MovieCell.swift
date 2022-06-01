@@ -8,6 +8,7 @@
 import UIKit
 import Then
 
+import RxCocoa
 import RxSwift
 
 final class MovieCell: BaseTableViewCell {
@@ -19,7 +20,7 @@ final class MovieCell: BaseTableViewCell {
     private var storage: RealmStorageProtocol = RealmStorage()
     private var movieRealmData: MovieRealmDataProtocol = MovieRealmData()
 
-    private let isStarred = PublishSubject<Bool>()
+    private let isStarred = PublishRelay<Bool>()
     var disposeBag = DisposeBag()
 
     private let postImage = UIImageView()
@@ -136,9 +137,9 @@ final class MovieCell: BaseTableViewCell {
 
         /// starButton image fill
         if !storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
-            self.isStarred.onNext(true)
+            self.isStarred.accept(true)
         } else {
-            self.isStarred.onNext(false)
+            self.isStarred.accept(false)
         }
     }
 }
@@ -147,7 +148,7 @@ final class MovieCell: BaseTableViewCell {
 
 extension MovieCell {
     private func requestStar() {
-        self.isStarred.onNext(true)
+        self.isStarred.accept(true)
 
         if storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
             movieRealmData.saveMovie(movie: movie) /// add realm
@@ -160,7 +161,7 @@ extension MovieCell {
     }
 
     private func requestUnStar() {
-        self.isStarred.onNext(false)
+        self.isStarred.accept(false)
 
         if !storage.load().filter("link == %@", self.movie?.link ?? "").isEmpty {
             movieRealmData.deleteMovie(movie: movie) /// remove realm

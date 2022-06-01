@@ -16,10 +16,10 @@ final class SearchMovieViewModel {
 
     var movieList = BehaviorRelay<[Movie]>(value: [])
 
-    let fetchMoreDatas = PublishSubject<Void>()
-    let isLoadingAvaliable = PublishSubject<Bool>() /// 검색, indicator
-    let isLoadingSpinnerAvaliable = PublishSubject<Bool>() /// 페이지네이션, footerView indicator
-    let errorMessage = PublishSubject<String>()
+    let fetchMoreDatas = PublishRelay<Void>()
+    let isLoadingAvaliable = PublishRelay<Bool>() /// 검색, indicator
+    let isLoadingSpinnerAvaliable = PublishRelay<Bool>() /// 페이지네이션, footerView indicator
+    let errorMessage = PublishRelay<String>()
 
     var isLoadingRequstStillResume = false /// 로딩 indicator와 emptyView를 구분하기 위한 flag
 
@@ -50,18 +50,18 @@ final class SearchMovieViewModel {
     }
 
     private func populateMovieList(cursor: Int) {
-        isLoadingSpinnerAvaliable.onNext(true)
+        isLoadingSpinnerAvaliable.accept(true)
 
         /// 마지막 페이지
         if startCounter > totalValue {
-            isLoadingSpinnerAvaliable.onNext(false)
-            errorMessage.onNext(NetworkError.last_page.description)
+            isLoadingSpinnerAvaliable.accept(false)
+            errorMessage.accept(NetworkError.last_page.description)
             return
         }
 
         /// 처음 페이지
         if startCounter == ParameterValue.start.rawValue {
-            isLoadingSpinnerAvaliable.onNext(false)
+            isLoadingSpinnerAvaliable.accept(false)
         }
 
         searchMovieAPI
@@ -71,13 +71,13 @@ final class SearchMovieViewModel {
                 switch movies {
                 case .success(let movies):
                     self.handleStartCounter(movies: movies)
-                    self.isLoadingAvaliable.onNext(false)
+                    self.isLoadingAvaliable.accept(false)
                     self.isLoadingRequstStillResume = false
-                    self.isLoadingSpinnerAvaliable.onNext(false)
+                    self.isLoadingSpinnerAvaliable.accept(false)
                 case .failure(let error):
                     guard let networkError = error as? NetworkError else { return }
-                    self.errorMessage.onNext(networkError.description)
-                    self.isLoadingAvaliable.onNext(false)
+                    self.errorMessage.accept(networkError.description)
+                    self.isLoadingAvaliable.accept(false)
                     self.isLoadingRequstStillResume = false
                 }
             }
@@ -99,11 +99,11 @@ final class SearchMovieViewModel {
     }
 
     func searchResultTriggered(query: String) {
-        self.isLoadingAvaliable.onNext(true)
+        self.isLoadingAvaliable.accept(true)
         self.isLoadingRequstStillResume = true
         self.query = query
         self.startCounter = ParameterValue.start.rawValue
         self.movieList.accept([])
-        self.fetchMoreDatas.onNext(())
+        self.fetchMoreDatas.accept(())
     }
 }
