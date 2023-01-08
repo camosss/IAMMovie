@@ -2,11 +2,28 @@
 
 > **RxSwift**+**MVVM** 패턴과 **Realm 데이터베이스**를 사용한 **영화 검색 및 즐겨찾기** 클라이언트 애플리케이션
 
+<br>
+
 - 최소 버전: iOS 13
 - AutoLayout (Code Base)
 - 다크모드 대응
 - 이미지 캐싱
 
+
+<br>
+
+
+## Library
+
+- [Kingfisher](https://github.com/onevcat/Kingfisher)
+- [Moya](https://github.com/Moya/Moya)
+- [ProgressHUD](https://github.com/relatedcode/ProgressHUD)
+- [Realm](https://github.com/realm/realm-swift)
+- [RxSwift, RxCocoa](https://github.com/ReactiveX/RxSwift)
+- [RxDataSources](https://github.com/RxSwiftCommunity/RxDataSources)
+- [SnapKit](https://github.com/SnapKit/SnapKit)
+- [Then](https://github.com/devxoul/Then)
+- [Toast](https://github.com/scalessec/Toast-Swift)
 
 <br>
 
@@ -47,20 +64,6 @@ https://user-images.githubusercontent.com/93528918/166146941-8345c5f3-2777-4560-
 **다국어 지원, 앱 내 언어 변경**
 
 https://user-images.githubusercontent.com/74236080/169586315-017becc3-47ee-4330-86f8-6a156455338e.mov
-
-<br>
-
-## Library
-
-- [Kingfisher](https://github.com/onevcat/Kingfisher)
-- [Moya](https://github.com/Moya/Moya)
-- [ProgressHUD](https://github.com/relatedcode/ProgressHUD)
-- [Realm](https://github.com/realm/realm-swift)
-- [RxSwift, RxCocoa](https://github.com/ReactiveX/RxSwift)
-- [RxDataSources](https://github.com/RxSwiftCommunity/RxDataSources)
-- [SnapKit](https://github.com/SnapKit/SnapKit)
-- [Then](https://github.com/devxoul/Then)
-- [Toast](https://github.com/scalessec/Toast-Swift)
 
 <br>
 <br>
