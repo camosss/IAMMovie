@@ -2,6 +2,12 @@
 
 > **RxSwift**+**MVVM** 패턴과 **Realm 데이터베이스**를 사용한 **영화 검색 및 즐겨찾기** 클라이언트 애플리케이션
 
+- 최소 버전: iOS 13
+- AutoLayout (Code Base)
+- 다크모드 대응
+- 이미지 캐싱
+
+
 <br>
 
 
@@ -23,12 +29,6 @@
 - [즐겨찾기](https://github.com/camosss/MovieProject/issues/7)
 - [새로고침](https://github.com/camosss/MovieProject/issues/8)
 
-<br>
-
-- 최소 버전: iOS 13
-- AutoLayout (Code Base)
-- 다크모드 대응
-- 이미지 캐싱
 
 <br>
 
