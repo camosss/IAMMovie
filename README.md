@@ -4,6 +4,27 @@
 
 <br>
 
+
+## TODO
+
+**영화 검색**
+
+- [Rest API 핸들링](https://github.com/camosss/MovieProject/issues/1)
+- [페이지네이션](https://github.com/camosss/MovieProject/issues/2)
+- [footerView indicator](https://github.com/camosss/MovieProject/issues/3)
+- [검색 기능](https://github.com/camosss/MovieProject/issues/4)
+- [로딩 indicator](https://github.com/camosss/MovieProject/issues/5)
+
+<br>
+
+**즐겨찾기**
+
+- [Realm CRUD](https://github.com/camosss/MovieProject/issues/6)
+- [즐겨찾기](https://github.com/camosss/MovieProject/issues/7)
+- [새로고침](https://github.com/camosss/MovieProject/issues/8)
+
+<br>
+
 - 최소 버전: iOS 13
 - AutoLayout (Code Base)
 - 다크모드 대응
@@ -40,28 +61,6 @@ https://user-images.githubusercontent.com/74236080/169586315-017becc3-47ee-4330-
 - [SnapKit](https://github.com/SnapKit/SnapKit)
 - [Then](https://github.com/devxoul/Then)
 - [Toast](https://github.com/scalessec/Toast-Swift)
-
-<br>
-
-
-
-## TODO
-
-**영화 검색**
-
-- [Rest API 핸들링](https://github.com/camosss/MovieProject/issues/1)
-- [페이지네이션](https://github.com/camosss/MovieProject/issues/2)
-- [footerView indicator](https://github.com/camosss/MovieProject/issues/3)
-- [검색 기능](https://github.com/camosss/MovieProject/issues/4)
-- [로딩 indicator](https://github.com/camosss/MovieProject/issues/5)
-
-<br>
-
-**즐겨찾기**
-
-- [Realm CRUD](https://github.com/camosss/MovieProject/issues/6)
-- [즐겨찾기](https://github.com/camosss/MovieProject/issues/7)
-- [새로고침](https://github.com/camosss/MovieProject/issues/8)
 
 <br>
 <br>
