@@ -12,6 +12,24 @@
 
 <br>
 
+**영화 검색, 결과 목록, 영화 내용 상세 화면**
+
+https://user-images.githubusercontent.com/93528918/166146939-9fca7c33-f2ec-4ad7-9492-2676f8c66633.mov
+
+<br>
+
+**즐겨찾기 모음 화면**
+
+https://user-images.githubusercontent.com/93528918/166146941-8345c5f3-2777-4560-9109-0740d94bc3ac.mov
+
+<br>
+
+**다국어 지원, 앱 내 언어 변경**
+
+https://user-images.githubusercontent.com/74236080/169586315-017becc3-47ee-4330-86f8-6a156455338e.mov
+
+<br>
+
 
 ## Library
 
@@ -46,24 +64,6 @@
 - [즐겨찾기](https://github.com/camosss/MovieProject/issues/7)
 - [새로고침](https://github.com/camosss/MovieProject/issues/8)
 
-
-<br>
-
-**영화 검색, 결과 목록, 영화 내용 상세 화면**
-
-https://user-images.githubusercontent.com/93528918/166146939-9fca7c33-f2ec-4ad7-9492-2676f8c66633.mov
-
-<br>
-
-**즐겨찾기 모음 화면**
-
-https://user-images.githubusercontent.com/93528918/166146941-8345c5f3-2777-4560-9109-0740d94bc3ac.mov
-
-<br>
-
-**다국어 지원, 앱 내 언어 변경**
-
-https://user-images.githubusercontent.com/74236080/169586315-017becc3-47ee-4330-86f8-6a156455338e.mov
 
 <br>
 <br>
