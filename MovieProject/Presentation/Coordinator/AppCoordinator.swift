@@ -30,7 +30,10 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
 
     func connectMainFlow() {
-
+        let searchCoordinator = SearchCoordinator(navigationController)
+        searchCoordinator.delegate = self
+        searchCoordinator.start()
+        childCoordinators.append(searchCoordinator)
     }
 }
 
@@ -38,8 +41,8 @@ final class AppCoordinator: AppCoordinatorProtocol {
 extension AppCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
         childCoordinators = childCoordinators.filter { $0.type != childCoordinator.type }
-
         navigationController.viewControllers.removeAll()
+
         switch childCoordinator.type {
         case .main:
             connectMainFlow()

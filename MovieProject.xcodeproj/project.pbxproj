@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B4303E9A296C1AB800B626F8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4303E99296C1AB800B626F8 /* Coordinator.swift */; };
 		B4303E9C296C1AEE00B626F8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4303E9B296C1AEE00B626F8 /* AppCoordinator.swift */; };
+		B4303EA0296C1BE900B626F8 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4303E9F296C1BE900B626F8 /* SearchCoordinator.swift */; };
 		B4391F16281B19EF0069BA5A /* StarStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4391F15281B19EF0069BA5A /* StarStatus.swift */; };
 		B4391F19281B7D570069BA5A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F18281B7D570069BA5A /* Realm */; };
 		B4391F1B281B7D570069BA5A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4391F1A281B7D570069BA5A /* RealmSwift */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		B4303E99296C1AB800B626F8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		B4303E9B296C1AEE00B626F8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		B4303E9F296C1BE900B626F8 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		B4391F15281B19EF0069BA5A /* StarStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarStatus.swift; sourceTree = "<group>"; };
 		B44449C928191DFB007FAF7B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		B44449CB28191E21007FAF7B /* SearchBar+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBar+Rx.swift"; sourceTree = "<group>"; };
@@ -152,6 +154,14 @@
 			children = (
 				B4303E99296C1AB800B626F8 /* Coordinator.swift */,
 				B4303E9B296C1AEE00B626F8 /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		B4303E9E296C1BE000B626F8 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				B4303E9F296C1BE900B626F8 /* SearchCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -307,6 +317,7 @@
 		B4975C3328169C07001DD5DF /* SearchMovie */ = {
 			isa = PBXGroup;
 			children = (
+				B4303E9E296C1BE000B626F8 /* Coordinator */,
 				B44EA8C12816B09D0078B2C6 /* SearchMovieViewModel.swift */,
 				B4975C3428169C15001DD5DF /* SearchMovieViewController.swift */,
 			);
@@ -524,6 +535,7 @@
 				B481811D2816FE82002DE1EC /* NetworkError.swift in Sources */,
 				B4391F16281B19EF0069BA5A /* StarStatus.swift in Sources */,
 				B44EA8C22816B09D0078B2C6 /* SearchMovieViewModel.swift in Sources */,
+				B4303EA0296C1BE900B626F8 /* SearchCoordinator.swift in Sources */,
 				B44EA8C62816B1210078B2C6 /* Movie.swift in Sources */,
 				B4975C3828169D52001DD5DF /* BaseViewController.swift in Sources */,
 				B44449D128193B85007FAF7B /* UITableView+Rx.swift in Sources */,
