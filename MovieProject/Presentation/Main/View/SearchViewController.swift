@@ -37,6 +37,10 @@ final class SearchViewController: BaseViewController {
         spinner.startAnimating()
     }
 
+    private lazy var input = SearchViewModel.Input(
+        searchBarText: searchBar.shouldLoadResult.asSignal(onErrorJustReturn: "")
+    )
+    private lazy var output = viewModel.transform(input: input)
     private let viewModel: SearchViewModel
 
     // MARK: - Lifecycle
@@ -53,7 +57,6 @@ final class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        handleNavigationItems()
     }
 
     // MARK: - Helpers
@@ -97,60 +100,22 @@ final class SearchViewController: BaseViewController {
         tableView.register(MovieTableViewCell.self,
                            forCellReuseIdentifier: MovieTableViewCell.reuseIdentifier)
     }
+}
 
+// MARK: - Bind
+extension SearchViewController {
     private func bind() {
-        tableViewBind()
-
-        /// 페이지네이션, footerView indicator
-        viewModel.isLoadingSpinnerAvaliable
-            .withUnretained(self)
-            .subscribe { owner, isAvailable in
-                owner.tableView.tableFooterView = isAvailable ? owner.viewSpinner : UIView(frame: .zero)
-            }
-            .disposed(by: disposeBag)
-
-        /// [Toast] Error Message
-        viewModel.errorMessage
-            .withUnretained(self)
-            .subscribe(onNext: { owner, error in
-                owner.makeToastMessage(message: error)
-            })
-            .disposed(by: disposeBag)
-
-        /// 검색 이벤트
-        searchBar.shouldLoadResult
-            .asSignal(onErrorJustReturn: "")
-            .withUnretained(self)
-            .emit(onNext: { owner, query in
-                owner.viewModel.searchResultTriggered(query: query)
-            })
-            .disposed(by: disposeBag)
-
-        /// 검색, indicator
-        viewModel.isLoadingAvaliable
-            .withUnretained(self)
-            .subscribe { owner, isAvailable in
-                if isAvailable {
-                    owner.indicator.startAnimating()
-                } else {
-                    owner.indicator.stopAnimating()
-                }
-            }
-            .disposed(by: disposeBag)
-    }
-
-    private func tableViewBind() {
         /// 검색 결괏값 0일 때, EmptyView
-        viewModel.movieList
-            .map { return $0.count <= 0 && !self.viewModel.isLoadingRequstStillResume }
-            .bind(to: tableView.rx.isEmpty(
+        output.movieList
+            .map { return $0.count <= 0}
+            .drive(tableView.rx.isEmpty(
                 title: Localization.empty_Search.description.localized,
                 imageName: "film")
             )
             .disposed(by: disposeBag)
 
         /// tableView dataSource
-        viewModel.movieList
+        output.movieList
             .asDriver()
             .drive(tableView.rx.items(
                 cellIdentifier: MovieTableViewCell.reuseIdentifier,
@@ -159,80 +124,144 @@ final class SearchViewController: BaseViewController {
                 cell.configure(movie: item)
             }
             .disposed(by: disposeBag)
-
-        /// DetailView로 전환
-        tableView.rx
-            .itemSelected
-            .withUnretained(self)
-            .subscribe(onNext: { owner, indexPath in
-                owner.tableView.deselectRow(at: indexPath, animated: false)
-
-                let movie = self.viewModel.movieList.value[indexPath.row]
-                let controller = DetailMovieViewController(movie: movie)
-                owner.navigationController?.pushViewController(controller, animated: true)
-            })
-            .disposed(by: disposeBag)
- 
-        /// 페이지네이션
-        tableView.rx
-            .didScroll
-            .throttle(.milliseconds(200), scheduler: MainScheduler.instance)
-            .withUnretained(self)
-            .subscribe { owner, _ in
-                let offSetY = owner.tableView.contentOffset.y /// 현재 스크롤된 위치
-                let contentHeight = owner.tableView.contentSize.height /// 전체 content 높이
-
-                if offSetY > (contentHeight - owner.tableView.frame.size.height - 100) {
-                    if owner.viewModel.startCounter > 1 {
-                        owner.viewModel.fetchMoreDatas.accept(())
-                    }
-                }
-            }
-            .disposed(by: disposeBag)
     }
 }
+
+//    private func bind() {
+//        tableViewBind()
+//
+//        /// 페이지네이션, footerView indicator
+//        viewModel.isLoadingSpinnerAvaliable
+//            .withUnretained(self)
+//            .subscribe { owner, isAvailable in
+//                owner.tableView.tableFooterView = isAvailable ? owner.viewSpinner : UIView(frame: .zero)
+//            }
+//            .disposed(by: disposeBag)
+//
+//        /// [Toast] Error Message
+//        viewModel.errorMessage
+//            .withUnretained(self)
+//            .subscribe(onNext: { owner, error in
+//                owner.makeToastMessage(message: error)
+//            })
+//            .disposed(by: disposeBag)
+//
+//        /// 검색 이벤트
+//        searchBar.shouldLoadResult
+//            .asSignal(onErrorJustReturn: "")
+//            .withUnretained(self)
+//            .emit(onNext: { owner, query in
+//                owner.viewModel.searchResultTriggered(query: query)
+//            })
+//            .disposed(by: disposeBag)
+//
+//        /// 검색, indicator
+//        viewModel.isLoadingAvaliable
+//            .withUnretained(self)
+//            .subscribe { owner, isAvailable in
+//                if isAvailable {
+//                    owner.indicator.startAnimating()
+//                } else {
+//                    owner.indicator.stopAnimating()
+//                }
+//            }
+//            .disposed(by: disposeBag)
+//    }
+//
+//    private func tableViewBind() {
+//        /// 검색 결괏값 0일 때, EmptyView
+//        viewModel.movieList
+//            .map { return $0.count <= 0 && !self.viewModel.isLoadingRequstStillResume }
+//            .bind(to: tableView.rx.isEmpty(
+//                title: Localization.empty_Search.description.localized,
+//                imageName: "film")
+//            )
+//            .disposed(by: disposeBag)
+//
+//        /// tableView dataSource
+//        viewModel.movieList
+//            .asDriver()
+//            .drive(tableView.rx.items(
+//                cellIdentifier: MovieTableViewCell.reuseIdentifier,
+//                cellType: MovieTableViewCell.self
+//            )) { index, item, cell in
+//                cell.configure(movie: item)
+//            }
+//            .disposed(by: disposeBag)
+//
+//        /// DetailView로 전환
+//        tableView.rx
+//            .itemSelected
+//            .withUnretained(self)
+//            .subscribe(onNext: { owner, indexPath in
+//                owner.tableView.deselectRow(at: indexPath, animated: false)
+//
+//                let movie = self.viewModel.movieList.value[indexPath.row]
+//                let controller = DetailMovieViewController(movie: movie)
+//                owner.navigationController?.pushViewController(controller, animated: true)
+//            })
+//            .disposed(by: disposeBag)
+//
+//        /// 페이지네이션
+//        tableView.rx
+//            .didScroll
+//            .throttle(.milliseconds(200), scheduler: MainScheduler.instance)
+//            .withUnretained(self)
+//            .subscribe { owner, _ in
+//                let offSetY = owner.tableView.contentOffset.y /// 현재 스크롤된 위치
+//                let contentHeight = owner.tableView.contentSize.height /// 전체 content 높이
+//
+//                if offSetY > (contentHeight - owner.tableView.frame.size.height - 100) {
+//                    if owner.viewModel.startCounter > 1 {
+//                        owner.viewModel.fetchMoreDatas.accept(())
+//                    }
+//                }
+//            }
+//            .disposed(by: disposeBag)
+//    }
+//}
 
 // MARK: - NavigationItem
 
-extension SearchViewController {
-    private func handleNavigationItems() {
-        favoritesButton.rx.tap
-            .bind {
-                let controller = FavoritesViewController()
-                self.navigationController?.pushViewController(controller, animated: true)
-            }
-            .disposed(by: disposeBag)
+//extension SearchViewController {
+//    private func handleNavigationItems() {
+//        favoritesButton.rx.tap
+//            .bind {
+//                let controller = FavoritesViewController()
+//                self.navigationController?.pushViewController(controller, animated: true)
+//            }
+//            .disposed(by: disposeBag)
+//
+//        languageButton.rx.tap
+//            .bind {
+//                Alert.actionSheetAlert(
+//                    title: Localization.alert_Title.description.localization(),
+//                    cancel: Localization.alert_Cancel.description.localization(),
+//                    first: "English",
+//                    second: "한국어",
+//                    third: "日本語",
+//                    onFirst: {
+//                        self.populateLanguage("en")
+//                    }, onSecond: {
+//                        self.populateLanguage("ko")
+//                    }, onThird: {
+//                        self.populateLanguage("ja")
+//                    }, over: self)
+//            }
+//            .disposed(by: disposeBag)
+//    }
 
-        languageButton.rx.tap
-            .bind {
-                Alert.actionSheetAlert(
-                    title: Localization.alert_Title.description.localization(),
-                    cancel: Localization.alert_Cancel.description.localization(),
-                    first: "English",
-                    second: "한국어",
-                    third: "日本語",
-                    onFirst: {
-                        self.populateLanguage("en")
-                    }, onSecond: {
-                        self.populateLanguage("ko")
-                    }, onThird: {
-                        self.populateLanguage("ja")
-                    }, over: self)
-            }
-            .disposed(by: disposeBag)
-    }
-
-    private func populateLanguage(_ lang: String) {
-        UserDefaults.standard.set([lang], forKey: "language")
-
-        self.configureLeftBarButtonItem(title: Localization.title.description.localization())
-        self.searchBar.placeholder = Localization.searchBar.description.localization()
-        self.viewModel.movieList
-            .map { return $0.count <= 0 && !self.viewModel.isLoadingRequstStillResume }
-            .bind(to: tableView.rx.isEmpty(
-                title: Localization.empty_Search.description.localization(),
-                imageName: "film")
-            )
-            .disposed(by: disposeBag)
-    }
-}
+//    private func populateLanguage(_ lang: String) {
+//        UserDefaults.standard.set([lang], forKey: "language")
+//
+//        self.configureLeftBarButtonItem(title: Localization.title.description.localization())
+//        self.searchBar.placeholder = Localization.searchBar.description.localization()
+//        self.viewModel.movieList
+//            .map { return $0.count <= 0 && !self.viewModel.isLoadingRequstStillResume }
+//            .bind(to: tableView.rx.isEmpty(
+//                title: Localization.empty_Search.description.localization(),
+//                imageName: "film")
+//            )
+//            .disposed(by: disposeBag)
+//    }
+//}
