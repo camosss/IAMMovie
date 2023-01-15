@@ -16,8 +16,8 @@ protocol AppCoordinatorProtocol: Coordinator {
 final class AppCoordinator: AppCoordinatorProtocol {
 
     weak var delegate: CoordinatorDelegate?
-    var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    var childCoordinators = [Coordinator]()
     var type: CoordinatorStyleCase = .main
 
     init(_ navigationController: UINavigationController) {
