@@ -16,9 +16,6 @@ final class SearchMovieViewController: BaseViewController {
 
     // MARK: - Properties
 
-    private let disposeBag = DisposeBag()
-    private let viewModel = SearchMovieViewModel()
-
     private let searchBar = SearchBar()
     private let tableView = UITableView()
     private let favoritesButton = UIBarButtonItem()
@@ -40,7 +37,19 @@ final class SearchMovieViewController: BaseViewController {
         spinner.startAnimating()
     }
 
+    private let viewModel: SearchMovieViewModel
+
+
     // MARK: - Lifecycle
+
+    init(viewModel: SearchMovieViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,8 +95,8 @@ final class SearchMovieViewController: BaseViewController {
         tableView.contentInset.bottom = 50
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(MovieCell.self,
-                           forCellReuseIdentifier: MovieCell.reuseIdentifier)
+        tableView.register(MovieTableViewCell.self,
+                           forCellReuseIdentifier: MovieTableViewCell.reuseIdentifier)
     }
 
     private func bind() {
@@ -145,8 +154,8 @@ final class SearchMovieViewController: BaseViewController {
         viewModel.movieList
             .asDriver()
             .drive(tableView.rx.items(
-                cellIdentifier: MovieCell.reuseIdentifier,
-                cellType: MovieCell.self
+                cellIdentifier: MovieTableViewCell.reuseIdentifier,
+                cellType: MovieTableViewCell.self
             )) { index, item, cell in
                 cell.configure(movie: item)
             }

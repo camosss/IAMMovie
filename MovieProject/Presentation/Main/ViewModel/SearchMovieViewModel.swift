@@ -10,35 +10,54 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-final class SearchMovieViewModel {
+final class SearchMovieViewModel: ViewModelType {
 
+    private weak var coordinator: MainCoordinator?
+    private let useCase: SearchMovieUseCase
+    
+    struct Input {
+        
+    }
+    struct Output {
+        
+    }
+    var disposeBag = DisposeBag()
+    
     // MARK: - Properties
-
+    
     var movieList = BehaviorRelay<[Movie]>(value: [])
-
+    
     let fetchMoreDatas = PublishRelay<Void>()
     let isLoadingAvaliable = PublishRelay<Bool>() /// 검색, indicator
     let isLoadingSpinnerAvaliable = PublishRelay<Bool>() /// 페이지네이션, footerView indicator
     let errorMessage = PublishRelay<String>()
-
+    
     var isLoadingRequstStillResume = false /// 로딩 indicator와 emptyView를 구분하기 위한 flag
-
+    
     var query = "" /// 검색 text
     var startCounter = ParameterValue.start.rawValue /// start (parameter)
     private var totalValue = ParameterValue.start.rawValue /// 전체 결괏값
     private let limit = ParameterValue.display.rawValue /// display (parameter)
-
-    private let searchMovieAPI: SearchMovieAPIProtocol
-    private let disposeBag = DisposeBag()
-
+    
+//    private let searchMovieAPI: SearchMovieAPIProtocol
+    
     // MARK: - Initializer
-
-    init(searchMovieAPI: SearchMovieAPIProtocol = SearchMovieAPI()) {
-        self.searchMovieAPI = searchMovieAPI
-        bind()
+    
+    init(coordinator: MainCoordinator?, useCase: SearchMovieUseCase) {
+        self.coordinator = coordinator
+        self.useCase = useCase
     }
 
+//    init(searchMovieAPI: SearchMovieAPIProtocol = SearchMovieAPI()) {
+//        self.searchMovieAPI = searchMovieAPI
+//        bind()
+//    }
+
     // MARK: - Helpers
+
+    func transform(input: Input) -> Output {
+        return Output()
+    }
 
     private func bind() {
         fetchMoreDatas
@@ -64,24 +83,24 @@ final class SearchMovieViewModel {
             isLoadingSpinnerAvaliable.accept(false)
         }
 
-        searchMovieAPI
-            .populateMovieList(query: query, start: cursor)
-            .subscribe { [weak self] movies in
-                guard let self = self else { return }
-                switch movies {
-                case .success(let movies):
-                    self.handleStartCounter(movies: movies)
-                    self.isLoadingAvaliable.accept(false)
-                    self.isLoadingRequstStillResume = false
-                    self.isLoadingSpinnerAvaliable.accept(false)
-                case .failure(let error):
-                    guard let networkError = error as? NetworkError else { return }
-                    self.errorMessage.accept(networkError.description)
-                    self.isLoadingAvaliable.accept(false)
-                    self.isLoadingRequstStillResume = false
-                }
-            }
-            .disposed(by: disposeBag)
+//        searchMovieAPI
+//            .populateMovieList(query: query, start: cursor)
+//            .subscribe { [weak self] movies in
+//                guard let self = self else { return }
+//                switch movies {
+//                case .success(let movies):
+//                    self.handleStartCounter(movies: movies)
+//                    self.isLoadingAvaliable.accept(false)
+//                    self.isLoadingRequstStillResume = false
+//                    self.isLoadingSpinnerAvaliable.accept(false)
+//                case .failure(let error):
+//                    guard let networkError = error as? NetworkError else { return }
+//                    self.errorMessage.accept(networkError.description)
+//                    self.isLoadingAvaliable.accept(false)
+//                    self.isLoadingRequstStillResume = false
+//                }
+//            }
+//            .disposed(by: disposeBag)
     }
 
     /// 데이터를 TableView에 추가하고 다음 요청에 대한 페이지 정렬

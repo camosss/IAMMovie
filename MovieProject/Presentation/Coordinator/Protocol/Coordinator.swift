@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol CoordinatorDelegate: AnyObject {
-    func didFinish(childCoordinator: Coordinator)
-}
-
 enum CoordinatorStyleCase {
     case main
 }

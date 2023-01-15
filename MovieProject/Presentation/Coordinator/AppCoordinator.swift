@@ -30,10 +30,10 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
 
     func connectMainFlow() {
-        let searchCoordinator = SearchCoordinator(navigationController)
-        searchCoordinator.delegate = self
-        searchCoordinator.start()
-        childCoordinators.append(searchCoordinator)
+        let mainCoordinator = MainCoordinator(navigationController)
+        mainCoordinator.delegate = self
+        mainCoordinator.start()
+        childCoordinators.append(mainCoordinator)
     }
 }
 

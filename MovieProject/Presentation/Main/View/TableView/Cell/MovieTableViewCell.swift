@@ -1,5 +1,5 @@
 //
-//  MovieCell.swift
+//  MovieTableViewCell.swift
 //  MovieProject
 //
 //  Created by 강호성 on 2022/04/25.
@@ -11,7 +11,7 @@ import Then
 import RxCocoa
 import RxSwift
 
-final class MovieCell: BaseTableViewCell {
+final class MovieTableViewCell: BaseTableViewCell {
 
     // MARK: - Properties
 
@@ -146,7 +146,7 @@ final class MovieCell: BaseTableViewCell {
 
 // MARK: - Star 로직
 
-extension MovieCell {
+extension MovieTableViewCell {
     private func requestStar() {
         self.isStarred.accept(true)
 

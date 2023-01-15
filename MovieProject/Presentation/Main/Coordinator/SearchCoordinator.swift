@@ -1,5 +1,5 @@
 //
-//  SearchCoordinator.swift
+//  MainCoordinator.swift
 //  MovieProject
 //
 //  Created by 강호성 on 2023/01/09.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol SearchCoordinatorProtocol: Coordinator {
+protocol MainCoordinatorProtocol: Coordinator {
     func showSearchViewController()
 }
 
-final class SearchCoordinator: SearchCoordinatorProtocol {
+final class MainCoordinator: MainCoordinatorProtocol {
 
     weak var delegate: CoordinatorDelegate?
     var childCoordinators = [Coordinator]()
@@ -24,7 +24,7 @@ final class SearchCoordinator: SearchCoordinatorProtocol {
     }
 
     deinit {
-        print("deinit SearchCoordinator")
+        print("deinit MainCoordinator")
     }
 
     func start() {
@@ -32,13 +32,20 @@ final class SearchCoordinator: SearchCoordinatorProtocol {
     }
 
     func showSearchViewController() {
-        let vc = SearchMovieViewController()
+        let vc = SearchMovieViewController(
+            viewModel: SearchMovieViewModel(
+                coordinator: self,
+                useCase: SearchMovieUseCase(
+                    repository: SearchMovieRepository()
+                )
+            )
+        )
         navigationController.pushViewController(vc, animated: true)
     }
 }
 
 // MARK: - CoordinatorDelegate
-extension SearchCoordinator: CoordinatorDelegate {
+extension MainCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
         self.delegate?.didFinish(childCoordinator: self)
     }

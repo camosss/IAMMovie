@@ -15,7 +15,6 @@ final class FavoritesViewController: BaseViewController {
 
     // MARK: - Properties
 
-    private let disposeBag = DisposeBag()
     private let viewModel = FavoritesViewModel()
 
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -26,9 +25,9 @@ final class FavoritesViewController: BaseViewController {
             switch item {
             case .firstItem(let movie):
                 let cell = tableView.dequeueReusableCell(
-                    withIdentifier: MovieCell.reuseIdentifier,
+                    withIdentifier: MovieTableViewCell.reuseIdentifier,
                     for: indexPath
-                ) as! MovieCell
+                ) as! MovieTableViewCell
                 cell.configure(movie: movie)
                 return cell
             }
@@ -61,8 +60,8 @@ final class FavoritesViewController: BaseViewController {
         title = Localization.favorites.description.localization()
 
         tableView.refreshControl = refreshControl
-        tableView.register(MovieCell.self,
-                           forCellReuseIdentifier: MovieCell.reuseIdentifier)
+        tableView.register(MovieTableViewCell.self,
+                           forCellReuseIdentifier: MovieTableViewCell.reuseIdentifier)
     }
     
     private func bind() {
