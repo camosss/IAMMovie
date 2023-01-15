@@ -13,8 +13,8 @@ protocol SearchMovieAPIProtocol {
 }
 
 final class SearchMovieAPI: SearchMovieAPIProtocol {
-    let service: MoyaProvider<SearchMovieTarget>
-    init() { service = MoyaProvider<SearchMovieTarget>() }
+    let service: MoyaProvider<SearchTarget>
+    init() { service = MoyaProvider<SearchTarget>() }
 }
 
 extension SearchMovieAPI {

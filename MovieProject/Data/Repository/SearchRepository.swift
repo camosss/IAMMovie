@@ -1,5 +1,5 @@
 //
-//  SearchMovieRepository.swift
+//  SearchRepository.swift
 //  MovieProject
 //
 //  Created by 강호성 on 2023/01/09.
@@ -11,12 +11,12 @@ import Moya
 import RxCocoa
 import RxSwift
 
-final class SearchMovieRepository: SearchMovieType {
-    let provider: MoyaProvider<SearchMovieTarget>
-    init() { provider = MoyaProvider<SearchMovieTarget>() }
+final class SearchRepository: SearchRepositoryType {
+    let provider: MoyaProvider<SearchTarget>
+    init() { provider = MoyaProvider<SearchTarget>() }
 }
 
-extension SearchMovieRepository {
+extension SearchRepository {
     /// 영화 데이터 불러오기
     func requestMovieResponse(
         query: String,

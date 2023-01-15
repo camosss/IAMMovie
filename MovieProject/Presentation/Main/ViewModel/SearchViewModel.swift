@@ -1,5 +1,5 @@
 //
-//  SearchMovieViewModel.swift
+//  SearchViewModel.swift
 //  MovieProject
 //
 //  Created by 강호성 on 2022/04/25.
@@ -10,10 +10,10 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-final class SearchMovieViewModel: ViewModelType {
+final class SearchViewModel: ViewModelType {
 
     private weak var coordinator: MainCoordinator?
-    private let useCase: SearchMovieUseCase
+    private let useCase: SearchUseCase
     
     struct Input {
         
@@ -43,15 +43,10 @@ final class SearchMovieViewModel: ViewModelType {
     
     // MARK: - Initializer
     
-    init(coordinator: MainCoordinator?, useCase: SearchMovieUseCase) {
+    init(coordinator: MainCoordinator?, useCase: SearchUseCase) {
         self.coordinator = coordinator
         self.useCase = useCase
     }
-
-//    init(searchMovieAPI: SearchMovieAPIProtocol = SearchMovieAPI()) {
-//        self.searchMovieAPI = searchMovieAPI
-//        bind()
-//    }
 
     // MARK: - Helpers
 

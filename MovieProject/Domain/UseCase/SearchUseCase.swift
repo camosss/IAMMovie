@@ -1,5 +1,5 @@
 //
-//  SearchMovieUseCase.swift
+//  SearchUseCase.swift
 //  MovieProject
 //
 //  Created by 강호성 on 2023/01/15.
@@ -10,18 +10,18 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-final class SearchMovieUseCase {
+final class SearchUseCase {
 
     // MARK: - Properties
 
-    private let repository: SearchMovieRepository
+    private let repository: SearchRepository
 
     var movieResultSignal = PublishRelay<Movies>()
     var failError = PublishRelay<NetworkError>()
 
     // MARK: - Init
 
-    init(repository: SearchMovieRepository) {
+    init(repository: SearchRepository) {
         self.repository = repository
     }
 

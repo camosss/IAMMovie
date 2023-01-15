@@ -1,5 +1,5 @@
 //
-//  SearchMovieTarget.swift
+//  SearchTarget.swift
 //  MovieProject
 //
 //  Created by 강호성 on 2022/04/25.
@@ -8,11 +8,11 @@
 import Foundation
 import Moya
 
-enum SearchMovieTarget {
+enum SearchTarget {
     case populateMovieList(query: String, start: Int)
 }
 
-extension SearchMovieTarget: TargetType {
+extension SearchTarget: TargetType {
     var baseURL: URL {
         return URL(string: "https://openapi.naver.com/v1")!
     }

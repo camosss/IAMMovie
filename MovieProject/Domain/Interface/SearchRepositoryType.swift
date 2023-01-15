@@ -1,5 +1,5 @@
 //
-//  SearchMovieType.swift
+//  SearchRepositoryType.swift
 //  MovieProject
 //
 //  Created by 강호성 on 2023/01/09.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SearchMovieType {
+protocol SearchRepositoryType {
     /// 영화 데이터 불러오기
     func requestMovieResponse(
         query: String,  /// 검색어

@@ -32,11 +32,11 @@ final class MainCoordinator: MainCoordinatorProtocol {
     }
 
     func showSearchViewController() {
-        let vc = SearchMovieViewController(
-            viewModel: SearchMovieViewModel(
+        let vc = SearchViewController(
+            viewModel: SearchViewModel(
                 coordinator: self,
-                useCase: SearchMovieUseCase(
-                    repository: SearchMovieRepository()
+                useCase: SearchUseCase(
+                    repository: SearchRepository()
                 )
             )
         )

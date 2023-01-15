@@ -1,5 +1,5 @@
 //
-//  SearchMovieViewController.swift
+//  SearchViewController.swift
 //  MovieProject
 //
 //  Created by 강호성 on 2022/04/25.
@@ -12,7 +12,7 @@ import Toast
 import RxCocoa
 import RxSwift
 
-final class SearchMovieViewController: BaseViewController {
+final class SearchViewController: BaseViewController {
 
     // MARK: - Properties
 
@@ -37,12 +37,11 @@ final class SearchMovieViewController: BaseViewController {
         spinner.startAnimating()
     }
 
-    private let viewModel: SearchMovieViewModel
-
+    private let viewModel: SearchViewModel
 
     // MARK: - Lifecycle
 
-    init(viewModel: SearchMovieViewModel) {
+    init(viewModel: SearchViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -195,7 +194,7 @@ final class SearchMovieViewController: BaseViewController {
 
 // MARK: - NavigationItem
 
-extension SearchMovieViewController {
+extension SearchViewController {
     private func handleNavigationItems() {
         favoritesButton.rx.tap
             .bind {
