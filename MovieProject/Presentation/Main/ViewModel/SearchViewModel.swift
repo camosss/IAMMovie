@@ -13,40 +13,35 @@ import RxSwift
 
 final class SearchViewModel: ViewModelType {
 
+    // MARK: - Properties
+
     private weak var coordinator: MainCoordinator?
     private let useCase: SearchUseCase
     
     struct Input {
         let searchBarText: Signal<String>
+        let requestNextPage: Signal<Int>
     }
     struct Output {
         let movieList: Driver<[Movie]>
     }
     var disposeBag = DisposeBag()
-    
-    // MARK: - Properties
-    
+
     private let movieList = BehaviorRelay<[Movie]>(value: [])
 
     private var query = "" /// 검색 text
     private var startCounter = ParameterValue.start.rawValue /// start (parameter)
     private let limitCounter = ParameterValue.display.rawValue /// display (parameter)
-
-
-    let fetchMoreDatas = PublishRelay<Void>()
-    let isLoadingAvaliable = PublishRelay<Bool>() /// 검색, indicator
-    let isLoadingSpinnerAvaliable = PublishRelay<Bool>() /// 페이지네이션, footerView indicator
-    let errorMessage = PublishRelay<String>()
-    
-    var isLoadingRequstStillResume = false /// 로딩 indicator와 emptyView를 구분하기 위한 flag
-    
-//    var query = "" /// 검색 text
-//    var startCounter = ParameterValue.start.rawValue /// start (parameter)
     private var totalValue = ParameterValue.start.rawValue /// 전체 결괏값
-//    private let limitCounter = ParameterValue.display.rawValue /// display (parameter)
+
+
+//    let fetchMoreDatas = PublishRelay<Void>()
+//    let isLoadingAvaliable = PublishRelay<Bool>() /// 검색, indicator
+//    let isLoadingSpinnerAvaliable = PublishRelay<Bool>() /// 페이지네이션, footerView indicator
+//    let errorMessage = PublishRelay<String>()
     
-//    private let searchMovieAPI: SearchMovieAPIProtocol
-    
+//    var isLoadingRequstStillResume = false /// 로딩 indicator와 emptyView를 구분하기 위한 flag
+
     // MARK: - Initializer
     
     init(coordinator: MainCoordinator?, useCase: SearchUseCase) {
@@ -60,16 +55,37 @@ final class SearchViewModel: ViewModelType {
         input.searchBarText
             .emit(onNext: { [weak self] query in
                 guard let self = self else { return }
-                self.useCase.requestMovieResponse(query: query, start: self.startCounter)
+                self.query = query
+                self.useCase.requestMovieResponse(query: self.query, start: self.startCounter)
             })
             .disposed(by: disposeBag)
 
-        useCase.movieResultSignal
+        input.requestNextPage
+            .emit(onNext: { [weak self] index in
+                guard let self = self else { return }
+
+                if self.startCounter > 1,
+                   self.movieList.value.count - 10 == index,
+                   self.totalValue > self.movieList.value.count {
+                    self.useCase.requestMovieResponse(query: self.query, start: self.startCounter)
+                }
+            })
+            .disposed(by: disposeBag)
+
+        useCase.movieResult
             .asSignal()
             .emit(onNext: { [weak self] list in
                 guard let self = self else { return }
-                self.movieList.accept(list.items)
-                print(list)
+
+                self.totalValue = list.total
+
+                if self.startCounter == ParameterValue.start.rawValue {
+                    self.movieList.accept(list.items)
+                } else {
+                    let oldDatas = self.movieList.value
+                    self.movieList.accept(oldDatas + list.items)
+                }
+                self.startCounter += self.limitCounter
             })
             .disposed(by: disposeBag)
 

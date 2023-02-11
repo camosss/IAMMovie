@@ -37,8 +37,11 @@ final class SearchViewController: BaseViewController {
         spinner.startAnimating()
     }
 
+    private let requestNextPage = PublishRelay<Int>()
+
     private lazy var input = SearchViewModel.Input(
-        searchBarText: searchBar.shouldLoadResult.asSignal(onErrorJustReturn: "")
+        searchBarText: searchBar.shouldLoadResult.asSignal(onErrorJustReturn: ""),
+        requestNextPage: requestNextPage.asSignal()
     )
     private lazy var output = viewModel.transform(input: input)
     private let viewModel: SearchViewModel
@@ -123,6 +126,15 @@ extension SearchViewController {
             )) { index, item, cell in
                 cell.configure(movie: item)
             }
+            .disposed(by: disposeBag)
+
+        /// 페이지네이션
+        tableView.rx.willDisplayCell
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _, indexPath in
+                guard let self = self else { return }
+                self.requestNextPage.accept(indexPath.row)
+            })
             .disposed(by: disposeBag)
     }
 }
