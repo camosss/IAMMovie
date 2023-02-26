@@ -22,10 +22,12 @@ final class SearchViewController: BaseViewController {
     private let languageButton = UIBarButtonItem()
 
     private let requestNextPage = PublishRelay<Int>()
+    private let resultItemDidTap = PublishRelay<Int>()
 
     private lazy var input = SearchViewModel.Input(
         searchBarText: searchBar.shouldLoadResult.asSignal(onErrorJustReturn: ""),
         requestNextPage: requestNextPage.asSignal(),
+        resultItemDidTap: resultItemDidTap.asSignal(),
         favoritesButtonDidTap: favoritesButton.rx.tap.asSignal(),
         languageButtonDidTap: languageButton.rx.tap.asSignal()
     )
@@ -64,7 +66,7 @@ final class SearchViewController: BaseViewController {
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(50)
         }
-        tableView.snp.makeConstraints { make in
+        tabl3eView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
@@ -125,13 +127,10 @@ extension SearchViewController {
         /// DetailView로 전환
         tableView.rx
             .itemSelected
-            .withUnretained(self)
-            .subscribe(onNext: { owner, indexPath in
-                owner.tableView.deselectRow(at: indexPath, animated: false)
-
-//                let movie = self.viewModel.movieList.value[indexPath.row]
-//                let controller = DetailMovieViewController(movie: movie)
-//                owner.navigationController?.pushViewController(controller, animated: true)
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                self.tableView.deselectRow(at: indexPath, animated: false)
+                self.resultItemDidTap.accept(indexPath.row)
             })
             .disposed(by: disposeBag)
 

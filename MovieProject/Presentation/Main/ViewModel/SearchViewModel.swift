@@ -21,6 +21,7 @@ final class SearchViewModel: ViewModelType {
     struct Input {
         let searchBarText: Signal<String>
         let requestNextPage: Signal<Int>
+        let resultItemDidTap: Signal<Int>
         let favoritesButtonDidTap: Signal<Void>
         let languageButtonDidTap: Signal<Void>
     }
@@ -83,6 +84,14 @@ final class SearchViewModel: ViewModelType {
                         start: self.startCounter
                     )
                 }
+            })
+            .disposed(by: disposeBag)
+
+        input.resultItemDidTap
+            .emit(onNext: { [weak self] index in
+                guard let self = self else { return }
+                let item = self.movieList.value[index]
+                self.coordinator?.showDetailViewController(movie: item)
             })
             .disposed(by: disposeBag)
 

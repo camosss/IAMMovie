@@ -47,6 +47,11 @@ final class MainCoordinator: MainCoordinatorProtocol {
         let vc = FavoritesViewController()
         navigationController.pushViewController(vc, animated: true)
     }
+
+    func showDetailViewController(movie: Movie) {
+        let vc = DetailMovieViewController(movie: movie)
+        navigationController.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: - CoordinatorDelegate
