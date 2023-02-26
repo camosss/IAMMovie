@@ -14,9 +14,29 @@ extension Reactive where Base: UITableView {
     func isEmpty(title: String, imageName: String) -> Binder<Bool> {
         return Binder(base) { tableView, isEmpty in
             if isEmpty {
-                tableView.setEmptyBackgroundView(title: title, imageName: imageName)
+                tableView.setEmptyView(title: title, imageName: imageName)
             } else {
                 tableView.removeBackgroundView()
+            }
+        }
+    }
+
+    func isLoading() -> Binder<Bool> {
+        return Binder(base) { tableView, isLoading in
+            if isLoading {
+                tableView.setLoadingView()
+            } else {
+                tableView.removeBackgroundView()
+            }
+        }
+    }
+
+    func isBottomSpinner() -> Binder<Bool> {
+        return Binder(base) { tableView, isEmpty in
+            if isEmpty {
+                tableView.setBottomSpinner()
+            } else {
+                tableView.removeSpinnerFooter()
             }
         }
     }

@@ -21,22 +21,6 @@ final class SearchViewController: BaseViewController {
     private let favoritesButton = UIBarButtonItem()
     private let languageButton = UIBarButtonItem()
 
-    private lazy var indicator = UIActivityIndicatorView(
-        frame: CGRect(x: 0, y: 0, width: 50, height: 50)
-    ).then {
-        $0.style = UIActivityIndicatorView.Style.medium
-        $0.center = view.center
-    }
-
-    private lazy var viewSpinner = UIView(
-        frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100)
-    ).then {
-        let spinner = UIActivityIndicatorView()
-        spinner.center = $0.center
-        $0.addSubview(spinner)
-        spinner.startAnimating()
-    }
-
     private let requestNextPage = PublishRelay<Int>()
 
     private lazy var input = SearchViewModel.Input(
@@ -68,7 +52,6 @@ final class SearchViewController: BaseViewController {
         super.setViews()
         view.addSubview(searchBar)
         view.addSubview(tableView)
-        view.addSubview(indicator)
     }
 
     override func setConstraints() {
@@ -136,102 +119,31 @@ extension SearchViewController {
                 self.requestNextPage.accept(indexPath.row)
             })
             .disposed(by: disposeBag)
-    }
-}
 
-//    private func bind() {
-//        tableViewBind()
-//
-//        /// 페이지네이션, footerView indicator
-//        viewModel.isLoadingSpinnerAvaliable
-//            .withUnretained(self)
-//            .subscribe { owner, isAvailable in
-//                owner.tableView.tableFooterView = isAvailable ? owner.viewSpinner : UIView(frame: .zero)
-//            }
-//            .disposed(by: disposeBag)
-//
-//        /// [Toast] Error Message
-//        viewModel.errorMessage
-//            .withUnretained(self)
-//            .subscribe(onNext: { owner, error in
-//                owner.makeToastMessage(message: error)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        /// 검색 이벤트
-//        searchBar.shouldLoadResult
-//            .asSignal(onErrorJustReturn: "")
-//            .withUnretained(self)
-//            .emit(onNext: { owner, query in
-//                owner.viewModel.searchResultTriggered(query: query)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        /// 검색, indicator
-//        viewModel.isLoadingAvaliable
-//            .withUnretained(self)
-//            .subscribe { owner, isAvailable in
-//                if isAvailable {
-//                    owner.indicator.startAnimating()
-//                } else {
-//                    owner.indicator.stopAnimating()
-//                }
-//            }
-//            .disposed(by: disposeBag)
-//    }
-//
-//    private func tableViewBind() {
-//        /// 검색 결괏값 0일 때, EmptyView
-//        viewModel.movieList
-//            .map { return $0.count <= 0 && !self.viewModel.isLoadingRequstStillResume }
-//            .bind(to: tableView.rx.isEmpty(
-//                title: Localization.empty_Search.description.localized,
-//                imageName: "film")
-//            )
-//            .disposed(by: disposeBag)
-//
-//        /// tableView dataSource
-//        viewModel.movieList
-//            .asDriver()
-//            .drive(tableView.rx.items(
-//                cellIdentifier: MovieTableViewCell.reuseIdentifier,
-//                cellType: MovieTableViewCell.self
-//            )) { index, item, cell in
-//                cell.configure(movie: item)
-//            }
-//            .disposed(by: disposeBag)
-//
-//        /// DetailView로 전환
-//        tableView.rx
-//            .itemSelected
-//            .withUnretained(self)
-//            .subscribe(onNext: { owner, indexPath in
-//                owner.tableView.deselectRow(at: indexPath, animated: false)
-//
+        /// tableView isEmpty를 바인딩하고 있기 때문에, View 교체하기 위함 (검색 로딩, 페이지네이션)
+        output.isLoadingAvaliable
+            .emit(to: tableView.rx.isLoading())
+            .disposed(by: disposeBag)
+
+        output.isLoadingSpinnerAvaliable
+            .emit(to: tableView.rx.isBottomSpinner())
+            .disposed(by: disposeBag)
+
+        /// DetailView로 전환
+        tableView.rx
+            .itemSelected
+            .withUnretained(self)
+            .subscribe(onNext: { owner, indexPath in
+                owner.tableView.deselectRow(at: indexPath, animated: false)
+
 //                let movie = self.viewModel.movieList.value[indexPath.row]
 //                let controller = DetailMovieViewController(movie: movie)
 //                owner.navigationController?.pushViewController(controller, animated: true)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        /// 페이지네이션
-//        tableView.rx
-//            .didScroll
-//            .throttle(.milliseconds(200), scheduler: MainScheduler.instance)
-//            .withUnretained(self)
-//            .subscribe { owner, _ in
-//                let offSetY = owner.tableView.contentOffset.y /// 현재 스크롤된 위치
-//                let contentHeight = owner.tableView.contentSize.height /// 전체 content 높이
-//
-//                if offSetY > (contentHeight - owner.tableView.frame.size.height - 100) {
-//                    if owner.viewModel.startCounter > 1 {
-//                        owner.viewModel.fetchMoreDatas.accept(())
-//                    }
-//                }
-//            }
-//            .disposed(by: disposeBag)
-//    }
-//}
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
 
 // MARK: - NavigationItem
 
