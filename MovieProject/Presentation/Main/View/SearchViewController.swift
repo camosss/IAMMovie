@@ -66,7 +66,7 @@ final class SearchViewController: BaseViewController {
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(50)
         }
-        tabl3eView.snp.makeConstraints { make in
+        tableView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
