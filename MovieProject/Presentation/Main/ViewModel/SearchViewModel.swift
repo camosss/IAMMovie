@@ -21,17 +21,21 @@ final class SearchViewModel: ViewModelType {
     struct Input {
         let searchBarText: Signal<String>
         let requestNextPage: Signal<Int>
+        let favoritesButtonDidTap: Signal<Void>
+        let languageButtonDidTap: Signal<Void>
     }
     struct Output {
         let movieList: Driver<[Movie]>
         let isLoadingAvaliable: Signal<Bool>
         let isLoadingSpinnerAvaliable: Signal<Bool>
+        let isLanguageState: Signal<Void>
     }
     var disposeBag = DisposeBag()
 
-    private let movieList = BehaviorRelay<[Movie]>(value: [])
+    let movieList = BehaviorRelay<[Movie]>(value: [])
     private let isLoadingAvaliable = PublishRelay<Bool>() /// 검색, indicator
     private let isLoadingSpinnerAvaliable = PublishRelay<Bool>() /// 페이지네이션, footerView indicator
+    private let isLanguageState = PublishRelay<Void>()
 
     private var query = "" /// 검색 text
     private var startCounter = ParameterValue.start.rawValue /// start (parameter)
@@ -82,6 +86,20 @@ final class SearchViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
 
+        input.favoritesButtonDidTap
+            .emit(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.coordinator?.showFavoriteViewController()
+            })
+            .disposed(by: disposeBag)
+
+        input.languageButtonDidTap
+            .emit(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.isLanguageState.accept(())
+            })
+            .disposed(by: disposeBag)
+
         useCase.movieResult
             .asSignal()
             .emit(onNext: { [weak self] list in
@@ -113,7 +131,8 @@ final class SearchViewModel: ViewModelType {
         return Output(
             movieList: movieList.asDriver(),
             isLoadingAvaliable: isLoadingAvaliable.asSignal(),
-            isLoadingSpinnerAvaliable: isLoadingSpinnerAvaliable.asSignal()
+            isLoadingSpinnerAvaliable: isLoadingSpinnerAvaliable.asSignal(),
+            isLanguageState: isLanguageState.asSignal()
         )
     }
 }

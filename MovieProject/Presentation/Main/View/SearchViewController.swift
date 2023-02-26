@@ -25,7 +25,9 @@ final class SearchViewController: BaseViewController {
 
     private lazy var input = SearchViewModel.Input(
         searchBarText: searchBar.shouldLoadResult.asSignal(onErrorJustReturn: ""),
-        requestNextPage: requestNextPage.asSignal()
+        requestNextPage: requestNextPage.asSignal(),
+        favoritesButtonDidTap: favoritesButton.rx.tap.asSignal(),
+        languageButtonDidTap: languageButton.rx.tap.asSignal()
     )
     private lazy var output = viewModel.transform(input: input)
     private let viewModel: SearchViewModel
@@ -120,15 +122,6 @@ extension SearchViewController {
             })
             .disposed(by: disposeBag)
 
-        /// tableView isEmpty를 바인딩하고 있기 때문에, View 교체하기 위함 (검색 로딩, 페이지네이션)
-        output.isLoadingAvaliable
-            .emit(to: tableView.rx.isLoading())
-            .disposed(by: disposeBag)
-
-        output.isLoadingSpinnerAvaliable
-            .emit(to: tableView.rx.isBottomSpinner())
-            .disposed(by: disposeBag)
-
         /// DetailView로 전환
         tableView.rx
             .itemSelected
@@ -141,51 +134,50 @@ extension SearchViewController {
 //                owner.navigationController?.pushViewController(controller, animated: true)
             })
             .disposed(by: disposeBag)
+
+        output.isLanguageState
+            .emit(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                Alert.actionSheetAlert(
+                    title: Localization.alert_Title.description.localization(),
+                    cancel: Localization.alert_Cancel.description.localization(),
+                    first: "English",
+                    second: "한국어",
+                    third: "日本語",
+                    onFirst: {
+                        self.populateLanguage("en")
+                    }, onSecond: {
+                        self.populateLanguage("ko")
+                    }, onThird: {
+                        self.populateLanguage("ja")
+                    }, over: self)
+            })
+            .disposed(by: disposeBag)
+
+        /// tableView isEmpty를 바인딩하고 있기 때문에, View 교체하기 위함 (검색 로딩, 페이지네이션)
+        output.isLoadingAvaliable
+            .emit(to: tableView.rx.isLoading())
+            .disposed(by: disposeBag)
+
+        output.isLoadingSpinnerAvaliable
+            .emit(to: tableView.rx.isBottomSpinner())
+            .disposed(by: disposeBag)
     }
 }
 
+extension SearchViewController {
+    private func populateLanguage(_ lang: String) {
+        UserDefaults.standard.set([lang], forKey: "language")
 
-// MARK: - NavigationItem
+        configureLeftBarButtonItem(title: Localization.title.description.localization())
+        searchBar.placeholder = Localization.searchBar.description.localization()
 
-//extension SearchViewController {
-//    private func handleNavigationItems() {
-//        favoritesButton.rx.tap
-//            .bind {
-//                let controller = FavoritesViewController()
-//                self.navigationController?.pushViewController(controller, animated: true)
-//            }
-//            .disposed(by: disposeBag)
-//
-//        languageButton.rx.tap
-//            .bind {
-//                Alert.actionSheetAlert(
-//                    title: Localization.alert_Title.description.localization(),
-//                    cancel: Localization.alert_Cancel.description.localization(),
-//                    first: "English",
-//                    second: "한국어",
-//                    third: "日本語",
-//                    onFirst: {
-//                        self.populateLanguage("en")
-//                    }, onSecond: {
-//                        self.populateLanguage("ko")
-//                    }, onThird: {
-//                        self.populateLanguage("ja")
-//                    }, over: self)
-//            }
-//            .disposed(by: disposeBag)
-//    }
-
-//    private func populateLanguage(_ lang: String) {
-//        UserDefaults.standard.set([lang], forKey: "language")
-//
-//        self.configureLeftBarButtonItem(title: Localization.title.description.localization())
-//        self.searchBar.placeholder = Localization.searchBar.description.localization()
-//        self.viewModel.movieList
-//            .map { return $0.count <= 0 && !self.viewModel.isLoadingRequstStillResume }
-//            .bind(to: tableView.rx.isEmpty(
-//                title: Localization.empty_Search.description.localization(),
-//                imageName: "film")
-//            )
-//            .disposed(by: disposeBag)
-//    }
-//}
+        viewModel.movieList
+            .map { return $0.count <= 0 }
+            .bind(to: tableView.rx.isEmpty(
+                title: Localization.empty_Search.description.localization(),
+                imageName: "film")
+            )
+            .disposed(by: disposeBag)
+    }
+}

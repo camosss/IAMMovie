@@ -42,6 +42,11 @@ final class MainCoordinator: MainCoordinatorProtocol {
         )
         navigationController.pushViewController(vc, animated: true)
     }
+
+    func showFavoriteViewController() {
+        let vc = FavoritesViewController()
+        navigationController.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: - CoordinatorDelegate
