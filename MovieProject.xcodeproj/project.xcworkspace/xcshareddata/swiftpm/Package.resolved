@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "lookinserver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/QMUI/LookinServer/",
+      "state" : {
+        "revision" : "b45e90cb3c1c59c0ad29f5eab13e696bb9034d8c",
+        "version" : "1.1.5"
+      }
+    },
+    {
       "identity" : "moya",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Moya/Moya",

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B4303E9A296C1AB800B626F8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4303E99296C1AB800B626F8 /* Coordinator.swift */; };
 		B4303E9C296C1AEE00B626F8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4303E9B296C1AEE00B626F8 /* AppCoordinator.swift */; };
-		B4303EA0296C1BE900B626F8 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4303E9F296C1BE900B626F8 /* SearchCoordinator.swift */; };
+		B4303EA0296C1BE900B626F8 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4303E9F296C1BE900B626F8 /* MainCoordinator.swift */; };
 		B4303EA5296C1E1400B626F8 /* SearchRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4303EA4296C1E1400B626F8 /* SearchRepositoryType.swift */; };
 		B4303EA9296C1EA800B626F8 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4303EA8296C1EA800B626F8 /* SearchRepository.swift */; };
 		B4391F16281B19EF0069BA5A /* StarStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4391F15281B19EF0069BA5A /* StarStatus.swift */; };
@@ -42,6 +42,7 @@
 		B44EA8D32816D8140078B2C6 /* ClientKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44EA8D22816D8140078B2C6 /* ClientKey.swift */; };
 		B4505B3E2847B1B900006980 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = B4505B3D2847B1B900006980 /* Toast */; };
 		B450CB4129AB618600076617 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450CB4029AB618600076617 /* LoadingView.swift */; };
+		B45987A229D991A900669E77 /* LookinServer in Frameworks */ = {isa = PBXBuildFile; productRef = B45987A129D991A900669E77 /* LookinServer */; };
 		B45A478B281E663D006A3E12 /* MovieRealmDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45A478A281E663D006A3E12 /* MovieRealmDTO.swift */; };
 		B45A478D281E6670006A3E12 /* MovieRealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45A478C281E6670006A3E12 /* MovieRealmData.swift */; };
 		B45A478F281E7413006A3E12 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45A478E281E7413006A3E12 /* ViewHelper.swift */; };
@@ -78,7 +79,7 @@
 /* Begin PBXFileReference section */
 		B4303E99296C1AB800B626F8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		B4303E9B296C1AEE00B626F8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		B4303E9F296C1BE900B626F8 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		B4303E9F296C1BE900B626F8 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		B4303EA4296C1E1400B626F8 /* SearchRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryType.swift; sourceTree = "<group>"; };
 		B4303EA8296C1EA800B626F8 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
 		B4391F15281B19EF0069BA5A /* StarStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarStatus.swift; sourceTree = "<group>"; };
@@ -151,6 +152,7 @@
 				B4391F2C281B87250069BA5A /* Then in Frameworks */,
 				B498FBE6281D2C1100D95455 /* RxDataSources in Frameworks */,
 				B4391F29281B870D0069BA5A /* SnapKit in Frameworks */,
+				B45987A229D991A900669E77 /* LookinServer in Frameworks */,
 				B4391F24281B86F70069BA5A /* RxCocoa in Frameworks */,
 				B4391F1B281B7D570069BA5A /* RealmSwift in Frameworks */,
 				B4391F32281B87A60069BA5A /* Moya in Frameworks */,
@@ -312,7 +314,7 @@
 		B43C35B529740A4300429D27 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				B4303E9F296C1BE900B626F8 /* SearchCoordinator.swift */,
+				B4303E9F296C1BE900B626F8 /* MainCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -524,6 +526,7 @@
 				B4391F31281B87A60069BA5A /* Moya */,
 				B498FBE5281D2C1100D95455 /* RxDataSources */,
 				B4505B3D2847B1B900006980 /* Toast */,
+				B45987A129D991A900669E77 /* LookinServer */,
 			);
 			productName = MovieProject;
 			productReference = B498FBDF281B98FC00D95455 /* MovieProject.app */;
@@ -565,6 +568,7 @@
 				B4391F30281B87A60069BA5A /* XCRemoteSwiftPackageReference "Moya" */,
 				B498FBE4281D2C1100D95455 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				B4505B3C2847B1B900006980 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				B45987A029D991A900669E77 /* XCRemoteSwiftPackageReference "LookinServer" */,
 			);
 			productRefGroup = B4975C1128169923001DD5DF;
 			projectDirPath = "";
@@ -630,7 +634,7 @@
 				B481811D2816FE82002DE1EC /* NetworkError.swift in Sources */,
 				B4391F16281B19EF0069BA5A /* StarStatus.swift in Sources */,
 				B44EA8C22816B09D0078B2C6 /* SearchViewModel.swift in Sources */,
-				B4303EA0296C1BE900B626F8 /* SearchCoordinator.swift in Sources */,
+				B4303EA0296C1BE900B626F8 /* MainCoordinator.swift in Sources */,
 				B44EA8C62816B1210078B2C6 /* Movie.swift in Sources */,
 				B450CB4129AB618600076617 /* LoadingView.swift in Sources */,
 				B4975C3828169D52001DD5DF /* BaseViewController.swift in Sources */,
@@ -942,6 +946,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		B45987A029D991A900669E77 /* XCRemoteSwiftPackageReference "LookinServer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/QMUI/LookinServer/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		B498FBE4281D2C1100D95455 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
@@ -1002,6 +1014,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B4505B3C2847B1B900006980 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		B45987A129D991A900669E77 /* LookinServer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B45987A029D991A900669E77 /* XCRemoteSwiftPackageReference "LookinServer" */;
+			productName = LookinServer;
 		};
 		B498FBE5281D2C1100D95455 /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;
